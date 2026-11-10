@@ -2,7 +2,10 @@
 
 > **Current hardware failure:** the binary-patched plain ROMs white-screen on
 > the cart (GBC and DMG).  A candidate stack fix is rebuilt and awaiting a
-> retest.  Read `docs/STATUS.md` first for the exact symptom list, verified
+> retest.  Staged diagnostic ROMs for the isolation plan are now built:
+> `roms/plain-mbc5-stage0.gb` (trampoline only), `-stage1.gb` (+ boot
+> restore), and the full `-patched.gb` (stage 2).  Flash and test in that
+> order.  Read `docs/STATUS.md` first for the exact symptom list, verified
 > non-causes and isolation plan.
 
 ## What this project is
@@ -134,8 +137,17 @@ pwsh -File tools/build_plain.ps1 -Clean
 # Build the injectable journal blob
 pwsh -File patcher/journal/build_blob.ps1 -Clean
 
+# Build a staged diagnostic blob (0 = trampoline only, 1 = + boot restore)
+pwsh -File patcher/journal/build_blob.ps1 -Stage 0 -Clean
+pwsh -File patcher/journal/build_blob.ps1 -Stage 1 -Clean
+
 # Patch the plain ROM
 python patcher/hc007_patcher.py patch roms/plain-mbc5.gb
+
+# Patch with a staged blob, no VBlank hook (isolation testing)
+python patcher/hc007_patcher.py patch roms/plain-mbc5.gb `
+  --blob roms/journal-blob-stage0.gb --blob-noi roms/journal-blob-stage0.noi `
+  --no-vblank-hook -o roms/plain-mbc5-stage0.gb
 
 # Reader regressions
 node tests/testrom_reader.mjs

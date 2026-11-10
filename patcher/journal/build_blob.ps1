@@ -7,6 +7,10 @@
 
 [CmdletBinding()]
 param(
+    # 0 = trampoline only, 1 = + boot restore, 2 = + VBlank hook (default/full).
+    # See JOURNAL_STAGE in journal.c and docs/STATUS.md isolation plan.
+    [ValidateSet(0, 1, 2)]
+    [int]$Stage = 2,
     [switch]$Clean
 )
 
@@ -17,14 +21,15 @@ $gbdk = Join-Path $root 'tools\gbdk'
 $lcc = Join-Path $gbdk 'bin\lcc.exe'
 $src = Join-Path $PSScriptRoot 'journal.c'
 $roms = Join-Path $root 'roms'
-$out = Join-Path $roms 'journal-blob.gb'
+$suffix = if ($Stage -eq 2) { '' } else { "-stage$Stage" }
+$out = Join-Path $roms "journal-blob$suffix.gb"
 
 if (-not (Test-Path $lcc)) { throw "GBDK lcc not found at $lcc" }
 if (-not (Test-Path $src)) { throw "source not found at $src" }
 New-Item -ItemType Directory -Force -Path $roms | Out-Null
 
 if ($Clean) {
-    Get-ChildItem -Path $roms -Filter 'journal-blob.*' -File -ErrorAction SilentlyContinue |
+    Get-ChildItem -Path $roms -Filter "journal-blob$suffix.*" -File -ErrorAction SilentlyContinue |
         Remove-Item -Force
 }
 
@@ -36,6 +41,7 @@ if ($Clean) {
     '-Wl-j' `
     '-Wl-w' `
     '-Wf--opt-code-size' `
+    "-DJOURNAL_STAGE=$Stage" `
     '-Wl-b_CODE=0x2000' `
     '-Wl-m' `
     '-o' $out `

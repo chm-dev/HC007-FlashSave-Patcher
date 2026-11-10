@@ -13,6 +13,30 @@ restore code could overwrite HRAM runtime variables.  `j_boot` now sets
 patched ROMs were rebuilt; **hardware retest pending**.  See
 `../../docs/STATUS.md` for the verified non-causes and isolation plan.
 
+### Staged builds for isolation testing
+
+`journal.c` reads a `JOURNAL_STAGE` macro (default 2) that gates how much of
+the blob runs, matching the `docs/STATUS.md` isolation plan:
+
+| Stage | `j_boot` | `j_vblank` installed? |
+|---|---|---|
+| 0 | `SP=0xE000`, jump to original entry. No restore call. | no (`--no-vblank-hook`) |
+| 1 | + calls `j_restore` (boot restore). | no (`--no-vblank-hook`) |
+| 2 (default) | + full boot restore. | yes, full VBlank journal writer |
+
+```powershell
+pwsh -File patcher/journal/build_blob.ps1 -Stage 0 -Clean   # -> journal-blob-stage0.gb
+pwsh -File patcher/journal/build_blob.ps1 -Stage 1 -Clean   # -> journal-blob-stage1.gb
+pwsh -File patcher/journal/build_blob.ps1 -Stage 2 -Clean   # -> journal-blob.gb (default)
+
+python patcher/hc007_patcher.py patch roms/plain-mbc5.gb `
+  --blob roms/journal-blob-stage0.gb --blob-noi roms/journal-blob-stage0.noi `
+  --no-vblank-hook -o roms/plain-mbc5-stage0.gb
+```
+
+Flash stage 0 first; if it boots, retest stage 1, then the full stage-2
+`plain-mbc5-patched.gb`. All three boot in the emulator (verified).
+
 ## Build
 
 ```powershell

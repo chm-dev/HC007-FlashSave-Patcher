@@ -377,7 +377,8 @@ def entry_target(data: bytes) -> int:
 
 
 def patch_rom(target_path: Path, blob_path: Path, noi_path: Path,
-              output_path: Path | None, log_sector: int) -> None:
+              output_path: Path | None, log_sector: int,
+              install_vblank_hook: bool = True) -> None:
     target = bytearray(target_path.read_bytes())
     blob = blob_path.read_bytes()
     symbols = parse_noi_symbols(noi_path)
@@ -427,7 +428,8 @@ def patch_rom(target_path: Path, blob_path: Path, noi_path: Path,
     jb = symbols["j_boot"]
     jv = symbols["j_vblank"]
     target[0x100:0x104] = bytes([0xC3, jb & 0xFF, (jb >> 8) & 0xFF, 0x00])
-    target[0x40:0x43] = bytes([0xC3, jv & 0xFF, (jv >> 8) & 0xFF])
+    if install_vblank_hook:
+        target[0x40:0x43] = bytes([0xC3, jv & 0xFF, (jv >> 8) & 0xFF])
 
     fix_checksums(target)
 
@@ -438,8 +440,12 @@ def patch_rom(target_path: Path, blob_path: Path, noi_path: Path,
     print(f"patched: {target_path} -> {output_path}")
     print(f"  mapper:         {info.mapper}")
     print(f"  entry:          0x{entry:04X} (boot trampoline 0x{jb:04X})")
-    print(f"  vblank:         original {original_vblank.hex(' ')} "
-          f"-> stub 0x{stub:04X} (hook 0x{jv:04X})")
+    if install_vblank_hook:
+        print(f"  vblank:         original {original_vblank.hex(' ')} "
+              f"-> stub 0x{stub:04X} (hook 0x{jv:04X})")
+    else:
+        print(f"  vblank:         original {original_vblank.hex(' ')} "
+              f"-> unchanged (hook not installed, --no-vblank-hook)")
     print(f"  blob:           0x2000..0x3FFF")
     print(f"  log sector:     0x{log_sector:06X} (bank 0x18)")
     print(f"  header checksum: 0x{target[0x14D]:02X}")
@@ -458,12 +464,16 @@ def main(argv: list[str] | None = None) -> int:
                         help="patched output path")
     parser.add_argument("--log-sector", type=lambda s: int(s, 0), default=0x60000,
                         help="flash log sector (this blob is built for 0x60000)")
+    parser.add_argument("--no-vblank-hook", action="store_true",
+                        help="do not patch 0x40 (isolation: boot restore only, "
+                        "or trampoline only with a stage-0 blob)")
     args = parser.parse_args(argv)
 
     if args.command == "patch":
         try:
             patch_rom(args.rom, args.blob, args.blob_noi, args.output,
-                      args.log_sector)
+                      args.log_sector,
+                      install_vblank_hook=not args.no_vblank_hook)
         except (OSError, ValueError) as exc:
             print(f"error: {exc}", file=sys.stderr)
             return 1

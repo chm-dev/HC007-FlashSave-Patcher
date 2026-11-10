@@ -1,4 +1,57 @@
-# Current status (2026-11-10)
+# Current status (2026-11-11)
+
+## Update: isolation-plan diagnostic ROMs are ready
+
+No hardware access in this session, so the hardware retest from the
+2026-11-10 entry below is still **pending** (needs the physical cart). To
+make that retest more informative, `journal.c` now supports a build-time
+`JOURNAL_STAGE` (0/1/2) implementing isolation steps 1-2 from "If it still
+white-screens":
+
+- `JOURNAL_STAGE=0`: `j_boot` only sets `SP=0xE000` and jumps to the
+  original entry. No restore call at all.
+- `JOURNAL_STAGE=1`: adds the boot restore (`j_restore`). The VBlank hook is
+  not installed (`patch --no-vblank-hook` leaves `0x40` untouched).
+- `JOURNAL_STAGE=2` (default): full blob, same as before (boot restore +
+  VBlank journal writer). This is what `roms/plain-mbc5-patched.gb` etc. use.
+
+Built and verified to boot in the emulator (same running WRAM state as the
+stage-2 ROM after 120 frames):
+
+- `roms/plain-mbc5-stage0.gb` - trampoline-only.
+- `roms/plain-mbc5-stage1.gb` - + boot restore, no VBlank hook.
+- `roms/plain-mbc5-patched.gb` - full (stage 2, unchanged).
+
+Rebuild commands:
+
+```powershell
+pwsh -File patcher/journal/build_blob.ps1 -Stage 0 -Clean
+pwsh -File patcher/journal/build_blob.ps1 -Stage 1 -Clean
+pwsh -File patcher/journal/build_blob.ps1 -Stage 2 -Clean   # = journal-blob.gb
+
+python patcher/hc007_patcher.py patch roms/plain-mbc5.gb `
+  --blob roms/journal-blob-stage0.gb --blob-noi roms/journal-blob-stage0.noi `
+  --no-vblank-hook -o roms/plain-mbc5-stage0.gb
+
+python patcher/hc007_patcher.py patch roms/plain-mbc5.gb `
+  --blob roms/journal-blob-stage1.gb --blob-noi roms/journal-blob-stage1.noi `
+  --no-vblank-hook -o roms/plain-mbc5-stage1.gb
+```
+
+**Next hardware session:** flash `plain-mbc5-stage0.gb` first. If it boots,
+the SP-fix trampoline itself is fine and the bug is in `j_restore` or the
+VBlank hook; try `plain-mbc5-stage1.gb` next, then the full
+`plain-mbc5-patched.gb`. If stage 0 *also* white-screens, the bug is not in
+the restore/hook logic at all (re-check the vector patch, checksum, or a
+hardware/cart issue unrelated to this blob).
+
+Also re-reviewed for other bugs while offline: WRAM layout
+(`0xDE00..0xDE96` + stack at `0xE000`) does not overlap the plain ROM's own
+`_DATA`/`_BSS` (`0xC0A0..0xC0DC`) or `.STACK` (`0xE000`), confirmed from the
+`.map` files, so no WRAM collision for this specific target. No other logic
+bugs found in `j_boot`/`j_restore` on this pass.
+
+## 2026-11-10 entry
 
 ## TL;DR
 

@@ -441,11 +441,23 @@ void j_tick(void)
 /* Entry points                                                       */
 /* ------------------------------------------------------------------ */
 
+/* JOURNAL_STAGE controls how much of the blob runs, for hardware isolation
+ * (see docs/STATUS.md "If it still white-screens"):
+ *   0 = trampoline only: set SP, jump to the original entry. No restore.
+ *   1 = add the boot restore, but the VBlank hook is not installed by the
+ *       patcher (0x40 is left untouched), so j_vblank is unused.
+ *   2 (default) = full: boot restore + VBlank journal writer.
+ */
+#ifndef JOURNAL_STAGE
+#define JOURNAL_STAGE 2
+#endif
+
 void j_boot(void);
 void j_boot(void)
 {
     __asm
         ld sp, #0xE000
+#if JOURNAL_STAGE >= 1
         push af
         push bc
         push de
@@ -455,6 +467,7 @@ void j_boot(void)
         pop de
         pop bc
         pop af
+#endif
         ld a, (_j_boot_default)
         ld l, a
         ld a, (_j_boot_default+1)
@@ -467,6 +480,7 @@ void j_vblank(void);
 void j_vblank(void)
 {
     __asm
+#if JOURNAL_STAGE >= 2
         push af
         push bc
         push de
@@ -476,6 +490,7 @@ void j_vblank(void)
         pop de
         pop bc
         pop af
+#endif
         jp _j_vblank_stub
     __endasm;
 }
