@@ -1,0 +1,22 @@
+# Build outputs
+roms/*.gb
+roms/*.gbc
+roms/*.ihx
+roms/*.map
+roms/*.noi
+roms/*.sym
+roms/*.png
+roms/*.log
+build/
+
+# Python
+__pycache__/
+*.pyc
+
+# Emulator state
+tools/gearboy/*.sav
+tools/gearboy/*.state
+
+# Local ROM fixtures
+tests/fixtures/*.gb
+tests/fixtures/*.noi
