@@ -1,5 +1,10 @@
 # Start here (new session handoff)
 
+> **Current hardware failure:** the binary-patched plain ROMs white-screen on
+> the cart (GBC and DMG).  A candidate stack fix is rebuilt and awaiting a
+> retest.  Read `docs/STATUS.md` first for the exact symptom list, verified
+> non-causes and isolation plan.
+
 ## What this project is
 
 A binary patcher that adds batteryless saves to GB/GBC ROMs on the **HC007-BGA-V2**
@@ -12,7 +17,12 @@ comes from the Robbo DMG port; this project generalises it.
 - Flash ID: `20 00 7D 00` (ST/Numonyx M29W640).
 - Program and erase from the GB CPU work (probe: `PROG err=00 rd=5A`,
   `ERASE err=00 rd=FF`).
-- SRAM: 32 KiB, 4 × 8 KiB banks, all working.
+- **Flash works in MBC1, MBC3 and MBC5 header modes.** The mapper forwards
+  writes even when CPU `0x6000` is also a mapper register, so a patched game can
+  keep its original header.
+- **SRAM:** the probe's 4-bank test fails in all three modes, so only **bank 0
+  (8 KiB)** is verified. Treat 32 KiB games as unsupported until a dedicated
+  SRAM test proves banked SRAM.
 - MBC1, MBC3 and MBC5 games boot and play on the cart. This means the mapper
   switches mode from the header (`0x147`), or is otherwise compatible with all
   three register sets.
@@ -21,76 +31,73 @@ comes from the Robbo DMG port; this project generalises it.
 - A 512 KiB MBC5 game (Robbo) with the flash log at chip `0x72000` persisted
   across power cycles on this cart.
 
-## What is not known yet (the next experiment)
+## Next implementation step
 
-**Can the CPU program/erase the flash while the mapper is in MBC1 or MBC3 mode?**
+The test ROM passed on hardware for all three mapper modes. The **patched plain
+ROMs white-screened on hardware** (GBC and DMG) even though they boot in
+emulators. A likely cause was the boot trampoline using the boot ROM's HRAM
+stack; `j_boot` now switches to `SP=0xE000`. The blob and patched ROMs are
+rebuilt. **Reflash and retest** `roms/plain-mbc5-patched.gb` (then MBC1/MBC3):
+press A, wait ~3 s, power-cycle, check the counter.
 
-Why it matters: the log's data window is CPU `0x6000..0x7FFF` (chip `0x72000`,
-bank `0x1C`). In MBC1 mode `0x6000..0x7FFF` is the mode-select register; in MBC3
-mode it is the RTC latch. If the mapper consumes those writes, the flash never
-sees the program/erase command sequence.
+If they still white-screen, read `docs/STATUS.md` for the verified non-causes
+and the isolation plan (trampoline-only blob, restore-only, hook-only, blank log
+sector, WRAM collision, MBC5 first).
 
-## Immediate next step
+The prototype already has:
 
-1. Flash these three ROMs (they are already built):
-   - `roms/mapperprobe-mbc1.gb`
-   - `roms/mapperprobe-mbc3.gb`
-   - `roms/mapperprobe-mbc5.gb` (control; should behave like the original probe)
-2. On each, press **A** (program `0x5A` at chip `0x72000`) and **B** (erase the
-   sector). Press **START** to refresh the summary.
-3. Report the screen lines, e.g.:
+1. A boot trampoline at `0x100` that restores SRAM from the journal and jumps to
+   the game's original entry.
+2. A mapper-aware WRAM flash driver (MBC1/MBC3/MBC5 bank select).
+3. An 8 KiB SRAM page journal (32 pages of 256 bytes), append-only with a commit
+   byte written last.
+4. A VBlank save-detection hook (one page checksummed per frame, 4 bytes written
+   per frame after a stable period).
+5. Header/global checksum fixes and the original VBlank-vector tail call.
 
-```
-HDR 147=03 148=04 149=03
-MODE: MBC1
-SRAM4: OK
-ID A9: 20 00 7D 00
-SECTOR: FF
-PROG err=00 rd=5A
-ERASE err=00 rd=FF
-```
+Remaining before arbitrary commercial games:
 
-Also report whether the **MBC3 game you tested uses a clock/RTC** (which game,
-and whether the in-game time survived a power cycle). That decides whether the
-journal must also persist RTC registers.
+1. Fix the hardware white screen.
+2. Generalize the patcher beyond the plain-ROM layout (find free bank-0 space,
+   blank log sector, pad smaller images).
+3. Track the game's current ROM bank (or avoid switching banks in the hook).
+4. Save/restore the MBC1 mode register, MBC3 RTC latch and `0x4000` register.
+5. Compatibility database and per-game overrides.
 
-## Decision tree after the probe
+## Still open
 
-### Case 1: `PROG err=00 rd=5A` and `ERASE err=00 rd=FF` in MBC1 and MBC3
-
-The mapper forwards writes to the flash even when the address is also a register.
-We can keep the game's original header and add:
-
-- a mapper-aware bank-select helper for the log bank,
-- save/restore of the MBC1 mode register around each flash byte,
-- the boot trampoline + SRAM journal.
-
-This is the easiest path and the one to implement first.
-
-### Case 2: flash works in MBC3 but not MBC1
-
-MBC3 games can use the normal path. For MBC1, look for a **mapper-mode switch**
-(next probe): try writing candidate values to `0x6000`, `0x7000` and see whether
-the bank mapping changes to MBC5 semantics. If a switch exists, toggle to MBC5
-for flash operations and back. If not, either normalise MBC1 games to MBC5
-(convert bank writes) or declare MBC1 saves unsupported.
-
-### Case 3: flash fails in both MBC1 and MBC3
-
-The mapper is strictly header-switched and consumes all register writes. Then:
-
-- keep the original header for gameplay, but find a mode switch (probe), or
-- patch the header to MBC5 and convert the game's bank writes (expensive), or
-- support only MBC5 games in v1.
+- **Why do the patched plain ROMs white-screen on hardware?** Candidate fix:
+  WRAM stack in `j_boot` (applied, unverified).  See `docs/STATUS.md`.
+- Which MBC3 test game was used, and does it use an RTC/clock? RTC persistence is
+  not implemented in v1.
+- Is the cart's SRAM really 8 KiB, or is 32 KiB present but not banked? A
+  dedicated SRAM-size test (or the chip marking) would settle it.
+- How much VBlank overhead can representative games tolerate?
+- Does the mapper mask ROM banks to the header ROM size (affects appended banks)?
+- How to track the current ROM bank for banked games without per-game patches.
 
 ## What is already implemented in this repo
 
 - `probe/mapperprobe.c` - the mapper-aware probe (MBC1/MBC3/MBC5 header builds).
 - `tools/build_probe.ps1` - builds all three 512 KiB probe ROMs.
-- `patcher/hc007_patcher.py` - header parser and patch planner:
+- `testrom/` - controlled save test ROM (16-bit counter, SRAM copy, flash
+  journal) built for MBC1/MBC3/MBC5; `tools/build_testrom.ps1` builds it.
+- `tests/testrom_reader.mjs` - reader regression for the test ROM (blank,
+  last-wins, tombstone, torn, corrupt checksum).
+- `testrom/plain.c` - plain save ROM (patcher target), built by
+  `tools/build_plain.ps1`.
+- `patcher/journal/` - injectable journal blob (boot restore + VBlank writer),
+  built by `patcher/journal/build_blob.ps1`.
+- `patcher/hc007_patcher.py` - header parser, planner and `patch` command:
   - `info` prints mapper, ROM/RAM size, checksums, battery/RTC/rumble.
   - `plan` finds free 64 KiB sectors and proposes the log bank/window and the
     mapper-specific bank-select registers.
+  - `patch` injects the blob, patches the entry/VBlank vectors and fixes the
+    checksums.
+- `tests/patched_plain_reader.mjs` - reader regression for the patched plain
+  ROM.
+- `docs/STATUS.md` - current hardware failure, verified non-causes and retest
+  plan.
 - `docs/FLASH_SAVE_METHOD.md` - the proven WRAM driver + append-only log method.
 - `docs/PATCHER_DESIGN.md` - the intended patcher architecture.
 
@@ -101,7 +108,10 @@ The mapper is strictly header-switched and consumes all register writes. Then:
   but choose the sector deliberately.
 - Data writes must stay at CPU `0x6000..0x7FFF` (MBC5 `0x4000..0x5FFF` is the
   RAM bank register). In MBC1 mode this range is also the mode register; in
-  MBC3 mode it is the RTC latch. That is the open question above.
+  MBC3 mode it is the RTC latch. Flash writes are proven to work in every mode,
+  but save and restore those registers around each operation.
+- The journal must use SRAM bank 0 (8 KiB); banked SRAM is unverified on this
+  cart.
 - Every flash routine must run from **WRAM**, and must restore `_current_bank`
   before returning. Switching to bank `0x1C` unmaps the calling bank.
 - The 512 KiB image keeps bank `0x1C` inside the declared ROM and puts the log
@@ -114,6 +124,22 @@ The mapper is strictly header-switched and consumes all register writes. Then:
 ```powershell
 # Rebuild the probes
 pwsh -File tools/build_probe.ps1 -Clean
+
+# Rebuild the test ROMs
+pwsh -File tools/build_testrom.ps1 -Clean
+
+# Build the plain patcher target
+pwsh -File tools/build_plain.ps1 -Clean
+
+# Build the injectable journal blob
+pwsh -File patcher/journal/build_blob.ps1 -Clean
+
+# Patch the plain ROM
+python patcher/hc007_patcher.py patch roms/plain-mbc5.gb
+
+# Reader regressions
+node tests/testrom_reader.mjs
+node tests/patched_plain_reader.mjs
 
 # Inspect any ROM
 python patcher/hc007_patcher.py plan C:\path\to\game.gb

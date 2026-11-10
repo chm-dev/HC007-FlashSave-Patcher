@@ -5,6 +5,15 @@
 > as `gb/src/gb/flashsave.c` refer to that repository; this project will grow
 > its own implementation. The hardware facts and WRAM-stub lessons are directly
 > reusable.
+>
+> **Cart note:** the HC007's 4-bank SRAM test fails; only bank 0 (8 KiB) is
+> verified. Use an 8 KiB journal (32 pages of 256 bytes) for this cart.
+>
+> **Boot trampoline note:** C code that runs from the reset vector before the
+> game's crt0 must switch the stack to WRAM (e.g. `SP=0xE000`).  The boot ROM's
+> `SP=0xFFFE` is in HRAM and only ~127 bytes; a C restore routine can overwrite
+> GBDK HRAM variables and white-screen the game.  See `docs/STATUS.md` for the
+> patcher prototype's first hardware failure.
 
 This document describes the method used by this port to keep a savegame on a
 battery-less bootleg Game Boy cartridge: an **append-only log in the cartridge's

@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -29,7 +30,10 @@ from pathlib import Path
 
 HC007_FLASH_SIZE = 8 * 1024 * 1024
 HC007_SECTOR_SIZE = 64 * 1024
-HC007_SRAM_SIZE = 32 * 1024
+# The probe's 4-bank SRAM test fails on the real cart in every mapper mode, so
+# only bank 0 is verified.  Treat the usable SRAM as 8 KiB; games that declare
+# 32 KiB and actually use banks 1-3 are unsupported until that is re-tested.
+HC007_SRAM_SIZE = 8 * 1024
 HC007_FLASH_UNLOCK = "0xA9/0x56 (D0/D1 swapped)"
 
 # CPU window used for flash data writes.  0x4000..0x5FFF is the MBC5 RAM bank
@@ -216,8 +220,9 @@ def parse_rom(path: Path) -> RomInfo:
         info.warnings.append("rumble is not present on the HC007 (usually harmless)")
     if info.declared_ram_size > HC007_SRAM_SIZE:
         info.warnings.append(
-            f"declares {info.declared_ram_size // 1024} KiB SRAM, "
-            f"the HC007 has only {HC007_SRAM_SIZE // 1024} KiB")
+            f"declares {info.declared_ram_size // 1024} KiB SRAM; the HC007 "
+            f"4-bank probe test fails, so only bank 0 "
+            f"({HC007_SRAM_SIZE // 1024} KiB) is verified")
     if info.declared_ram_size == 0:
         info.warnings.append("declares no cartridge RAM; nothing to journal")
     if info.file_size > HC007_FLASH_SIZE - HC007_SECTOR_SIZE:
@@ -284,8 +289,8 @@ def format_info(info: RomInfo) -> str:
         f"  size:         {info.file_size} bytes (declared {info.declared_rom_size})",
         f"  cart type:    0x{info.cart_type:02X}  {info.cart_type_name}",
         f"  mapper:       {info.mapper}",
-        f"  RAM:          {info.declared_ram_size // 1024} KiB"
-        f" (HC007 has {HC007_SRAM_SIZE // 1024} KiB)",
+        f"  RAM:          {info.declared_ram_size // 1024} KiB declared"
+        f" (HC007 usable: {HC007_SRAM_SIZE // 1024} KiB, bank 0)",
         f"  CGB flag:     0x{info.cgb_flag:02X}",
         f"  battery:      {'yes' if info.has_battery else 'no'}"
         f"   RTC: {'yes' if info.has_rtc else 'no'}"
@@ -308,10 +313,13 @@ def format_info(info: RomInfo) -> str:
 
 def format_plan(info: RomInfo) -> str:
     lines = [format_info(info), "", "PLAN"]
-    if info.mapper in ("MBC1", "MBC3"):
+    lines.append(
+        "  note: flash program/erase is verified in MBC1, MBC3 and MBC5 mode; "
+        "the journal must use SRAM bank 0 (8 KiB)")
+    if info.declared_ram_size > HC007_SRAM_SIZE:
         lines.append(
-            f"  note: flash program/erase in {info.mapper} mode is unproven; "
-            "run the mapper probe first")
+            "  WARNING: the journal covers bank 0 only; multi-bank saves will "
+            "be incomplete")
     if info.proposed_log_sector is None:
         lines.append("  no usable log sector: this ROM cannot be patched as-is")
         return "\n".join(lines)
@@ -336,12 +344,130 @@ def format_plan(info: RomInfo) -> str:
     return "\n".join(lines)
 
 
+def parse_noi_symbols(path: Path) -> dict[str, int]:
+    symbols: dict[str, int] = {}
+    for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        m = re.match(r"^DEF _([A-Za-z0-9_]+) (0x[0-9A-Fa-f]+)", line)
+        if m:
+            symbols[m.group(1)] = int(m.group(2), 16)
+    return symbols
+
+
+def fix_checksums(data: bytearray) -> None:
+    data[0x14D] = header_checksum(data)
+    total = global_checksum(data)
+    data[0x14E] = (total >> 8) & 0xFF
+    data[0x14F] = total & 0xFF
+
+
+def entry_target(data: bytes) -> int:
+    """Return the address the original 0x100 entry code reaches."""
+    op = data[0x100]
+    if op == 0x18:                      # jr rel
+        rel = data[0x101]
+        if rel >= 0x80:
+            rel -= 0x100
+        return 0x102 + rel
+    if op == 0x00 and data[0x101] == 0xC3:   # nop; jp nn
+        return data[0x102] | (data[0x103] << 8)
+    if op == 0xC3:                      # jp nn
+        return data[0x101] | (data[0x102] << 8)
+    raise ValueError(
+        f"unsupported entry at 0x100: {data[0x100:0x104].hex(' ')}")
+
+
+def patch_rom(target_path: Path, blob_path: Path, noi_path: Path,
+              output_path: Path | None, log_sector: int) -> None:
+    target = bytearray(target_path.read_bytes())
+    blob = blob_path.read_bytes()
+    symbols = parse_noi_symbols(noi_path)
+
+    required = ("j_boot", "j_vblank", "j_boot_default", "j_vblank_stub")
+    missing = [name for name in required if name not in symbols]
+    if missing:
+        raise ValueError(f"blob .noi is missing symbols: {', '.join(missing)}")
+
+    info = parse_rom(target_path)
+    if info.mapper not in ("MBC1", "MBC3", "MBC5"):
+        raise ValueError(f"unsupported mapper: {info.mapper}")
+    if info.declared_ram_size == 0:
+        raise ValueError("target declares no cartridge RAM")
+    if info.declared_ram_size > HC007_SRAM_SIZE:
+        raise ValueError(
+            f"target declares {info.declared_ram_size // 1024} KiB SRAM; "
+            f"only {HC007_SRAM_SIZE // 1024} KiB (bank 0) is verified")
+    if log_sector != 0x60000:
+        raise ValueError("this blob is built for log sector 0x60000")
+    if len(target) < log_sector + HC007_SECTOR_SIZE:
+        raise ValueError(
+            f"target is {len(target)} bytes; log sector 0x{log_sector:X} "
+            "does not fit (pad the image first)")
+
+    if any(b != 0xFF for b in target[0x2000:0x4000]):
+        raise ValueError("target 0x2000..0x3FFF is not free for the blob")
+    if any(b != 0xFF for b in target[log_sector:log_sector + HC007_SECTOR_SIZE]):
+        raise ValueError(
+            f"log sector 0x{log_sector:X} is not blank; refusing to erase it")
+
+    entry = entry_target(target)
+    original_vblank = bytes(target[0x40:0x48])
+
+    # Copy the blob's bank-0 code/data window.
+    target[0x2000:0x4000] = blob[0x2000:0x4000]
+
+    def put16(addr: int, value: int) -> None:
+        target[addr] = value & 0xFF
+        target[addr + 1] = (value >> 8) & 0xFF
+
+    put16(symbols["j_boot_default"], entry)
+
+    stub = symbols["j_vblank_stub"]
+    target[stub:stub + 8] = original_vblank
+
+    jb = symbols["j_boot"]
+    jv = symbols["j_vblank"]
+    target[0x100:0x104] = bytes([0xC3, jb & 0xFF, (jb >> 8) & 0xFF, 0x00])
+    target[0x40:0x43] = bytes([0xC3, jv & 0xFF, (jv >> 8) & 0xFF])
+
+    fix_checksums(target)
+
+    if output_path is None:
+        output_path = target_path.with_name(target_path.stem + "-patched.gb")
+    output_path.write_bytes(target)
+
+    print(f"patched: {target_path} -> {output_path}")
+    print(f"  mapper:         {info.mapper}")
+    print(f"  entry:          0x{entry:04X} (boot trampoline 0x{jb:04X})")
+    print(f"  vblank:         original {original_vblank.hex(' ')} "
+          f"-> stub 0x{stub:04X} (hook 0x{jv:04X})")
+    print(f"  blob:           0x2000..0x3FFF")
+    print(f"  log sector:     0x{log_sector:06X} (bank 0x18)")
+    print(f"  header checksum: 0x{target[0x14D]:02X}")
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=("info", "plan"))
+    parser.add_argument("command", choices=("info", "plan", "patch"))
     parser.add_argument("rom", type=Path)
     parser.add_argument("--json", action="store_true", help="machine-readable output")
+    parser.add_argument("--blob", type=Path, default=Path("roms/journal-blob.gb"),
+                        help="journal blob image (code at 0x2000)")
+    parser.add_argument("--blob-noi", type=Path, default=Path("roms/journal-blob.noi"),
+                        help="journal blob .noi symbols")
+    parser.add_argument("-o", "--output", type=Path,
+                        help="patched output path")
+    parser.add_argument("--log-sector", type=lambda s: int(s, 0), default=0x60000,
+                        help="flash log sector (this blob is built for 0x60000)")
     args = parser.parse_args(argv)
+
+    if args.command == "patch":
+        try:
+            patch_rom(args.rom, args.blob, args.blob_noi, args.output,
+                      args.log_sector)
+        except (OSError, ValueError) as exc:
+            print(f"error: {exc}", file=sys.stderr)
+            return 1
+        return 0
 
     try:
         info = parse_rom(args.rom)

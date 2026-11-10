@@ -1,53 +1,102 @@
 # Patcher
 
-`hc007_patcher.py` is the start of the binary patcher. It currently **plans**
-patches; it does not modify ROMs yet.
+`hc007_patcher.py` parses ROM headers, plans patches, and **patches a target
+ROM** with the journal blob.
 
 ## Commands
 
 ```powershell
-python patcher/hc007_patcher.py info path\to\game.gb
-python patcher/hc007_patcher.py plan path\to\game.gb
-python patcher/hc007_patcher.py plan path\to\game.gb --json
+python patcher/hc007_patcher.py info  path\to\game.gb
+python patcher/hc007_patcher.py plan  path\to\game.gb
+python patcher/hc007_patcher.py patch path\to\game.gb
+```
+
+`patch` defaults to `roms/journal-blob.gb` / `.noi` and writes
+`<name>-patched.gb`.  Build the blob first:
+
+```powershell
+pwsh -File patcher/journal/build_blob.ps1 -Clean
 ```
 
 ### `info`
 
-Prints:
-
-- title, file size, declared ROM size,
-- cart type and mapper family,
-- declared SRAM size vs the HC007's 32 KiB,
-- CGB flag, battery/RTC/rumble,
-- stored vs computed header and global checksums,
-- free 64 KiB sectors,
-- compatibility warnings.
+Prints title, file size, declared ROM/RAM size, mapper family, CGB flag,
+battery/RTC/rumble, stored vs computed checksums, free 64 KiB sectors and
+compatibility warnings.
 
 ### `plan`
 
-Adds the proposed patch layout:
+Adds the proposed log sector, bank/window, mapper-specific bank-select
+registers and the remaining stages.
 
-- log sector (chip offset),
-- log bank and CPU window,
-- mapper-specific bank-select register values,
-- the remaining implementation stages.
+### `patch` (prototype)
+
+Current prototype requirements:
+
+- MBC1/MBC3/MBC5 mapper, 8 KiB SRAM (bank 0), 512 KiB image.
+- Target `0x100` is a `jr`/`jp` entry; `0x40` is the original 8-byte VBlank
+  vector (the blob executes a copy of it).
+- Target `0x2000..0x3FFF` is free (`0xFF`).
+- Log sector `0x60000..0x6FFFF` is blank.
+
+It:
+
+1. copies the blob's `0x2000..0x3FFF` into the target,
+2. patches `0x100` to `jp j_boot` and `0x40` to `jp j_vblank`,
+3. patches the blob's boot target to the game's original entry,
+4. copies the original VBlank vector into the blob's stub,
+5. fixes the header and global checksums.
+
+Output for `roms/plain-mbc5.gb`:
+
+```
+patched: roms/plain-mbc5.gb -> roms/plain-mbc5-patched.gb
+  mapper:         MBC5
+  entry:          0x0157 (boot trampoline 0x2566)
+  vblank:         original f5 e5 21 a5 c0 c3 80 00 -> stub 0x20C1 (hook 0x257B)
+  blob:           0x2000..0x3FFF
+  log sector:     0x060000 (bank 0x18)
+  header checksum: 0x8F
+```
+
+## Hardware status
+
+The first patched plain ROMs **white-screened on the real cart** (GBC and DMG)
+even though they boot in Gearboy/serverboy.  A likely cause was `j_boot` running
+before the GBDK crt0 and using the boot ROM's 127-byte HRAM stack; it now sets
+`SP=0xE000` before calling `j_restore`.  The blob and patched ROMs were rebuilt;
+**hardware retest pending**.  See `../docs/STATUS.md` for verified non-causes
+and the isolation plan.
 
 ## Current limitations
 
-- It does not write a patched ROM yet.
-- It does not inject the trampoline, journal or hook.
-- It does not handle RTC, >32 KiB SRAM, 8 MiB ROMs or MBC2/HuC mappers.
-- Free-sector detection only looks inside the existing image; if none is free it
-  proposes padding to the next 64 KiB boundary.
+- Only the controlled plain ROM layout is supported: 512 KiB, 8 KiB SRAM,
+  free `0x2000..0x3FFF`, blank `0x60000` sector.
+- The hook restores ROM bank 0 after flash writes; banked games need a bank
+  shadow.
+- RTC, >8 KiB usable SRAM (bank 0 only), 8 MiB ROMs and MBC2/HuC mappers are
+  unsupported.
+- Free-sector detection only looks inside the existing image; padding a smaller
+  ROM to 512 KiB is not automated yet.
+- A full log stops journaling until the next boot erase.
 
 ## Implementation order
 
-1. `--patch` output: pad/append the log sector and a spare code bank.
-2. Boot trampoline at `0x100` (restore SRAM, jump to `0x150`).
-3. Mapper-aware WRAM flash driver.
-4. SRAM page journal (append, replay, compact).
-5. VBlank save-detection hook.
-6. Header/global checksum fix.
-7. Compatibility DB overrides.
+Done for the prototype:
 
-See `../docs/PATCHER_DESIGN.md` for the architecture and record formats.
+- [x] boot trampoline at `0x100`
+- [x] mapper-aware WRAM flash driver
+- [x] SRAM page journal (replay + append)
+- [x] VBlank save-detection hook
+- [x] header/global checksum fix
+
+Next:
+
+1. Support arbitrary 512 KiB targets (find free `0x2000..0x3FFF`, blank log
+   sector).
+2. Pad smaller ROMs to 512 KiB and update `0x148`/checksums.
+3. Track the game's current ROM bank (or keep the hook in bank 0 without
+   switching).
+4. Add a compatibility database and per-game overrides.
+
+See `../docs/PATCHER_DESIGN.md` and `journal/README.md`.

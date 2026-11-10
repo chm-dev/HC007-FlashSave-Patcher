@@ -20,3 +20,4 @@ tools/gearboy/*.state
 # Local ROM fixtures
 tests/fixtures/*.gb
 tests/fixtures/*.noi
+gbdk/

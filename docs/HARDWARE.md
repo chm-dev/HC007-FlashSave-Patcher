@@ -4,7 +4,9 @@
 
 - Bootleg "Pokemon Yellow"-style **HC007-BGA-V2** cartridge.
 - **Flash:** ST/Numonyx **M29W640** (64 Mbit = **8 MiB**), NOR, 64 KiB sectors.
-- **SRAM:** **32 KiB** (4 × 8 KiB banks), volatile.
+- **SRAM:** header claims **32 KiB** (4 × 8 KiB banks), but the probe's 4-bank
+  test fails in every mapper mode. Only **bank 0 (8 KiB)** is verified; treat
+  banked SRAM as unproven.
 - **Battery:** none.
 - **Mapper:** MBC5-style chip that also runs MBC1 and MBC3 games (the mode
   follows the cartridge header, or is otherwise register-compatible).
@@ -23,6 +25,18 @@ ERASE err=00 rd=FF     -> erase works
 VAR:A9/56
 SECTOR: 5A
 ```
+
+The mapper-aware probe was then run with all three headers (2026-11-10):
+
+| Header | Mode | SRAM4 | ID | PROG | ERASE |
+|---|---|---|---|---|---|
+| `0x03` | MBC1 | FAIL | `20 00 7D 00` | `err=00 rd=5A` | `err=00 rd=FF` |
+| `0x13` | MBC3 | FAIL | `20 00 7D 00` | `err=00 rd=5A` | `err=00 rd=FF` |
+| `0x1B` | MBC5 | FAIL | `20 00 7D 00` | `err=00 rd=5A` | `err=00 rd=FF` |
+
+**Conclusion:** the mapper forwards flash program/erase writes in every mode,
+even when CPU `0x6000` is the MBC1 mode register or the MBC3 RTC latch. The
+patcher can keep each game's original header.
 
 The game build (`robbo-hc007-debug.gb`, 512 KiB, MBC5) then persisted its level
 across power cycles, confirming the end-to-end write path.
@@ -94,20 +108,26 @@ the shipped image. A reflash therefore resets the save.
 
 ## Open hardware questions
 
-1. Do program/erase writes at `0x6000` reach the flash in **MBC1** mode?
-2. Do they reach the flash in **MBC3** mode (where `0x6000` is the RTC latch)?
-3. Is there a runtime **mapper-mode switch** register? If so, where and what
-   values?
-4. Does the board provide a real **RTC** for MBC3 games, or does the game read
+1. Is the cart's SRAM really **8 KiB**, or is 32 KiB present but not banked?
+   The 4-bank test fails in every mapper mode, so only bank 0 is usable today.
+   A dedicated SRAM-size test (or the chip marking) would settle it.
+2. Is there a runtime **mapper-mode switch** register? Not needed for the flash
+   path any more (writes work in all modes), but useful for other tricks.
+3. Does the board provide a real **RTC** for MBC3 games, or does the game read
    `0xFF`/defaults? Does the clock survive power-off?
-5. Does the mapper mask the ROM bank register to the header ROM size? (The
+4. Does the mapper mask the ROM bank register to the header ROM size? (The
    probe uses a 512 KiB image so bank `0x1C` is always declared.)
-6. Are there protected/locked sectors? The probe can write/erase the log sector,
+5. Are there protected/locked sectors? The probe can write/erase the log sector,
    so at least that one is unprotected.
-7. **MBC1 SRAM banking:** Gearboy reports `SRAM4: FAIL` for the MBC1 probe and
-   `OK` for MBC3/MBC5. That is either Gearboy's MBC1 32 KiB emulation or the
-   cart exposing only 8 KiB in MBC1 mode. The hardware probe settles it; most
-   MBC1 games use 8 KiB, so this only matters for 32 KiB MBC1 saves.
+6. Does the mapper's SRAM bank register work at all (bank 0 only, or 4 banks)?
+   The probe says only bank 0; a game that uses 32 KiB would confirm.
+
+## Patcher boot note (2026-11-10)
+
+The first binary-patched plain ROMs white-screened on hardware (GBC and DMG)
+while booting in emulators.  The likely cause was the boot trampoline using the
+boot ROM's HRAM stack (`SP=0xFFFE`); `j_boot` now sets `SP=0xE000` before the C
+restore.  See `docs/STATUS.md` for the verified non-causes and retest plan.
 
 ## Probe build notes
 

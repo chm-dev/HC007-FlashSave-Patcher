@@ -29,17 +29,23 @@ seeding records into a ROM copy and booting it with the serverboy harness.
 
 ## 2. Writer path (hardware)
 
-Only the cart can validate programming and erase.
+Only the cart can validate programming and erase. The probe already confirmed
+program/erase in MBC1, MBC3 and MBC5 mode (`PROG err=00 rd=5A`,
+`ERASE err=00 rd=FF`); see `docs/HARDWARE.md`.
 
-1. Flash the probe and confirm ID + program + erase (see `docs/HARDWARE.md`).
-2. Flash the patched game.
-3. Play until the game writes a save.
-4. Power off, wait, power on.
-5. Confirm the save loads.
-6. Delete the save in-game, power-cycle, confirm it stays deleted.
-7. Reflash the image and confirm the save is reset (the log sector is `0xFF`
+**Current hardware status:** the first patched plain ROMs white-screened on GBC
+and DMG.  Candidate fix: `j_boot` now sets `SP=0xE000` (WRAM stack) before the
+C restore; blob and ROMs rebuilt, retest pending.  See `docs/STATUS.md` for the
+verified non-causes and isolation plan.
+
+1. Flash the patched game.
+2. Play until the game writes a save.
+3. Power off, wait, power on.
+4. Confirm the save loads.
+5. Delete the save in-game, power-cycle, confirm it stays deleted.
+6. Reflash the image and confirm the save is reset (the log sector is `0xFF`
    padding again).
-8. Repeat for each mapper family (MBC1/MBC3/MBC5) and each test game.
+7. Repeat for each mapper family (MBC1/MBC3/MBC5) and each test game.
 
 ## 3. Emulators available here
 

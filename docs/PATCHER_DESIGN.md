@@ -6,14 +6,29 @@ A **binary patcher** for existing GB/GBC ROMs on the HC007 cart.
 
 Target compatibility:
 
-- Mappers: **MBC1, MBC3, MBC5** families (the cart runs all three).
-- SRAM: **≤ 32 KiB** (the cart has 4 × 8 KiB banks).
+- Mappers: **MBC1, MBC3, MBC5** families (the cart runs all three, and flash
+  program/erase is verified in all three header modes).
+- SRAM: **8 KiB verified (bank 0)**. The probe's 4-bank test fails on the cart,
+  so games that actually use 32 KiB SRAM are unsupported until banked SRAM is
+  proven.
 - RTC: **not in v1** (MBC3 timer games need extra work).
 - ROM: up to **8 MiB minus one 64 KiB sector** (the log needs a spare sector).
 - Battery saves only; password/no-save games are out of scope.
 
 Not supported: MBC2, MMM01, MBC6, MBC7, HuC1/HuC3, TAMA5, 128 KiB SRAM,
-8 MiB ROMs with no spare sector, games that require a real RTC in v1.
+32 KiB games that use banks 1-3, 8 MiB ROMs with no spare sector, games that
+require a real RTC in v1.
+
+## Prototype status (2026-11-10)
+
+- The journal blob and `patch` command work in emulators; the reader regression
+  passes.
+- The first **patched plain ROMs white-screened on hardware** (GBC and DMG).
+- Likely cause: `j_boot` ran before the GBDK crt0 and used the boot ROM's HRAM
+  stack (`SP=0xFFFE`); the C restore could overwrite HRAM runtime variables.
+  `j_boot` now sets `SP=0xE000`; blob and ROMs rebuilt, **hardware retest
+  pending**.
+- See `docs/STATUS.md` for verified non-causes and the isolation plan.
 
 ## Why a journal instead of patching the game's save code
 
@@ -65,8 +80,8 @@ patched ROM
   computes the bank and the mapper-specific bank-select registers, and lists
   the remaining stages.
 
-It warns about mapper families, >32 KiB SRAM, RTC, rumble, 8 MiB images, and a
-bad header checksum.
+It warns about mapper families, >8 KiB usable SRAM (bank 0 only), RTC, rumble,
+8 MiB images, and a bad header checksum.
 
 ## [2] Log sector and code bank
 
@@ -143,7 +158,7 @@ Append-only, power-safe. Suggested records:
 | Offset | Size | Value |
 |---|---|---|
 | 0 | 2 | `'H','P'` |
-| 2 | 1 | page index (0..127) |
+| 2 | 1 | page index (0..31 for the 8 KiB bank) |
 | 3 | 1 | SRAM bank (or derive from page) |
 | 4 | 256 | page data |
 | 260 | 1 | checksum of bytes 0..259 |
@@ -172,9 +187,9 @@ Rules:
 
 ### Wear
 
-- Only changed pages are journaled. A typical save touches 1–8 pages
-  (256 B–2 KiB).
-- A 64 KiB sector holds ~30–250 page records; 128 sectors on the 8 MiB chip.
+- Only changed pages are journaled. A typical save touches 1-8 pages
+  (256 B-2 KiB). The verified 8 KiB SRAM is 32 pages.
+- A 64 KiB sector holds ~250 page records; 128 sectors on the 8 MiB chip.
 - Normal games save rarely; this is thousands of saves.
 - Debounce: only journal after SRAM has been stable for N seconds, or when the
   game's save routine is known to have completed. This avoids journaling every
@@ -223,7 +238,8 @@ Start with A, add B for problem games.
 - **Do not change `0x147`** unless converting the mapper (keep the game's
   native mode so gameplay stays correct).
 - Change `0x148` only if the image is padded to a new ROM size.
-- Keep `0x149` as the game declares it if ≤ 32 KiB; warn/refuse if > 32 KiB.
+- Keep `0x149` as the game declares it if ≤ 8 KiB; warn/refuse if > 8 KiB
+  (only bank 0 is verified on this cart).
 - Recompute the header checksum at `0x14D`:
   `x = 0; for i in 0x134..0x14C: x = (x - data[i] - 1) & 0xFF`.
 - Recompute the global checksum at `0x14E..0x14F` (sum of all other bytes).
@@ -253,9 +269,8 @@ See `docs/COMPATIBILITY.md` for the template.
 
 ## Open questions
 
-- Does the mapper forward `0x6000` writes to the flash in MBC1/MBC3 mode?
-- Is there a runtime mapper-mode switch register?
+- Is the cart's SRAM really 8 KiB, or is 32 KiB present but not banked?
 - Does the cart provide a real RTC, and does it survive power-off?
-- Do games probe SRAM size and reject 32 KiB when they expect 128 KiB?
+- Do games probe SRAM size and reject 8 KiB when they expect more?
 - How much VBlank overhead can representative games tolerate?
 - Can the mapper mask ROM banks to the header size (affects appended banks)?

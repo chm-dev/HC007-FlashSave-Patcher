@@ -20,7 +20,24 @@ without a mode switch or a header conversion.
 
 The user has already confirmed that MBC1, MBC3 and MBC5 games all boot and play.
 So the mapper is **not fixed MBC5**; it follows the header (or is a compatible
-superset). The remaining question is only about flash writes.
+superset).
+
+## Hardware result (2026-11-10)
+
+All three probe builds report the same flash result:
+
+| Header | Mode | SRAM4 | PROG | ERASE |
+|---|---|---|---|---|
+| `0x03` | MBC1 | FAIL | `err=00 rd=5A` | `err=00 rd=FF` |
+| `0x13` | MBC3 | FAIL | `err=00 rd=5A` | `err=00 rd=FF` |
+| `0x1B` | MBC5 | FAIL | `err=00 rd=5A` | `err=00 rd=FF` |
+
+**Case A is confirmed:** the mapper forwards flash program/erase writes in every
+mode, even when CPU `0x6000` is also the MBC1 mode register or the MBC3 RTC
+latch. The patcher can keep the game's original header.
+
+The SRAM 4-bank test fails in all three modes, so the journal must use **SRAM
+bank 0 (8 KiB)**; banked SRAM is unproven on this cart.
 
 ## Bank selection per mode
 
@@ -77,7 +94,8 @@ PROG err=00 rd=5A
 ERASE err=00 rd=FF
 ```
 
-Do this for MBC1, MBC3 and MBC5. The MBC5 run is the control.
+This was run for MBC1, MBC3 and MBC5; the results are in the table above. The
+instructions remain here for re-testing a different cart revision.
 
 ## Interpreting the result
 
