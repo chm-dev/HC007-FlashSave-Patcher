@@ -1,14 +1,6 @@
 # Start here (new session handoff)
 
-> **Current hardware failure:** the binary-patched plain ROMs white-screen on
-> the cart (GBC and DMG).  A candidate stack fix is rebuilt and awaiting a
-> retest.  Staged diagnostic ROMs for the isolation plan are now built:
-> `roms/plain-mbc5-stage0.gb` (trampoline only), `-stage1.gb` (+ boot
-> restore), and the full `-patched.gb` (stage 2).  Flash and test in that
-> order.  Read `docs/STATUS.md` first for the exact symptom list, verified
-> non-causes and isolation plan.
-
-## What this project is
+> **Status:** the patched plain MBC5 ROM now persists saves on the real cart.`n> The white screen was a too-long VBlank handler (see `docs/STATUS.md`).`n`n## What this project is
 
 A binary patcher that adds batteryless saves to GB/GBC ROMs on the **HC007-BGA-V2**
 cart (M29W640 8 MiB NOR flash, 32 KiB SRAM, no battery). The proven flash method

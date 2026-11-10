@@ -28,7 +28,9 @@
 #define REC_SIZE   261u
 #define PAGE_COUNT 32u
 #define SRAM_BASE  0xA000u
-#define STABLE_FRAMES 60u
+/* Stable = this many consecutive unchanged page scans (one scan = 8 frames). */
+#define STABLE_FRAMES 8u
+#define SCAN_CHUNK 32u
 
 /* Fixed WRAM area (stack is at 0xDFFE). */
 __at (0xDE00) static uint8_t  j_code[96];
@@ -49,6 +51,8 @@ __at (0xDE93) static uint8_t  j_err;
 __at (0xDE94) static uint8_t  j_id0;
 __at (0xDE95) static uint8_t  j_id1;
 __at (0xDE96) static uint8_t  j_flash_present;
+__at (0xDE97) static uint8_t  j_scan_off;
+__at (0xDE98) static uint8_t  j_partial;
 
 /* Patched by the patcher with the game's original entry target. */
 const uint16_t j_boot_default = 0x0150u;
@@ -241,12 +245,47 @@ static uint8_t j_sram_sum(uint8_t page)
     *(volatile uint8_t *)0x0000u = 0x0Au;
     *(volatile uint8_t *)0x4000u = 0x00u;
     for (n = 0u; n < 256u; n++) {
-        sum = (uint8_t)(sum + *(volatile uint8_t *)(SRAM_BASE + base + n));
+        sum = (uint8_t)((uint8_t)((sum << 1) | (sum >> 7)) +
+                        *(volatile uint8_t *)(SRAM_BASE + base + n));
     }
     /* Leave RAM enabled: this can interrupt a game mid-SRAM-write. */
     return sum;
 }
 
+/* Change-detection hash step: h = rol(h) + byte.  Position dependent, so
+ * changes that cancel in a plain sum (counter byte +1, check byte -1) are
+ * still seen.  Hand-written asm: the C version was too slow for a VBlank.
+ * Hashes SCAN_CHUNK bytes of page j_scan_page from offset j_scan_off,
+ * continuing from j_partial. */
+void j_chunk_run(void) __naked;
+void j_chunk_run(void) __naked
+{
+    __asm
+        ld  a, #0x0A
+        ld  (0x0000), a
+        xor a, a
+        ld  (0x4000), a
+        ld  a, (_j_scan_page)
+        add a, #0xA0
+        ld  h, a
+        ld  a, (_j_scan_off)
+        ld  l, a
+        ld  a, (_j_partial)
+        ld  b, a
+        ld  c, #32
+    _j_chunk_loop:
+        ld  a, b
+        rlca
+        add a, (hl)
+        ld  b, a
+        inc hl
+        dec c
+        jr  nz, _j_chunk_loop
+        ld  a, b
+        ld  (_j_partial), a
+        ret
+    __endasm;
+}
 static uint8_t j_sram_byte(uint8_t page, uint16_t n)
 {
     uint16_t base = (uint16_t)((uint16_t)page << 8);
@@ -344,6 +383,8 @@ void j_restore(void)
     j_dirty[2] = 0u;
     j_dirty[3] = 0u;
     j_scan_page = 0u;
+    j_scan_off = 0u;
+    j_partial = 0u;
     j_stable = 0u;
     j_wr_active = 0u;
     j_wr_idx = 0u;
@@ -366,7 +407,7 @@ static void j_start_write(void)
             }
             j_wr_page = p;
             j_wr_idx = 0u;
-            j_checksum = j_sram_sum(p);
+            j_checksum = (uint8_t)(p ^ 0xA5u);
             j_wr_active = 1u;
             return;
         }
@@ -388,6 +429,7 @@ static void j_write_step(void)
             value = j_wr_page;
         } else if (j_wr_idx < 259u) {
             value = j_sram_byte(j_wr_page, (uint16_t)(j_wr_idx - 3u));
+            j_checksum = (uint8_t)(j_checksum + value);
         } else if (j_wr_idx == 259u) {
             value = j_checksum;
         } else {
@@ -414,12 +456,39 @@ void j_tick(void)
     j_frames++;
     if (!j_flash_present) return;
 
+#if JOURNAL_STAGE < 3
+    /* Stage 2: hook installed and called every frame, frame counter only. */
+    return;
+#elif JOURNAL_STAGE == 3
+    *(volatile uint8_t *)0x0000u = 0x0Au;
+    *(volatile uint8_t *)0x4000u = 0x00u;
+    return;
+#elif JOURNAL_STAGE == 7
+    /* Probe: mapper writes + ONE SRAM byte read (about 1/256 of stage 4's time). */
+    *(volatile uint8_t *)0x0000u = 0x0Au;
+    *(volatile uint8_t *)0x4000u = 0x00u;
+    j_id0 = j_id0 ^ *(volatile uint8_t *)0xA100u;
+    return;
+#elif JOURNAL_STAGE == 4
+    (void)j_sram_sum(j_scan_page);
+    j_scan_page++;
+    if (j_scan_page >= PAGE_COUNT) j_scan_page = 0u;
+    return;
+#endif
+
     if (j_wr_active) {
         j_write_step();
         return;
     }
 
-    sum = j_sram_sum(j_scan_page);
+    /* Checksum SCAN_CHUNK bytes per frame (a whole page in one VBlank runs
+     * too long and froze the game on hardware). */
+    if (j_scan_off == 0u) j_partial = (uint8_t)(j_scan_page ^ 0xA5u);
+    j_chunk_run();
+    j_scan_off = (uint8_t)(j_scan_off + SCAN_CHUNK);
+    if (j_scan_off != 0u) return;
+
+    sum = j_partial;
     if (sum != j_shadow[j_scan_page]) {
         j_shadow[j_scan_page] = sum;
         j_dirty[j_scan_page >> 3] |=
@@ -432,9 +501,13 @@ void j_tick(void)
     j_scan_page++;
     if (j_scan_page >= PAGE_COUNT) j_scan_page = 0u;
 
+#if JOURNAL_STAGE >= 6
+    /* Stage 5 stops here: SRAM is checksummed every frame, but nothing is
+     * ever written to flash.  Stage 6 (full) adds the writer. */
     if (j_stable >= STABLE_FRAMES) {
         j_start_write();
     }
+#endif
 }
 
 /* ------------------------------------------------------------------ */
@@ -446,10 +519,18 @@ void j_tick(void)
  *   0 = trampoline only: set SP, jump to the original entry. No restore.
  *   1 = add the boot restore, but the VBlank hook is not installed by the
  *       patcher (0x40 is left untouched), so j_vblank is unused.
- *   2 (default) = full: boot restore + VBlank journal writer.
+ *   2 = also install the VBlank hook (0x40 -> j_vblank), but j_tick does
+ *       nothing beyond incrementing a frame counter: no SRAM reads, no
+ *       flash writes. Isolates "hook installed/called every frame" from
+ *       the SRAM scan and the flash writer.
+ *   3 = tick only does the mapper writes (RAM enable, RAM bank 0); no read.
+ *   4 = + checksums one SRAM page per frame and discards the result.
+ *   5 = + dirty tracking over the scan; j_start_write is never called, so
+ *       nothing is ever written to flash.
+ *   6 (default) = full: boot restore + VBlank journal writer.
  */
 #ifndef JOURNAL_STAGE
-#define JOURNAL_STAGE 2
+#define JOURNAL_STAGE 6
 #endif
 
 void j_boot(void);

@@ -22,7 +22,12 @@ the blob runs, matching the `docs/STATUS.md` isolation plan:
 |---|---|---|
 | 0 | `SP=0xE000`, jump to original entry. No restore call. | no (`--no-vblank-hook`) |
 | 1 | + calls `j_restore` (boot restore). | no (`--no-vblank-hook`) |
-| 2 (default) | + full boot restore. | yes, full VBlank journal writer |
+| 2 | + empty VBlank hook | yes |
+| 3 | + mapper writes in the hook | yes |
+| 4 | + 256-byte page sum (**freezes hardware**) | yes |
+| 5 | + chunked scan, no flash writes | yes |
+| 6 (default) | full: chunked scan + writer | yes |
+| 7 | probe: mapper writes + 1 SRAM byte read | yes |
 
 ```powershell
 pwsh -File patcher/journal/build_blob.ps1 -Stage 0 -Clean   # -> journal-blob-stage0.gb

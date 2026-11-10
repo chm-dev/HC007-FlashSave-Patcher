@@ -1,73 +1,60 @@
 # Current status (2026-11-11)
 
-## Update: isolation-plan diagnostic ROMs are ready
-
-No hardware access in this session, so the hardware retest from the
-2026-11-10 entry below is still **pending** (needs the physical cart). To
-make that retest more informative, `journal.c` now supports a build-time
-`JOURNAL_STAGE` (0/1/2) implementing isolation steps 1-2 from "If it still
-white-screens":
-
-- `JOURNAL_STAGE=0`: `j_boot` only sets `SP=0xE000` and jumps to the
-  original entry. No restore call at all.
-- `JOURNAL_STAGE=1`: adds the boot restore (`j_restore`). The VBlank hook is
-  not installed (`patch --no-vblank-hook` leaves `0x40` untouched).
-- `JOURNAL_STAGE=2` (default): full blob, same as before (boot restore +
-  VBlank journal writer). This is what `roms/plain-mbc5-patched.gb` etc. use.
-
-Built and verified to boot in the emulator (same running WRAM state as the
-stage-2 ROM after 120 frames):
-
-- `roms/plain-mbc5-stage0.gb` - trampoline-only.
-- `roms/plain-mbc5-stage1.gb` - + boot restore, no VBlank hook.
-- `roms/plain-mbc5-patched.gb` - full (stage 2, unchanged).
-
-Rebuild commands:
-
-```powershell
-pwsh -File patcher/journal/build_blob.ps1 -Stage 0 -Clean
-pwsh -File patcher/journal/build_blob.ps1 -Stage 1 -Clean
-pwsh -File patcher/journal/build_blob.ps1 -Stage 2 -Clean   # = journal-blob.gb
-
-python patcher/hc007_patcher.py patch roms/plain-mbc5.gb `
-  --blob roms/journal-blob-stage0.gb --blob-noi roms/journal-blob-stage0.noi `
-  --no-vblank-hook -o roms/plain-mbc5-stage0.gb
-
-python patcher/hc007_patcher.py patch roms/plain-mbc5.gb `
-  --blob roms/journal-blob-stage1.gb --blob-noi roms/journal-blob-stage1.noi `
-  --no-vblank-hook -o roms/plain-mbc5-stage1.gb
-```
-
-**Next hardware session:** flash `plain-mbc5-stage0.gb` first. If it boots,
-the SP-fix trampoline itself is fine and the bug is in `j_restore` or the
-VBlank hook; try `plain-mbc5-stage1.gb` next, then the full
-`plain-mbc5-patched.gb`. If stage 0 *also* white-screens, the bug is not in
-the restore/hook logic at all (re-check the vector patch, checksum, or a
-hardware/cart issue unrelated to this blob).
-
-Also re-reviewed for other bugs while offline: WRAM layout
-(`0xDE00..0xDE96` + stack at `0xE000`) does not overlap the plain ROM's own
-`_DATA`/`_BSS` (`0xC0A0..0xC0DC`) or `.STACK` (`0xE000`), confirmed from the
-`.map` files, so no WRAM collision for this specific target. No other logic
-bugs found in `j_boot`/`j_restore` on this pass.
-
-## 2026-11-10 entry
-
 ## TL;DR
 
-- The **test ROM** (source-level flash journal) passed on the real cart for
-  MBC1, MBC3 and MBC5: A saves, power-cycle restores, START clears.
-- The **binary patcher prototype** works in Gearboy/serverboy and its reader
-  tests pass.
-- The **patched plain ROMs white-screened on hardware** (both GBC and DMG).
-- A likely cause was found: `j_boot` ran before the GBDK crt0 and used the boot
-  ROM's 127-byte **HRAM stack** (`SP=0xFFFE`); the C restore code could
-  overwrite HRAM runtime variables.  The plain ROM's expected stack is
-  `0xE000`.
-- **Candidate fix applied:** the blob's `j_boot` now does `ld sp, #0xE000`
-  before calling `j_restore`.  The blob and all three patched plain ROMs were
-  rebuilt; the reader tests still pass.  **Hardware retest is pending.**
+- **Patched plain ROM now persists saves on the real cart** (MBC5): press A,
+  wait ~5 s (watch `AP` grow in the on-screen debug), power-cycle, the counter
+  is restored.  `roms/plain-mbc5-patched.gb`.
+- MBC1 / MBC3 patched plain ROMs were not retested on hardware yet.
+- Reader tests pass: `tests/testrom_reader.mjs`, `tests/patched_plain_reader.mjs`.
 
+## What the white screen was (resolved)
+
+Bisected on hardware with staged blobs (`JOURNAL_STAGE`, see
+`patcher/journal/README.md`):
+
+| Stage | Result |
+|---|---|
+| 0 trampoline only, 1 + boot restore, 2 empty VBlank hook | boot |
+| 3 mapper writes in VBlank, 7 + one SRAM byte read | boot |
+| 4 full 256-byte page checksum in VBlank | **freeze** |
+
+Cause: the VBlank handler ran too long.  The whole-page checksum (and the
+whole-page checksum in `j_start_write`) froze the game.  Fixes:
+
+1. The scan checksums **32 bytes per frame** (page every 8 frames, full pass
+   ~4.3 s).  64 bytes per frame also froze.
+2. The record checksum is accumulated while writing, not precomputed.
+3. The change-detection hash is `h = rol(h) + byte`, in hand-written asm
+   (`j_chunk_run`).  The C version of the rotating hash froze again: the
+   VBlank time budget is tight (between ~32 and 64 plain bytes).
+4. A plain additive page sum **missed changes that cancel out** (counter
+   low byte +1, check byte -1), so every other A press was not saved.
+
+Save latency is ~5 s from the press (scan detection up to one pass, stable
+wait of 8 page scans, ~1 s to write the record).  Debug readout (`ID FP AP
+ER ST WA FR DR`) is drawn by `testrom/plain.c`; `AP` growing means the record
+is committed (`WA` is only visible ~1 s).
+
+## Remaining known limitations
+
+- The change-detection hash is 8 bits (~1/256 missed change; recovered at the
+  next change of that page).
+- The hook restores ROM bank 0 after flash writes; banked games need a bank
+  shadow.
+- The hook writes `0x4000 = 0` for SRAM access; MBC1 high-bank games need the
+  saved value.  Also leaves SRAM enabled after reads.
+- Only SRAM bank 0 (8 KiB) is verified on this cart.
+- A full log stops journaling until the next boot erase.
+- Interrupt-time budget is tight: any new VBlank work must stay small.
+
+## Next steps
+
+1. Hardware retest of MBC1 and MBC3 patched plain ROMs.
+2. Patch a real commercial game (bank tracking, RTC, mapper registers).
+3. Generalise the patcher: free bank-0 space for the blob, padding, per-game
+   overrides.
+4. Optional: 16-bit hash, faster response for recently dirty pages.
 ## Last known-good
 
 - `roms/testrom-mbc5.gb` / `-mbc1.gb` / `-mbc3.gb`: hardware pass.

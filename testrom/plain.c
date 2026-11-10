@@ -96,6 +96,21 @@ static void sram_clear(void)
     DISABLE_RAM;
 }
 
+/* Journal blob state (patched ROMs only; garbage on an unpatched ROM). */
+#define JB(a) (*(volatile uint8_t *)(a))
+
+static void draw_debug(void)
+{
+    gotoxy(0, 9);  ps("ID:"); print_hex16((uint16_t)(JB(0xDE94) << 8 | JB(0xDE95)));
+    ps(" FP:"); print_hex16(JB(0xDE96));
+    gotoxy(0, 10); ps("AP:"); print_hex16((uint16_t)(JB(0xDE6F) << 8 | JB(0xDE6E)));
+    ps(" ER:"); print_hex16(JB(0xDE93));
+    gotoxy(0, 11); ps("ST:"); print_hex16(JB(0xDE64));
+    ps(" WA:"); print_hex16(JB(0xDE6C));
+    gotoxy(0, 12); ps("FR:"); print_hex16((uint16_t)(JB(0xDE62) << 8 | JB(0xDE61)));
+    ps(" DR:"); print_hex16((uint16_t)(JB(0xDE65) << 8 | JB(0xDE66)));
+}
+
 static void draw(void)
 {
     gotoxy(0, 0); ps("HC007 PLAIN SAVE  ");
@@ -112,6 +127,7 @@ void main(void)
 {
     uint8_t pad;
     uint8_t cart;
+    uint8_t dbg = 0u;
 
     DISPLAY_ON;
     SHOW_BKG;
@@ -159,6 +175,7 @@ void main(void)
             waitpadup();
         }
 
+        if ((++dbg & 0x0Fu) == 0u) draw_debug();
         wait_vbl_done();
     }
 }

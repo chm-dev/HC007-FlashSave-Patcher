@@ -7,10 +7,11 @@
 
 [CmdletBinding()]
 param(
-    # 0 = trampoline only, 1 = + boot restore, 2 = + VBlank hook (default/full).
+    # 0 = trampoline only, 1 = + boot restore, 2 = + empty VBlank hook,
+    # 3 = + SRAM scan (no flash writes), 4 = full (default).
     # See JOURNAL_STAGE in journal.c and docs/STATUS.md isolation plan.
-    [ValidateSet(0, 1, 2)]
-    [int]$Stage = 2,
+    [ValidateSet(0, 1, 2, 3, 4, 5, 6, 7)]
+    [int]$Stage = 6,
     [switch]$Clean
 )
 
@@ -21,7 +22,7 @@ $gbdk = Join-Path $root 'tools\gbdk'
 $lcc = Join-Path $gbdk 'bin\lcc.exe'
 $src = Join-Path $PSScriptRoot 'journal.c'
 $roms = Join-Path $root 'roms'
-$suffix = if ($Stage -eq 2) { '' } else { "-stage$Stage" }
+$suffix = if ($Stage -eq 6) { '' } else { "-stage$Stage" }
 $out = Join-Path $roms "journal-blob$suffix.gb"
 
 if (-not (Test-Path $lcc)) { throw "GBDK lcc not found at $lcc" }
