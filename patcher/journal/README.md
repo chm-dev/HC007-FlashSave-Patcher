@@ -1,17 +1,22 @@
-# Journal blob
+# Journal blob (legacy prototype)
+
+> **Status: legacy.**  This is the original universal VBlank journal.  It proved
+> the HC007 write path and still works for the controlled plain ROM, but it is
+> not the default for commercial games.  New work uses the per-game workflow:
+> `../../docs/WORKFLOW.md` and `../rom_patch.py`.  Keep this code as a reference
+> for the boot trampoline, WRAM flash primitives, mapper-aware bank select and
+> staged hardware isolation.
 
 The injectable save layer.  Built as a tiny GBDK image with its code linked at
 **0x2000** in bank 0; the patcher copies `0x2000..0x3FFF` into a target ROM.
 
 ## Hardware status
 
-The first hardware run of the patched plain ROMs produced a **white screen** on
-both GBC and DMG (emulators boot).  The likely cause was `j_boot` running before
-the GBDK crt0 and using the boot ROM's 127-byte HRAM stack (`SP=0xFFFE`); the C
-restore code could overwrite HRAM runtime variables.  `j_boot` now sets
-`SP=0xE000` (the plain ROM's `.STACK`) before calling `j_restore`.  Blob and
-patched ROMs were rebuilt; **hardware retest pending**.  See
-`../../docs/STATUS.md` for the verified non-causes and isolation plan.
+The original white screen was isolated to an over-long VBlank handler, not the
+boot trampoline.  The full stage-6 blob now persists saves on the real cart:
+`roms/plain-mbc5-patched.gb` saves, power-cycles and restores.  The boot
+trampoline still sets `SP=0xE000` before C code, because the boot ROM's HRAM
+stack is too small.  See `../../docs/STATUS.md` and `../../docs/HARDWARE.md`.
 
 ### Staged builds for isolation testing
 
@@ -121,8 +126,8 @@ The stack is at `0xDFFE`, below this area.
 
 ## Prototype limitations
 
-- **Hardware status:** first patched plain ROMs white-screened (GBC/DMG); the
-  `SP=0xE000` candidate fix is rebuilt and awaiting a hardware retest.
+- This is the legacy universal path; prefer a per-game save hook for commercial
+  games.
 - The hook restores **ROM bank 0** after flash writes.  Target games must keep
   bank 0 selected at VBlank (the plain test ROM does).  Banked games need a
   bank shadow or a per-game patch.

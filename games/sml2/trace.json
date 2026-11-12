@@ -1,0 +1,15 @@
+{
+  "comment": "SML2 route: title -> file select -> file A -> start -> walk right. Add a save trigger at the end once the route to a level clear is known.",
+  "steps": [
+    { "op": "wait", "frames": 200 },
+    { "op": "tap", "key": "START", "frames": 30 },
+    { "op": "tap", "key": "LEFT", "frames": 15 },
+    { "op": "tap", "key": "LEFT", "frames": 15 },
+    { "op": "tap", "key": "A", "frames": 40 },
+    { "op": "tap", "key": "START", "frames": 80 },
+    { "op": "wait", "frames": 300 },
+    { "op": "mark", "name": "gameplay" },
+    { "op": "hold", "keys": ["RIGHT"], "frames": 600 },
+    { "op": "mark", "name": "moved-right" }
+  ]
+}

@@ -122,12 +122,13 @@ the shipped image. A reflash therefore resets the save.
 6. Does the mapper's SRAM bank register work at all (bank 0 only, or 4 banks)?
    The probe says only bank 0; a game that uses 32 KiB would confirm.
 
-## Patcher boot note (2026-11-10)
+## Patcher boot note (resolved)
 
 The first binary-patched plain ROMs white-screened on hardware (GBC and DMG)
-while booting in emulators.  The likely cause was the boot trampoline using the
-boot ROM's HRAM stack (`SP=0xFFFE`); `j_boot` now sets `SP=0xE000` before the C
-restore.  See `docs/STATUS.md` for the verified non-causes and retest plan.
+while booting in emulators.  The cause was an over-long VBlank handler, not the
+boot trampoline.  The trampoline still sets `SP=0xE000` because the boot ROM's
+HRAM stack is too small for C code.  The patched plain MBC5 ROM now persists
+saves on hardware.  See `docs/STATUS.md`.
 
 ## Probe build notes
 

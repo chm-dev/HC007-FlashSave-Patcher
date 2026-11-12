@@ -1,5 +1,10 @@
 # Batteryless saves on MBC5 flash carts (GBDK)
 
+> **Role in this project:** low-level transport reference.  It documents the
+> proven WRAM flash driver and append-only log.  It is **not** the per-game
+> strategy; see `docs/WORKFLOW.md` for choosing between a save-routine hook and
+> a page journal.
+
 > **Imported from the Robbo DMG port.** This is the method that was proven on
 > the HC007 cart in `C:\dev\AI\robbo-port2` (`BATTERYLESS_SAVE.md`). Paths such
 > as `gb/src/gb/flashsave.c` refer to that repository; this project will grow

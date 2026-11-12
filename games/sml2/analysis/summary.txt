@@ -1,0 +1,59 @@
+Super Mario Land 2 - analysis summary
+=====================================
+
+ROM:  roms/patch-test-roms/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb
+SHA1: bba408539ecbf8d322324956d859bc86e2a9977b
+Mapper: MBC1+RAM+BATTERY (0x03), 512 KiB, 8 KiB SRAM, no RTC
+
+Inventory
+---------
+No blank 64 KiB sector.  No blank 16 KiB bank.
+Code caves:
+  bank 0x00  0x1967  44 bytes FF
+  bank 0x00  0x1AFF  27 bytes FF
+  bank 0x00  0x1930  23 bytes FF
+  bank 0x00  0x1A40  18 bytes FF
+  bank 0x00  0x191B  17 bytes FF
+  bank 0x1A  0x52CA 518 bytes FF
+Entry 0x100 -> 0x0150.  VBlank 0x40 -> 0x0154.
+
+SRAM usage (trace-play.json, 1290 frames)
+-----------------------------------------
+Page writes: 00:222 01:42688 02:13371 03:256 04:10220 05:722 08:61334 ...
+Page reads : 00:1749 01:96051 02:16353 04:26306 08:61076 ...
+SP at boot: 0xA8FF (SRAM stack).
+Hot PCs: 0x411B (A100-A19F clear), 0x0216 (boot clear), stack PCs 0x4xxx/0x2Bxx.
+Verdict: SRAM is work RAM.  Do not use a whole-SRAM VBlank journal.
+
+Save format
+-----------
+Slots: 0xA000, 0xA050, 0xA0A0 (stride 0x50, 3 slots)
+  +0x00..0x3F  data copied from 0xA840
+  +0x40        A262
+  +0x41        A263
+  +0x42        status/occupied (0 = empty)
+  +0x43        A22C
+  +0x44        A28D
+  +0x45        checksum = sum(bytes 0x00..0x44)
+  +0x46..0x49  magic 12 34 56 78
+
+Writer: 0x2934 (bank 0), RET at 0x2973
+  call sites: 0x2862, 0x3147,
+              0x0F41F4, 0x0F6F15, 0x0F6F21, 0x0F6F27, 0x0F7040, 0x0F714D,
+              0x0F73AB, 0x18470D, 0x184EAB
+
+Validator: 0x28D9 -> 0x28EC (called for each slot)
+
+Crafted-save proof
+------------------
+games/sml2/tools/make-save.py creates a valid slot.  Booting it shows Mario and
+an occupied A slot on the file-select screen.  See crafted-menu.png.
+
+Patch direction
+---------------
+- Convert header to MBC5 (0x147 = 0x1B); the game only uses MBC1 mode-0 writes.
+- Pad to 1 MiB; log sector 0x80000-0x8FFFF, bank 0x20, CPU 0x6000.
+- Save hook: CALL 0x2934 sites -> save_hook.
+- Boot restore: hook validator 0x28D9 (preferred) or entry 0x100.
+- Journal code: bank 0x1A free run or appended bank; flash stubs in WRAM.
+- Open: delete path, bank value at save time, bank restore policy.

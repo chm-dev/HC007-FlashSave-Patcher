@@ -1,7 +1,6 @@
 # Compatibility matrix
 
-Fill this in as ROMs are tested. Keep it as the patcher's source of truth for
-per-game overrides.
+Source of truth for HC007 per-game status.  Update it after every hardware test.
 
 ## Columns
 
@@ -12,39 +11,45 @@ per-game overrides.
 | Mapper | MBC1 / MBC3 / MBC5 |
 | ROM | Declared ROM size |
 | SRAM | Declared SRAM size |
-| RTC | yes/no |
-| Hook | `vblank`, `save-routine`, `none` |
+| Strategy | `S1` save hook, `S2` page journal, `S3` replacement, `-` unsupported |
 | Boot | Boots to gameplay |
 | Save | In-game save works |
 | Load | Save loads after reset |
 | Power | Save survives power-off |
 | Delete | Delete survives power-off |
-| Visual/timing | Notes |
-| Status | `works`, `quirk`, `fails`, `unsupported` |
+| Notes | Quirks, evidence links |
+| Status | `works`, `quirk`, `fails`, `unsupported`, `investigating` |
 
-## Rows (examples / to be filled)
+## Rows
 
-| Title | SHA-1 | Mapper | ROM | SRAM | RTC | Hook | Boot | Save | Load | Power | Delete | Notes | Status |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| mapperprobe-mbc1 | - | MBC1 | 512K | 32K | no | - | - | - | - | - | - | probe only | test |
-| mapperprobe-mbc3 | - | MBC3 | 512K | 32K | no | - | - | - | - | - | - | probe only | test |
-| mapperprobe-mbc5 | - | MBC5 | 512K | 32K | no | - | - | - | - | - | - | probe only | test |
-| testrom-mbc5/mbc1/mbc3 | - | MBC1/3/5 | 512K | 8K | no | - | yes | yes | yes | yes | yes | source-level journal; hardware pass | works |
-| plain-mbc5-patched | - | MBC5 | 512K | 8K | no | vblank | emu only | - | - | - | - | hardware white screen; SP=0xE000 fix rebuilt, retest pending | fails (pre-fix) |
-| plain-mbc1-patched | - | MBC1 | 512K | 8K | no | vblank | emu only | - | - | - | - | same white screen | fails (pre-fix) |
-| plain-mbc3-patched | - | MBC3 | 512K | 8K | no | vblank | emu only | - | - | - | - | same white screen | fails (pre-fix) |
-| Robbo DMG port | - | MBC5 | 512K | 32K declared | no | - | yes | yes | yes | yes | - | reference implementation; uses bank 0 only | works |
+| Title | SHA-1 | Mapper | ROM | SRAM | Strategy | Boot | Save | Load | Power | Delete | Notes | Status |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Robbo DMG port | - | MBC5 | 512K | 32K declared | source-level | yes | yes | yes | yes | - | reference flash journal; bank 0 only | works |
+| testrom-mbc5 | - | MBC5 | 512K | 8K | source-level | yes | yes | yes | yes | yes | controlled test ROM | works |
+| testrom-mbc1 | - | MBC1 | 512K | 8K | source-level | yes | yes | yes | yes | yes | controlled test ROM | works |
+| testrom-mbc3 | - | MBC3 | 512K | 8K | source-level | yes | yes | yes | yes | yes | controlled test ROM | works |
+| plain-mbc5-patched | - | MBC5 | 512K | 8K | S2 | yes | yes | yes | yes | - | legacy prototype; VBlank journal | works |
+| plain-mbc1-patched | - | MBC1 | 512K | 8K | S2 | - | - | - | - | - | legacy prototype; retest | unknown |
+| plain-mbc3-patched | - | MBC3 | 512K | 8K | S2 | - | - | - | - | - | legacy prototype; retest | unknown |
+| Super Mario Land 2 | bba40853 | MBC1 -> MBC5 | 512K -> 1M | 8K | S1 | emu yes | - | - | - | - | SRAM is work RAM; slots at A000; writer 0x2934; validator 0x28D9; log at 0x80000 bank 0x20 | investigating |
+| mapperprobe-mbc1/3/5 | - | MBC1/3/5 | 512K | 32K | - | - | - | - | - | - | probe only | test |
+
+## Case folders
+
+| Game | Folder | Current status |
+|---|---|---|
+| Super Mario Land 2 | `games/sml2/` | investigation complete; patch plan ready |
 
 ## Per-game overrides
 
-For games that fail the generic VBlank hook, record the reason and the
-alternative:
+For games that need a non-standard hook, record the reason and the alternative:
 
 ```
 Title:
 SHA-1:
 Problem:        e.g. raster effects break with the VBlank hook
-Hook:           save-routine at 0x....
+Strategy:       S1 save-routine hook at 0x....
+Restore point:  entry / validator at 0x....
 Notes:
 ```
 

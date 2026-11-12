@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""HC007 batteryless save patcher - project skeleton.
+"""Legacy HC007 universal-patcher prototype.
 
-This is deliberately a *planning* tool right now: it parses a Game Boy ROM
-header, classifies the mapper, checks the HC007 hardware limits, and proposes
-where the flash save log could live.  The actual ROM patching (boot trampoline,
-SRAM journal, save hook) is the next implementation stage; the TODO markers
-below show where each piece goes.
+The project has moved to a per-game workflow (docs/WORKFLOW.md).  This script
+is kept as a reference and as the legacy VBlank-journal patcher for the
+controlled plain-ROM layout.  For new games, use tools/rom_inspect.py,
+tools/gbdis.py, tools/sram_trace.mjs and patcher/rom_patch.py instead.
+
+It still parses a Game Boy ROM header, classifies the mapper, checks the HC007
+hardware limits, proposes where a flash save log could live, and can inject the
+legacy journal blob into a matching target.
 
 Usage:
     python patcher/hc007_patcher.py info  path/to/game.gb
@@ -266,9 +269,17 @@ def find_free_sectors(data: bytes) -> list[int]:
 def bank_select_registers(family: str, bank: int) -> dict[str, int]:
     """Registers a patched ROM must write to select `bank` at 0x4000..0x7FFF."""
     if family == "MBC1":
+        if bank < 0x20:
+            return {
+                "0x4000": 0x00,             # RAM bank 0 (mode 0)
+                "0x2000": bank & 0x1F,      # low 5 bits
+                "note": "mode 0; 0x4000 is the RAM bank",
+            }
         return {
-            "0x4000": (bank >> 5) & 0x03,   # high 2 bits, mode 0
+            "0x6000": 0x01,                 # mode 1
+            "0x4000": (bank >> 5) & 0x03,   # high 2 bits
             "0x2000": bank & 0x1F,          # low 5 bits
+            "note": "mode 1 also remaps 0x0000-0x3FFF",
         }
     if family == "MBC3":
         return {"0x2000": bank & 0x7F}
@@ -334,12 +345,11 @@ def format_plan(info: RomInfo) -> str:
         f"  unlock:       {HC007_FLASH_UNLOCK}",
         f"  bank select:  {bank_select_registers(info.mapper, bank)}",
         "",
-        "  TODO (next stage):",
-        "    1. append/pad the image so the log sector is 0xFF",
-        "    2. inject the boot trampoline at 0x100 and a spare bank",
-        "    3. add the mapper-aware WRAM flash driver",
-        "    4. add the SRAM page journal + save-detection hook",
-        "    5. fix header/global checksums",
+        "  Legacy prototype status:",
+        "    the blob implements the boot trampoline, WRAM flash driver,",
+        "    SRAM page journal and VBlank hook; this command patches the",
+        "    controlled 512 KiB plain-ROM layout only.",
+        "  For a commercial game use docs/WORKFLOW.md and patcher/rom_patch.py.",
     ]
     return "\n".join(lines)
 

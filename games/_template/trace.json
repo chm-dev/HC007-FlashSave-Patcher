@@ -1,0 +1,10 @@
+{
+  "comment": "Replayable sram_trace script. Replace the steps with a route that reaches a save, then a save action.",
+  "steps": [
+    { "op": "wait", "frames": 200 },
+    { "op": "tap", "key": "START", "frames": 30 },
+    { "op": "hold", "keys": ["RIGHT"], "frames": 600 },
+    { "op": "mark", "name": "save-expected" },
+    { "op": "wait", "frames": 120 }
+  ]
+}

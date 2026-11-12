@@ -4,9 +4,8 @@ A controlled ROM that proves the batteryless journal end-to-end without any
 unknown game save logic.
 
 > **Status:** this source-level test ROM passed on the real cart for MBC1/MBC3/
-> MBC5. The **binary-patched plain ROM** (same journal, injected by the patcher)
-> white-screened on hardware; see `../docs/STATUS.md` for the current candidate
-> fix and retest plan.
+> MBC5.  The later binary-patched plain MBC5 ROM also passes after the VBlank
+> timing fix.  See `../docs/STATUS.md` for the current status.
 
 ## What it does
 

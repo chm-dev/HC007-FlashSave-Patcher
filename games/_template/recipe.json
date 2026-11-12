@@ -1,0 +1,14 @@
+{
+  "_comment": "Copy this file to games/<slug>/recipe.json and fill in the hooks and blobs.",
+  "name": "<slug>-hc007",
+  "source": {
+    "path": "../../roms/<game>.gb",
+    "sha1": "<sha1>"
+  },
+  "output": "../../roms/<slug>-hc007.gb",
+  "append_banks": 0,
+  "rom_size_code": null,
+  "edits": [],
+  "blobs": [],
+  "fix_checksums": true
+}

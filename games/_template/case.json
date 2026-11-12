@@ -1,0 +1,34 @@
+{
+  "slug": "template",
+  "title": "",
+  "sha1": "",
+  "source_path": "roms/<game>.gb",
+  "mapper": "",
+  "rom_size": 0,
+  "sram_declared": 0,
+  "sram_used_verified": 0,
+  "cgb": false,
+  "rtc": false,
+  "strategy": "undecided",
+  "status": "screening",
+  "save": {
+    "region_base": null,
+    "region_size": null,
+    "slot_stride": null,
+    "slot_count": null,
+    "status_byte": null,
+    "checksum": null,
+    "magic": null,
+    "write_routine": null,
+    "validate_routine": null,
+    "load_routine": null,
+    "delete_routine": null
+  },
+  "hooks": {
+    "boot_restore": null,
+    "save_hook": null,
+    "code_bank": null,
+    "log_sector": null
+  },
+  "open_questions": []
+}

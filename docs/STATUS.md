@@ -1,149 +1,106 @@
-# Current status (2026-11-11)
+# Project status (2026-11-12)
 
 ## TL;DR
 
-- **Patched plain ROM now persists saves on the real cart** (MBC5): press A,
-  wait ~5 s (watch `AP` grow in the on-screen debug), power-cycle, the counter
-  is restored.  `roms/plain-mbc5-patched.gb`.
-- MBC1 / MBC3 patched plain ROMs were not retested on hardware yet.
-- Reader tests pass: `tests/testrom_reader.mjs`, `tests/patched_plain_reader.mjs`.
+- The project goal changed from a **universal patcher** to a **per-game save
+  investigation and patching workbench**.  See `docs/WORKFLOW.md`.
+- The HC007 write path is proven on hardware: flash ID, program, erase, and a
+  controlled journal persisted across power cycles.
+- The first case, **Super Mario Land 2**, is investigated.  Its save format and
+  writer/validator routines are mapped.  Patch implementation is next.
+- No SML2 patch has been written or tested on hardware yet.
 
-## What the white screen was (resolved)
+## Verified on the real cart
 
-Bisected on hardware with staged blobs (`JOURNAL_STAGE`, see
-`patcher/journal/README.md`):
-
-| Stage | Result |
+| Item | Result |
 |---|---|
-| 0 trampoline only, 1 + boot restore, 2 empty VBlank hook | boot |
-| 3 mapper writes in VBlank, 7 + one SRAM byte read | boot |
-| 4 full 256-byte page checksum in VBlank | **freeze** |
+| Flash ID | `20 00 7D 00` (ST/Numonyx M29W640) |
+| Unlock bytes | `0xA9/0x56` (D0/D1 swapped); `0xAA/0x55` fails |
+| Program | `PROG err=00 rd=5A` |
+| Erase | `ERASE err=00 rd=FF` |
+| Mapper modes | MBC1, MBC3, MBC5 headers all boot/play and program/erase |
+| SRAM | only bank 0 (8 KiB) verified; 4-bank test fails |
+| Journal | controlled test ROM persisted; patched plain MBC5 ROM persisted |
 
-Cause: the VBlank handler ran too long.  The whole-page checksum (and the
-whole-page checksum in `j_start_write`) froze the game.  Fixes:
+Reference: `docs/HARDWARE.md`, `docs/MAPPER_MODES.md`,
+`docs/FLASH_SAVE_METHOD.md`.
 
-1. The scan checksums **32 bytes per frame** (page every 8 frames, full pass
-   ~4.3 s).  64 bytes per frame also froze.
-2. The record checksum is accumulated while writing, not precomputed.
-3. The change-detection hash is `h = rol(h) + byte`, in hand-written asm
-   (`j_chunk_run`).  The C version of the rotating hash froze again: the
-   VBlank time budget is tight (between ~32 and 64 plain bytes).
-4. A plain additive page sum **missed changes that cancel out** (counter
-   low byte +1, check byte -1), so every other A press was not saved.
+## Current case: Super Mario Land 2
 
-Save latency is ~5 s from the press (scan detection up to one pass, stable
-wait of 8 page scans, ~1 s to write the record).  Debug readout (`ID FP AP
-ER ST WA FR DR`) is drawn by `testrom/plain.c`; `AP` growing means the record
-is committed (`WA` is only visible ~1 s).
+Folder: `games/sml2/`.
 
-## Remaining known limitations
+### What is known
 
-- The change-detection hash is 8 bits (~1/256 missed change; recovered at the
-  next change of that page).
-- The hook restores ROM bank 0 after flash writes; banked games need a bank
-  shadow.
-- The hook writes `0x4000 = 0` for SRAM access; MBC1 high-bank games need the
-  saved value.  Also leaves SRAM enabled after reads.
-- Only SRAM bank 0 (8 KiB) is verified on this cart.
-- A full log stops journaling until the next boot erase.
-- Interrupt-time budget is tight: any new VBlank work must stay small.
+- MBC1 + RAM + battery, 512 KiB ROM, 8 KiB SRAM, SHA-1
+  `bba408539ecbf8d322324956d859bc86e2a9977b`.
+- **SRAM is work RAM.**  `SP=0xA8FF` at boot; pages 1, 2, 4 and 8 are hot during
+  normal play.  A whole-SRAM VBlank journal would write constantly.
+- Save slots: `0xA000`, `0xA050`, `0xA0A0`; stride `0x50`; 3 slots.
+- Slot: 0x40 data bytes from `0xA840`, 5 state bytes, checksum at `0x45`,
+  magic `12 34 56 78` at `0x46-0x49`; status byte at `0x42`.
+- Writer `0x2934` (bank 0), `RET` at `0x2973`.
+- Validator `0x28D9` / `0x28EC` (bank 0).
+- Call sites: `0x2862`, `0x3147`, plus banked paths in banks `0x0F` and `0x18`.
+- Code caves: bank 0 `0x1967` (44 bytes), bank `0x1A` CPU `0x52CA`
+  (518 bytes).
+- No blank 64 KiB sector.  Plan: convert the header to MBC5 (`0x147 = 0x1B`),
+  pad to 1 MiB, and put the log at `0x80000` (bank `0x20`).  The game only uses
+  MBC1 mode-0 bank writes and never touches `0x4000`/`0x6000`; a converted test
+  image boots to the file-select screen in serverboy.
+- Crafted save accepted by the file-select screen
+  (`games/sml2/analysis/crafted-menu.png`).
 
-## Next steps
+### What is not known yet
 
-1. Hardware retest of MBC1 and MBC3 patched plain ROMs.
-2. Patch a real commercial game (bank tracking, RTC, mapper registers).
-3. Generalise the patcher: free bank-0 space for the blob, padding, per-game
-   overrides.
-4. Optional: 16-bit hash, faster response for recently dirty pages.
-## Last known-good
+- Which routine deletes a slot (`CLEAR`), and whether it goes through `0x2934`.
+- The mapper bank value at a real save event.
+- Whether the game tolerates restoring bank 1 after a save hook.
+- Whether the free runs have xrefs.
+- Whether the boot validator is the best restore point or file select re-reads
+  the slots later.
 
-- `roms/testrom-mbc5.gb` / `-mbc1.gb` / `-mbc3.gb`: hardware pass.
-- `tests/testrom_reader.mjs`: pass.
-- `tests/patched_plain_reader.mjs`: pass (boot restore + SRAM path).
-- Patched plain ROMs boot in Gearboy/serverboy.
+## Next concrete actions
 
-## Current failure
+1. Trace a real save and a real delete on SML2.
+2. Build the S1 save-slot journal blob.
+3. Implement the boot restore and save hook.
+4. Fill `games/sml2/recipe.json`, apply, and run the emulator reader test.
+5. Hardware test: save, power-cycle, load, delete, power-cycle, reflash.
 
-`roms/plain-mbc5-patched.gb`, `plain-mbc1-patched.gb`, `plain-mbc3-patched.gb`
-boot to a **white screen** on the real cart, on both GBC and DMG.  Emulators
-boot them.
+## Toolchain added in this transition
 
-Verified not the cause:
+- `tools/rom_inspect.py` - header, hashes, banks, free space.
+- `tools/gbdis.py` - LR35902 disassembler + SRAM-reference finder.
+- `tools/sram_trace.mjs` - SRAM and mapper-register trace with scripted input.
+- `tools/trace_report.py` - disassemble around the hot trace PCs.
+- `patcher/rom_patch.py` - JSON patch recipe apply/check/diff.
+- `games/_template/` - case scaffold.
+- `games/sml2/` - first worked case.
 
-- header checksum: `0x14D = 0x8F`, computed `0x8F` (plain and patched);
-- Nintendo logo bytes intact;
-- patched vectors: `0x100 = C3 66 25 00` (`jp j_boot`),
-  `0x40 = C3 7E 25` (`jp j_vblank`), original VBlank stub copied;
-- boot target `0x0157` patched into `j_boot_default`;
-- static scan found no real call/jump from the blob into uncopied bank-0 code
-  (the earlier `C2 28 03` hit was a false positive: it is `SUB 0xC2; JR Z`).
+## Legacy prototype
 
-## Candidate fix (applied, unverified)
+The universal prototype (`patcher/hc007_patcher.py`, `patcher/journal/`) still
+exists and its hardware path is valuable:
 
-`patcher/journal/journal.c`, `j_boot`:
+- boot trampoline with WRAM stack;
+- mapper-aware bank select;
+- WRAM flash primitives;
+- append-only page journal;
+- staged hardware isolation tests.
 
-```asm
-j_boot:
-        ld sp, #0xE000      ; WRAM stack (the boot ROM's SP is 0xFFFE/HRAM)
-        push af
-        ...
-```
+It is not the default for commercial games.  Keep it for reference and for
+controlled test ROMs.
 
-Why: `j_boot` runs from the reset vector, before the GBDK crt0 sets
-`SP=0xE000`.  The C `j_restore` uses the stack; a 127-byte HRAM stack can
-overwrite GBDK HRAM variables (`_current_bank`, `_vbl_done`, ...), which is a
-plausible hardware-only white screen.
+## Known hardware limits
 
-## Next hardware test
+- 8 KiB SRAM bank 0 only.
+- MBC1/MBC3/MBC5; no MBC2/MMM01/MBC6/MBC7/HuC/TAMA5.
+- RTC not supported in v1.
+- 8 MiB images have no spare sector.
+- VBlank budget is tight; the old page journal needed 32-byte chunks.
 
-Reflash the rebuilt ROMs and retest:
+## Last known-good builds
 
-1. `roms/plain-mbc5-patched.gb`
-2. `roms/plain-mbc1-patched.gb`
-3. `roms/plain-mbc3-patched.gb`
-
-Press A, wait ~3 s, power-cycle, check the counter.
-
-## If it still white-screens
-
-Isolate in this order:
-
-1. **Trampoline-only blob**: `j_boot` only sets SP and jumps to the original
-   entry; no restore, no hook.  If it boots, the trampoline is fine.
-2. **Add the boot restore** without the VBlank hook (`0x40` left as the
-   original vector or patched to `reti`).
-3. **Add the flash ID read** only; then the log scan; then the shadow init.
-4. **Add the VBlank hook** last.
-5. Try a **blank log sector**: reflash the patched image (the image's
-   `0x60000..0x6FFFF` is `0xFF`), or write a diagnostic ROM that erases the
-   sector first.  A full/foreign log triggers the boot-time erase, which can
-   look like a long white screen.
-6. Check the **WRAM collision**: blob vars `0xDE00..0xDE96`, stack `0xE000`
-   growing down; move the vars lower (e.g. `0xDD00`) if the game's stack depth
-   is large.
-7. Check the **VBlank vector timing**: the hook can run before the game installs
-   its VBlank handler; a minimal hook that only increments a counter and
-   tail-calls the original stub should be safe, but verify.
-8. Try **MBC5 only** first; MBC1/MBC3 add mapper-state complexity.
-
-## Remaining known limitations
-
-- The hook restores ROM bank 0 after flash writes; banked games need a bank
-  shadow.
-- The hook writes `0x4000 = 0` for SRAM access; MBC1 high-bank games need the
-  saved value.
-- Only SRAM bank 0 (8 KiB) is verified on this cart.
-- A full log stops journaling until the next boot erase.
-- The 4-bytes-per-VBlank writer adds flash time to the VBlank.
-
-## Key files
-
-- `patcher/journal/journal.c` - injectable blob (boot restore + VBlank writer).
-- `patcher/journal/build_blob.ps1` - builds `roms/journal-blob.gb`.
-- `patcher/hc007_patcher.py` - `info`, `plan`, `patch`.
-- `testrom/plain.c` - plain patcher target (SRAM save only).
-- `tools/build_plain.ps1` - builds `roms/plain-*.gb`.
-- `tests/patched_plain_reader.mjs` - reader regression.
-- `docs/START_HERE.md` - broader handoff.
-- `docs/PATCHER_DESIGN.md` - architecture.
-- `patcher/journal/README.md` - blob/WRAM/log details.
+- `roms/testrom-mbc1.gb`, `-mbc3.gb`, `-mbc5.gb`: hardware pass.
+- `roms/plain-mbc5-patched.gb`: hardware pass with the legacy journal.
+- Reader tests: `tests/testrom_reader.mjs`, `tests/patched_plain_reader.mjs`.

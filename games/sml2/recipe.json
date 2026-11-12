@@ -1,0 +1,16 @@
+{
+  "_comment": "Planning recipe. No hooks are applied yet. Once the journal blob exists, fill edits/blobs and change status to patching.",
+  "name": "sml2-hc007",
+  "source": {
+    "path": "../../roms/patch-test-roms/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb",
+    "sha1": "bba408539ecbf8d322324956d859bc86e2a9977b"
+  },
+  "output": "../../roms/sml2-hc007.gb",
+  "base_rom_size": 524288,
+  "append_banks": 32,
+  "rom_size_code": 5,
+  "cart_type": 27,
+  "edits": [],
+  "blobs": [],
+  "fix_checksums": true
+}

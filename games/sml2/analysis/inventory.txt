@@ -1,0 +1,68 @@
+ROM:            roms\patch-test-roms\Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb
+size:           524288 bytes (declared 524288)
+sha1:           bba408539ecbf8d322324956d859bc86e2a9977b
+crc32:          d5ec24e4
+title:          'MARIOLAND2'
+cart type:      0x03  MBC1+RAM+BATTERY
+mapper:         MBC1
+RAM:            8 KiB declared
+CGB flag:       0x00
+battery/RTC:    battery / no RTC / no rumble
+header csum:    stored 0x13 / computed 0x13
+global csum:    stored 0xE0F9 / computed 0xE0F9
+logo:           ok
+entry:          0x0150
+
+vectors:
+  vblank  0x0040: c3 54 01 f9 c4 32 09 22 -> 0x0154
+  stat    0x0048: c3 2a 37 40 21 22 84 40 -> 0x372A
+  timer   0x0050: c3 47 03 80 20 c2 00 88 -> 0x0347
+  serial  0x0058: c3 53 01 80 20 2b 8a a0 -> 0x0153
+  joypad  0x0060: ae 4c 80 a6 81 e0 69 8a
+
+blank 64 KiB sectors: none
+blank 16 KiB banks:   none
+
+bank  ff%  zeros  unique
+  00    2.2%    7.8%  255
+  01    1.2%    9.8%  256
+  02    1.1%    3.8%  255
+  03    0.6%   11.3%  256
+  04    2.3%    5.3%  256
+  05    4.0%   17.2%  254
+  06    5.6%   16.0%  256
+  07    9.8%   28.0%  256
+  08   36.7%    0.3%  234
+  09    1.5%    2.0%  225
+  0A    0.4%    1.2%  228
+  0B    2.9%    2.3%  230
+  0C   13.4%   14.2%  256
+  0D    8.9%   22.8%  256
+  0E   13.6%   22.4%  256
+  0F    2.9%    3.9%  256
+  10   16.5%   24.9%  251
+  11   13.5%   29.7%  253
+  12    0.7%    1.4%  239
+  13    0.4%    1.2%  231
+  14    1.1%    1.5%  240
+  15    0.6%    1.7%  225
+  16    0.7%    1.6%  256
+  17    0.4%    1.5%  234
+  18   11.5%   11.1%  255
+  19    6.9%   15.2%  255
+  1A   13.2%    4.5%  256
+  1B   12.9%   22.0%  253
+  1C    8.8%   25.5%  254
+  1D   12.6%   36.0%  254
+  1E   10.1%   22.9%  256
+  1F   10.4%   19.6%  255
+
+bank-0 free 0xFF runs (>= 8 bytes):
+  0x1967  44 bytes
+  0x1AFF  27 bytes
+  0x1930  23 bytes
+  0x1A40  18 bytes
+  0x191B  17 bytes
+
+warnings:
+  - no blank 64 KiB sector inside the image
