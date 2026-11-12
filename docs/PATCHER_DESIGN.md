@@ -199,7 +199,7 @@ The SML2 case (`games/sml2/`) is the worked example.  The reusable rules:
 | Blank 16 KiB bank | Main journal blob |
 | Appended bank | Main blob when the image has room |
 | WRAM | Small helper (flash primitive and bank switch) copied in on demand; back up/restore the game's block |
-| SRAM | Temporary backup of the game's WRAM block, chosen from traced-quiet pages |
+| SRAM | Temporary backup of the game's WRAM block; only a proven-unused region (trace several levels, map, death), else save/restore what you borrow |
 
 Find candidates with `tools/rom_inspect.py`.
 

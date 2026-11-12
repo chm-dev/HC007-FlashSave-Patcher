@@ -78,8 +78,12 @@ Save patterns: `docs/SAVE_MECHANISMS.md`.  Recipe format:
 - **Trace SRAM and WRAM over a real level load.**  A level load can overwrite
   large regions; patch code stored there may be dead by the next save.
 - **Keep patch code in ROM, not game RAM.**  Copy only a small helper to WRAM
-  on demand; back up/restore the game block and use traced-quiet pages only for
-  temporary backups.
+  on demand; back up/restore the game block.  Prefer a proven-unused location
+  for the backup.  A "quiet" page is only quiet over the levels and transitions
+  you traced: SML2's backup page `0xB600-0xB8FF` was called quiet from one early
+  level, yet the game refills it around map/level transitions.  Trace several
+  levels, the map, death and level-complete before trusting any page, and
+  restore the borrowed bytes too if you cannot prove it.
 - **Test after a real level load and test the natural save event.**  A
   synthetic jump immediately after boot can pass while the real save fails.
 - **Restore the caller's bank from fixed bank 0.**  Never put `EI`/`RET` after a

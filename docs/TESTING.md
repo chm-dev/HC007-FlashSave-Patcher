@@ -85,7 +85,10 @@ record is not enough if the game resets immediately after the call.
 Only the cart can validate programming and erase.  The probe already confirmed
 program/erase in MBC1, MBC3 and MBC5 mode; see `docs/HARDWARE.md`.
 
-1. Flash the patched image.
+1. Flash the patched image, then **read the cart back and compare its SHA-1**
+   with the built image (or flash twice and compare).  A marginal flash can
+   cause random tile corruption that looks like a patch bug; SML2 showed
+   glitches that largely vanished after re-flashing the same builds.
 2. Create a save in-game.
 3. Power off, wait, power on.
 4. Confirm the save loads.
@@ -97,6 +100,11 @@ program/erase in MBC1, MBC3 and MBC5 mode; see `docs/HARDWARE.md`.
 10. If the full build fails, flash the no-flash debug build; passing isolates
     the manager/stack/bank path from the flash programming/erase path.
 11. Repeat for each mapper family and each case.
+12. **Play several levels** (not just one save): level end, death, map
+    transitions.  If glitches appear, bisect on the cart: a build with only
+    the mapper conversion (no hooks), the no-flash build, then the full build.
+    The first full-log erase happens only after the log fills (SML2: 33
+    records), so test it deliberately.
 
 **Do not** test a new flash layout on a game you cannot reflash/recover.  Keep
 the original ROM and a known-good recovery image available.

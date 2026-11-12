@@ -2,7 +2,7 @@
   "slug": "sml2",
   "title": "Super Mario Land 2: 6 Golden Coins (USA, Europe)",
   "sha1": "bba408539ecbf8d322324956d859bc86e2a9977b",
-  "source_path": "roms/patch-test-roms/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb",
+  "source_path": "roms/roms-to-patch/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb",
   "mapper": "MBC1 -> MBC5",
   "rom_size": 524288,
   "patched_rom_size": 1048576,

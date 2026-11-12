@@ -1,4 +1,4 @@
-ROM:            roms\patch-test-roms\Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb
+ROM:            roms\roms-to-patch\Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb
 size:           524288 bytes (declared 524288)
 sha1:           bba408539ecbf8d322324956d859bc86e2a9977b
 crc32:          d5ec24e4

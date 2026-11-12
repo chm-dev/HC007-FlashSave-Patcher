@@ -31,7 +31,7 @@ const positional = args.filter((a, i) => !a.startsWith('--') &&
   !(framesArg >= 0 && i === framesArg + 1) &&
   !(sramArg >= 0 && i === sramArg + 1));
 const romPath = positional[0] ||
-  path.join(ROOT, 'roms/patch-test-roms/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb');
+  path.join(ROOT, 'roms/roms-to-patch/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb');
 const holdRight = !args.includes('--no-right');
 
 const gb = new Gameboy();

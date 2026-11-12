@@ -2,7 +2,7 @@
 
 ## Identity
 
-- ROM: `roms/patch-test-roms/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb`
+- ROM: `roms/roms-to-patch/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb`
 - SHA-1: `bba408539ecbf8d322324956d859bc86e2a9977b`
 - CRC32: `d5ec24e4`
 - Mapper: MBC1 + RAM + battery (`0x03`)
@@ -117,7 +117,7 @@ and the status byte.
 
 ```powershell
 python games/sml2/tools/make-save.py analysis/crafted.sav --slot 0 --status 1
-node tools/sram_trace.mjs "roms/patch-test-roms/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb" `
+node tools/sram_trace.mjs "roms/roms-to-patch/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb" `
   --sram games/sml2/analysis/crafted.sav `
   --script "wait:200;tap:START:30;wait:60" `
   --shot games/sml2/analysis/crafted-menu.png
@@ -373,7 +373,7 @@ The full patch includes the 0xFF extension so any IPS tool produces the exact
 python patcher/rom_ips.py make --recipe games/sml2/recipe.json --patch games/sml2/ips/sml2-hc007.ips
 python patcher/rom_ips.py make --recipe games/sml2/recipe.json --patch games/sml2/ips/sml2-hc007-min.ips --no-pad
 python patcher/rom_ips.py apply games/sml2/ips/sml2-hc007.ips `
-  "roms/patch-test-roms/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb" `
+  "roms/roms-to-patch/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb" `
   rebuilt.gb --expect-sha1 5a9378036073fb3f3b7dbff1c6dff6f56c166009
 ```
 
@@ -395,6 +395,33 @@ The no-flash build (`fa8557...`) remains available for regression.  Optional
 long-term checks: repeated save/delete cycles, full-log erase/wear, and modes
 not covered by the test route.  Keep a known-good recovery image and the
 original ROM available for any future patch work.
+
+## Known deviations (found in the 2026-11-12 review)
+
+None of these was shown to cause the late-game glitches the user reported
+(they largely vanished after re-flashing, so a marginal flash is the leading
+explanation), but the next game should not copy them.
+
+- **Scratch RAM is live game RAM.**  `SAVE_SCRATCH 0xB600-0xB8FF` and
+  `BOOT_SCRATCH 0xAD00-0xAFFF` receive a WRAM copy and are never restored.
+  Death/level-end saves changed ~640-780 bytes there.  The game writes
+  `0xB600-0xB8FF` around transitions (bank `0x13` copy at `0x3E2B`, bank 9 at
+  `0x39F`); the earlier "quiet" claim came from one early-level trace.  An A/B
+  test on the original ROM (clobber at `0x2934` entry, 6 seeds, ~50 saves)
+  showed no VRAM divergence.
+- **Flags in game SRAM.**  `BOOT_FLAG 0xB0E0` and `FLASH_OVERRIDE 0xB0E1` are
+  in game work RAM, against the repo guardrail.
+- **MBC1 -> MBC5 semantics.**  The game writes bank `0xFF` and `0` through the
+  helper at `0x2BFB` (game state `0x0C`, caller bank `0x0F` `0x54C9`, tilemap
+  upload to `0x9800`), which MBC1 masked/remapped to banks `0x1F` and `1`.  A
+  lockstep run of original vs MBC5-only diverged briefly (WRAM, then one VRAM
+  byte) and re-converged within ~40 frames.  In-level play was bit-identical
+  for 8000 frames.
+- **Not yet verified:** multi-level play on the cart and the first full-log
+  erase (after 33 records).
+- **Bisect builds:** `sml2-hc007.gb` (full), `sml2-hc007-noflash.gb` (journal
+  path, `JP 0x484D` skips program/erase), and an MBC5-only build (no hooks)
+  generated from the recipe's MBC5 edits.
 
 ## Open questions
 

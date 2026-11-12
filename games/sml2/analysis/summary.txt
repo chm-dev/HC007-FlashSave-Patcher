@@ -1,7 +1,7 @@
 Super Mario Land 2 - analysis summary
 =====================================
 
-ROM:  roms/patch-test-roms/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb
+ROM:  roms/roms-to-patch/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb
 SHA1: bba408539ecbf8d322324956d859bc86e2a9977b
 Mapper: MBC1+RAM+BATTERY (0x03), 512 KiB, 8 KiB SRAM, no RTC
 

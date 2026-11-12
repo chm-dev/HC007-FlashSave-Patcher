@@ -62,3 +62,5 @@ python patcher/rom_ips.py make --recipe games/<slug>/recipe.json `
 ```
 
 Reference implementation: `games/sml2/` and `games/sml2/tools/`.
+
+Do not commit or push anything to this repository on your own unless asked directly for it.

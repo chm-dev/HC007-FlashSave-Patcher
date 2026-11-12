@@ -3,7 +3,7 @@
   "_mbc5_note": "SML2 writes the MBC1 low bank register at 0x3000 in 22 bank-switch helpers.  MBC5 uses 0x3000 for bank bit 8, so each LD (0x3000),A is retargeted to LD (0x2000),A.",
   "name": "sml2-hc007",
   "source": {
-    "path": "../../roms/patch-test-roms/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb",
+    "path": "../../roms/roms-to-patch/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb",
     "sha1": "bba408539ecbf8d322324956d859bc86e2a9977b"
   },
   "output": "../../roms/sml2-hc007.gb",

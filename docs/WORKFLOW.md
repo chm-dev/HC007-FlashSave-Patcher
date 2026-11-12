@@ -253,7 +253,10 @@ Find candidates with `rom_inspect.py`:
 - an appended bank or a blank / mostly-blank 16 KiB bank for the main journal;
 - a small WRAM block for the flash primitive and bank-switch helper, copied in
   on demand and backed up/restored;
-- traced-quiet SRAM pages for the helper's backup block (temporary only);
+- a proven-unused SRAM/WRAM region for the helper's backup block (temporary
+  only).  "Traced-quiet" is weak evidence: trace several levels, the map,
+  death and level-complete, and prefer saving and restoring whatever you
+  borrow (SML2 clobbered `0xB600-0xB8FF` this way; see `games/sml2/notes.md`);
 - no persistent patch flags in game work RAM: probe the flash ID per save or
   use a proven-free byte.
 
@@ -273,6 +276,12 @@ Bank switching rules:
 - MBC3: `0x6000` is the RTC latch; do not disturb a pending latch.
 - MBC5: `0x4000-0x5FFF` is the RAM bank; flash data writes must use
   `0x6000-0x7FFF`.
+- MBC1 -> MBC5 is not behaviour-neutral.  MBC1 masks the ROM bank register to
+  5 bits and remaps `0` to bank 1; MBC5 uses all 8 bits.  SML2 sometimes
+  writes `0xFF` and `0` (bank-copy helper at `0x2BFB`, game state `0x0C`),
+  which silently meant banks `0x1F` and `1` on MBC1.  Before converting, log
+  every write to `0x2000-0x3FFF` over a long play session and flag values `0`
+  or `> 0x1F`; compare original vs MBC5-only builds in lockstep (VRAM + WRAM).
 
 ### Log placement
 

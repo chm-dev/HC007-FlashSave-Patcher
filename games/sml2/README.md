@@ -20,6 +20,12 @@ to WRAM `0xC100` on demand.
 | Minimal IPS | `games/sml2/ips/sml2-hc007-min.ips` |
 | Manifest | `games/sml2/ips/manifest.json` |
 
+**Scope of the pass:** boot, world map, one life-loss save, power-cycle load
+and delete.  A later long playtest showed corrupted tiles that largely went
+away after re-flashing all builds, so a marginal flash is the leading
+explanation; the patch design has known deviations (see `notes.md`, "Known
+deviations") that were not shown to cause it.
+
 ## First test to run
 
 ```powershell
