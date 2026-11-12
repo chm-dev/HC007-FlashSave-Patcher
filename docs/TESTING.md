@@ -1,7 +1,9 @@
 # Testing
 
-Two separate problems: the **reader path** can be tested in emulators, the
-**writer path** needs the real cart (emulators drop ROM writes).
+Two separate problems: the **reader path** can be tested in emulators with
+seeded records, and the **writer path** can be exercised with a small NOR-flash
+model.  Real flash timing, SRAM disable/re-enable and bank mapping still need
+the real cart.
 
 ## 1. Static checks (no emulator)
 
@@ -44,8 +46,13 @@ A reader test should cover:
 6. **Delete record:** the game sees the deleted state.
 7. **Full log:** compaction/erase path at boot.
 8. **Boot hook:** the game reaches its original entry and plays.
-9. **Save hook:** if the emulator supports ROM writes (most do not), verify the
-   hook executes; otherwise use a traced/logged stub.
+9. **Save hook:** install a small NOR-flash model for the log window and answer
+   the flash ID probe, then verify the hook builds a valid record.
+10. **After a real level load:** reach an actual level, let the game overwrite
+    its work RAM, then trigger a save.  This catches patch code stored in a
+    region the game reuses.
+11. **Natural save event:** drive the real death/level-complete/menu action
+    with the flash model; a synthetic jump to the hook is not enough.
 
 Useful commands:
 
@@ -58,8 +65,20 @@ node tools/sram_trace.mjs roms\<patched>.gb --frames 300 `
   --json games\<slug>\analysis\trace-patched-boot.json
 ```
 
-For SML2, `games/sml2/tools/make-save.py` builds a valid SRAM image; use it with
-`--sram` to prove the restore path.
+Case tools provide concrete versions of these tests.  For SML2:
+
+- `games/sml2/tools/make-save.py` builds a valid SRAM image;
+- `games/sml2/tools/seed-log.py` writes a log record into a patched ROM;
+- `test_save_emulator.mjs` is the synthetic save/delete/full-log test;
+- `test_save_after_level.mjs` enters a real level first, then saves;
+- `test_death_flash.mjs` follows the natural death/transition with the
+  NOR-flash model.
+
+Use the same structure for a new case: one synthetic test, one
+after-level test, one natural-event test, and a boot/reader test.
+
+Also check the game's own visual/state transition after the save.  A correct
+record is not enough if the game resets immediately after the call.
 
 ## 3. Writer path (hardware)
 
@@ -75,9 +94,12 @@ program/erase in MBC1, MBC3 and MBC5 mode; see `docs/HARDWARE.md`.
 7. Confirm the save stays deleted.
 8. Create a different save and power-cycle again (log append path).
 9. Reflash the image and confirm the save resets (blank log sector).
-10. Repeat for each mapper family and each case.
+10. If the full build fails, flash the no-flash debug build; passing isolates
+    the manager/stack/bank path from the flash programming/erase path.
+11. Repeat for each mapper family and each case.
 
-**Do not** test a new flash layout on a game you cannot reflash/recover.
+**Do not** test a new flash layout on a game you cannot reflash/recover.  Keep
+the original ROM and a known-good recovery image available.
 
 ## 4. Emulators
 
@@ -138,8 +160,12 @@ pwsh -File tools/build_testrom.ps1 -Clean
 - [ ] `sram_trace.mjs` reports no `PC` outside ROM/WRAM/RAM.
 - [ ] `rom_patch.py` rejects a wrong source SHA-1.
 - [ ] `rom_patch.py` report lists every changed byte.
+- [ ] `rom_ips.py` round-trips the patched image and matches the target SHA-1.
 - [ ] Patched ROM boots in serverboy and Gearboy.
 - [ ] Reader test with a seeded log passes.
+- [ ] Save after a real level load passes.
+- [ ] Natural save event with a NOR-flash model passes.
+- [ ] No-flash debug build boots and survives the same event.
 - [ ] Hardware power-cycle test passes.
 - [ ] Reflash resets the save.
 
@@ -151,6 +177,7 @@ For every candidate ROM record:
 - strategy and hook points;
 - boot/play, save, load, delete, power-cycle;
 - visual/timing issues;
-- status (`works`, `quirk`, `fails`, `unsupported`, `investigating`).
+- status (`works`, `quirk`, `hardware-smoke`, `emulator-ready`, `fails`,
+  `unsupported`, `investigating`).
 
 Template: `docs/COMPATIBILITY.md`.

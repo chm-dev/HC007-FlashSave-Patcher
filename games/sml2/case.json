@@ -3,14 +3,17 @@
   "title": "Super Mario Land 2: 6 Golden Coins (USA, Europe)",
   "sha1": "bba408539ecbf8d322324956d859bc86e2a9977b",
   "source_path": "roms/patch-test-roms/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb",
-  "mapper": "MBC1",
+  "mapper": "MBC1 -> MBC5",
   "rom_size": 524288,
+  "patched_rom_size": 1048576,
   "sram_declared": 8192,
   "sram_used_verified": 8192,
   "cgb": false,
   "rtc": false,
-  "strategy": "S1-save-hook + MBC5 header conversion",
-  "status": "investigating",
+  "strategy": "S1-save-hook + boot restore + clear hook + MBC5 header conversion with 0x3000->0x2000 bank-write retargeting; journal in ROM bank 0x24 with an on-demand WRAM helper",
+  "status": "hardware-pass",
+  "current_issue": "None. Life-loss reset root cause was fixed by moving all patch code to ROM bank 0x24 and copying only a small helper to WRAM 0xC100 on demand. Emulator tests pass, including a save after a real level load and a natural death/transition with a NOR-flash model. The normal build was tested on the HC007 cart.",
+  "output_sha1": "5a9378036073fb3f3b7dbff1c6dff6f56c166009",
   "save": {
     "region_base": "0xA000",
     "region_size": "0xF0",
@@ -19,22 +22,40 @@
     "status_byte": "slot+0x42",
     "checksum": "sum of slot bytes 0x00..0x44 stored at slot+0x45",
     "magic": "12 34 56 78 at slot+0x46..0x49",
-    "write_routine": "0x2934 (bank 0)",
-    "validate_routine": "0x28D9 -> 0x28EC (bank 0)",
-    "load_routine": "TBD",
-    "delete_routine": "TBD"
+    "write_routine": "0x2934 (bank 0), hooked at 0x2862, 0x3147 and 9 banked call sites",
+    "validate_routine": "0x28D9 -> 0x28EC (bank 0), called from bank 0x0C 0x4034",
+    "load_routine": "file-select copy at bank 0x0C 0x41F2..0x4226",
+    "delete_routine": "bank 0x0C 0x4227, relocated to bank 0x24 0x4500 and hooked via JP 0x197B"
   },
   "hooks": {
-    "boot_restore": "candidate: entry 0x100 trampoline or validator 0x28D9",
-    "save_hook": "candidate: call sites 0x2862 and 0x3147; callee 0x2934",
-    "code_bank": "candidate: bank 0x1A free run at CPU 0x52CA (518 bytes)",
-    "log_sector": "candidate: append to 1 MiB, log sector 0x80000, bank 0x20, CPU 0x6000",
-    "mapper_note": "MBC5 conversion is safe in emulator: the game only writes 0x2000 banks 0x00-0x1F and never uses 0x4000/0x6000 MBC1 registers."
+    "boot_restore": "bank 0x0C 0x4034 CALL -> 0x1AFF; boot code bank 0x24 0x4000; the bank-0 hook restores 0x0C",
+    "save_hook": "all CALL 0x2934 sites -> CALL 0x1967; journal in bank 0x24 0x4800, WRAM helper copied to 0xC100; bank restored in bank 0",
+    "clear_hook": "bank 0x0C 0x4227 -> JP 0x197B; relocated clear body at bank 0x24 0x4500",
+    "code_bank": "bank 0x24 (0x90000): boot code 0x4000, clear body 0x4500, journal 0x4800, WRAM helper source 0x4C00",
+    "wram": "helper copied to WRAM 0xC100 on demand; game WRAM 0xC100-0xC3FF backed up to SRAM 0xB600-0xB8FF (save) or 0xAD00-0xAFFF (boot) and restored",
+    "log_sector": "chip 0x80000-0x8FFFF, bank 0x20, CPU 0x6000; appended 1 MiB image",
+    "record": "0xF6 bytes: 'M','L',0xF0,payload 0xF0,checksum,0x5A commit,0x00 pad",
+    "mapper_note": "MBC5 conversion needs the 22 MBC1 low-bank writes at 0x3000 retargeted to 0x2000; otherwise MBC5 treats 0x3000 as bank bit 8 and the world-map tiles are garbled. The game never writes 0x4000/0x6000."
   },
   "open_questions": [
-    "Which routine deletes a save slot?",
-    "What bank is selected when the save routine runs?",
-    "Does the game tolerate leaving bank 0/1 selected after a save hook?",
-    "Does the save routine need the game's exact stack/HL state on return?"
-  ]
+    "Optional: long-term wear and full-log erase after many save/delete cycles.",
+    "Optional: levels/modes not covered by the test route.",
+    "Re-run the emulator tests and IPS round-trip after any source/recipe change."
+  ],
+  "ips_patch": "games/sml2/ips/sml2-hc007.ips",
+  "ips_patch_min": "games/sml2/ips/sml2-hc007-min.ips",
+  "ips_note": "The full patches include the 0xFF extension and reproduce the target SHA-1 exactly in any IPS patcher. The minimal patches need --pad-to 0x100000 --pad-byte 0xFF or a flasher that fills new banks with erased flash.",
+  "ips_dir": "games/sml2/ips",
+  "ips_manifest": "games/sml2/ips/manifest.json",
+  "ips_patch_noflash": "games/sml2/ips/sml2-hc007-noflash.ips",
+  "ips_patch_noflash_min": "games/sml2/ips/sml2-hc007-noflash-min.ips",
+  "readme": "games/sml2/README.md",
+  "hardware": "pass on HC007 cart: boot, life-loss save without reset, power-cycle/load, delete",
+  "tests": {
+    "synthetic": "pass",
+    "after_level": "pass",
+    "natural_event": "pass",
+    "wram_restore": "pass",
+    "hardware": "pass"
+  }
 }

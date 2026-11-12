@@ -82,6 +82,16 @@ raw file offset.
 `bank` and `offset` are **bank-relative**: the blob starts at file offset
 `bank * 0x4000 + offset`.  A blob must fit in the image after `append_banks`.
 
+## Real example
+
+`games/sml2/recipe.json` is a complete case: 35 edits, six blobs, a 1 MiB
+output, an MBC5 header and a log in appended flash.  The blobs are the
+bank-0 hooks, boot hook, boot code, relocated CLEAR body, journal code and
+WRAM helper source; all executable patch code lives in bank `0x24`.  22 of the edits retarget
+the game's MBC1 `0x3000` low-bank writes to `0x2000` for MBC5.  Its blobs are
+built by `games/sml2/tools/build_save.py`; the recipe is the source of truth
+for every hook address.
+
 ## Commands
 
 ```powershell
@@ -96,7 +106,17 @@ python patcher/rom_patch.py apply games\mygame\recipe.json
 
 # Compare the source and a patched image.
 python patcher/rom_patch.py diff games\mygame\recipe.json --other patched.gb
+
+# Build a distributable IPS patch from the recipe's source/output.
+python patcher/rom_ips.py make --recipe games\mygame\recipe.json --patch out.ips
 ```
+
+The IPS step reads the already-built output; run `rom_patch.py apply` first.
+The default IPS includes erased extension bytes so the result is the exact
+output size.  `--no-pad` makes a small patch for tools/flashers that fill new
+space with `0xFF`.  Keep the patches, a manifest and apply instructions in
+`games/<slug>/ips/`, and verify the applied image's SHA-1 against the built
+image before publishing.
 
 ## Rules
 

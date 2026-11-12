@@ -1,0 +1,8952 @@
+{
+  "rom": "roms/sml2-hc007.gb",
+  "frames": 432,
+  "totalReads": 72360,
+  "totalWrites": 49789,
+  "totalMapperWrites": 1673,
+  "pageWrites": [
+    222,
+    19204,
+    3590,
+    256,
+    2806,
+    605,
+    256,
+    256,
+    15528,
+    256,
+    440,
+    256,
+    256,
+    512,
+    512,
+    512,
+    482,
+    256,
+    256,
+    256,
+    256,
+    256,
+    256,
+    256,
+    256,
+    256,
+    256,
+    256,
+    256,
+    256,
+    256,
+    256
+  ],
+  "pageReads": [
+    513,
+    29935,
+    4625,
+    0,
+    5866,
+    383,
+    0,
+    0,
+    15270,
+    0,
+    186,
+    0,
+    0,
+    14845,
+    256,
+    256,
+    225,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "markers": [],
+  "reads": [
+    {
+      "type": "read",
+      "pc": 65443,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 29487,
+      "minAddr": 41216,
+      "maxAddr": 41377,
+      "firstFrame": 18,
+      "lastFrame": 430,
+      "values": [
+        0,
+        6,
+        32,
+        26,
+        128,
+        40,
+        160,
+        14
+      ],
+      "enabled": 29487
+    },
+    {
+      "type": "read",
+      "pc": 44360,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1472,
+      "minAddr": 44360,
+      "maxAddr": 45279,
+      "firstFrame": 218,
+      "lastFrame": 219,
+      "values": [
+        243,
+        35,
+        62,
+        240,
+        234,
+        0,
+        64,
+        169
+      ],
+      "enabled": 1472
+    },
+    {
+      "type": "read",
+      "pc": 21143,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 1200,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        82,
+        114,
+        123
+      ],
+      "enabled": 1200
+    },
+    {
+      "type": "read",
+      "pc": 44369,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1026,
+      "minAddr": 43253,
+      "maxAddr": 44369,
+      "firstFrame": 219,
+      "lastFrame": 221,
+      "values": [
+        173,
+        13,
+        175
+      ],
+      "enabled": 1026
+    },
+    {
+      "type": "read",
+      "pc": 44370,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1024,
+      "minAddr": 44370,
+      "maxAddr": 44370,
+      "firstFrame": 219,
+      "lastFrame": 221,
+      "values": [
+        119
+      ],
+      "enabled": 1024
+    },
+    {
+      "type": "read",
+      "pc": 44371,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1024,
+      "minAddr": 44371,
+      "maxAddr": 44371,
+      "firstFrame": 219,
+      "lastFrame": 221,
+      "values": [
+        35
+      ],
+      "enabled": 1024
+    },
+    {
+      "type": "read",
+      "pc": 44372,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1024,
+      "minAddr": 44372,
+      "maxAddr": 44372,
+      "firstFrame": 219,
+      "lastFrame": 221,
+      "values": [
+        11
+      ],
+      "enabled": 1024
+    },
+    {
+      "type": "read",
+      "pc": 44373,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1024,
+      "minAddr": 44373,
+      "maxAddr": 44373,
+      "firstFrame": 219,
+      "lastFrame": 221,
+      "values": [
+        120
+      ],
+      "enabled": 1024
+    },
+    {
+      "type": "read",
+      "pc": 44374,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1024,
+      "minAddr": 44374,
+      "maxAddr": 44374,
+      "firstFrame": 219,
+      "lastFrame": 221,
+      "values": [
+        177
+      ],
+      "enabled": 1024
+    },
+    {
+      "type": "read",
+      "pc": 44375,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1024,
+      "minAddr": 44375,
+      "maxAddr": 44375,
+      "firstFrame": 219,
+      "lastFrame": 221,
+      "values": [
+        32
+      ],
+      "enabled": 1024
+    },
+    {
+      "type": "read",
+      "pc": 44376,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1023,
+      "minAddr": 44376,
+      "maxAddr": 44376,
+      "firstFrame": 219,
+      "lastFrame": 221,
+      "values": [
+        248
+      ],
+      "enabled": 1023
+    },
+    {
+      "type": "read",
+      "pc": 44359,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 736,
+      "minAddr": 44359,
+      "maxAddr": 44359,
+      "firstFrame": 218,
+      "lastFrame": 219,
+      "values": [
+        126
+      ],
+      "enabled": 736
+    },
+    {
+      "type": "read",
+      "pc": 44361,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 736,
+      "minAddr": 44361,
+      "maxAddr": 44361,
+      "firstFrame": 218,
+      "lastFrame": 219,
+      "values": [
+        18
+      ],
+      "enabled": 736
+    },
+    {
+      "type": "read",
+      "pc": 44362,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 736,
+      "minAddr": 44362,
+      "maxAddr": 44362,
+      "firstFrame": 218,
+      "lastFrame": 219,
+      "values": [
+        19
+      ],
+      "enabled": 736
+    },
+    {
+      "type": "read",
+      "pc": 44363,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 736,
+      "minAddr": 44363,
+      "maxAddr": 44363,
+      "firstFrame": 218,
+      "lastFrame": 219,
+      "values": [
+        11
+      ],
+      "enabled": 736
+    },
+    {
+      "type": "read",
+      "pc": 44364,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 736,
+      "minAddr": 44364,
+      "maxAddr": 44364,
+      "firstFrame": 218,
+      "lastFrame": 219,
+      "values": [
+        120
+      ],
+      "enabled": 736
+    },
+    {
+      "type": "read",
+      "pc": 44365,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 736,
+      "minAddr": 44365,
+      "maxAddr": 44365,
+      "firstFrame": 218,
+      "lastFrame": 219,
+      "values": [
+        177
+      ],
+      "enabled": 736
+    },
+    {
+      "type": "read",
+      "pc": 44366,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 736,
+      "minAddr": 44366,
+      "maxAddr": 44366,
+      "firstFrame": 218,
+      "lastFrame": 219,
+      "values": [
+        32
+      ],
+      "enabled": 736
+    },
+    {
+      "type": "read",
+      "pc": 44367,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 735,
+      "minAddr": 44367,
+      "maxAddr": 44367,
+      "firstFrame": 218,
+      "lastFrame": 219,
+      "values": [
+        247
+      ],
+      "enabled": 735
+    },
+    {
+      "type": "read",
+      "pc": 21116,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 600,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        43,
+        70
+      ],
+      "enabled": 600
+    },
+    {
+      "type": "read",
+      "pc": 11087,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 600,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        65,
+        14,
+        26,
+        38
+      ],
+      "enabled": 600
+    },
+    {
+      "type": "read",
+      "pc": 42,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 568,
+      "minAddr": 43257,
+      "maxAddr": 43260,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        2,
+        176,
+        65,
+        50
+      ],
+      "enabled": 568
+    },
+    {
+      "type": "read",
+      "pc": 51,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 568,
+      "minAddr": 43257,
+      "maxAddr": 43260,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        44,
+        196,
+        219,
+        43,
+        229,
+        240,
+        67,
+        214
+      ],
+      "enabled": 568
+    },
+    {
+      "type": "read",
+      "pc": 23162,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 434,
+      "minAddr": 43251,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 431,
+      "values": [
+        86,
+        245,
+        87,
+        5,
+        15,
+        88,
+        98
+      ],
+      "enabled": 434
+    },
+    {
+      "type": "read",
+      "pc": 22091,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 404,
+      "minAddr": 42001,
+      "maxAddr": 42049,
+      "firstFrame": 221,
+      "lastFrame": 431,
+      "values": [
+        127,
+        93,
+        0
+      ],
+      "enabled": 404
+    },
+    {
+      "type": "read",
+      "pc": 22523,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 404,
+      "minAddr": 42064,
+      "maxAddr": 42064,
+      "firstFrame": 221,
+      "lastFrame": 431,
+      "values": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "enabled": 404
+    },
+    {
+      "type": "read",
+      "pc": 14456,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43247,
+      "maxAddr": 43252,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        1,
+        194
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "read",
+      "pc": 1904,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43247,
+      "maxAddr": 43252,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        1,
+        197
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "read",
+      "pc": 481,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43249,
+      "maxAddr": 43254,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        151,
+        255,
+        44,
+        196,
+        164,
+        105,
+        43,
+        229
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "read",
+      "pc": 482,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43251,
+      "maxAddr": 43256,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        216,
+        0,
+        196,
+        44,
+        156,
+        219,
+        229,
+        43
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "read",
+      "pc": 483,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43253,
+      "maxAddr": 43258,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0,
+        8,
+        35,
+        29,
+        24
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "read",
+      "pc": 484,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43255,
+      "maxAddr": 43260,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        128,
+        0,
+        160,
+        1,
+        112,
+        8,
+        32
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "read",
+      "pc": 485,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43257,
+      "maxAddr": 43262,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        2,
+        91,
+        3,
+        96,
+        0
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "read",
+      "pc": 21902,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 370,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        164,
+        34,
+        66
+      ],
+      "enabled": 370
+    },
+    {
+      "type": "read",
+      "pc": 22550,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 370,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        164,
+        34,
+        66
+      ],
+      "enabled": 370
+    },
+    {
+      "type": "read",
+      "pc": 22551,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 370,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        85,
+        145
+      ],
+      "enabled": 370
+    },
+    {
+      "type": "read",
+      "pc": 22730,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 370,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        85,
+        149
+      ],
+      "enabled": 370
+    },
+    {
+      "type": "read",
+      "pc": 21910,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 370,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        164,
+        34,
+        66
+      ],
+      "enabled": 370
+    },
+    {
+      "type": "read",
+      "pc": 8204,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        2,
+        118
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "read",
+      "pc": 14536,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        2,
+        121
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "read",
+      "pc": 65450,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43247,
+      "maxAddr": 43250,
+      "firstFrame": 18,
+      "lastFrame": 430,
+      "values": [
+        1,
+        200
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "read",
+      "pc": 16504,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        32,
+        150
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "read",
+      "pc": 8343,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        2,
+        141
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "read",
+      "pc": 8706,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        2,
+        144
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "read",
+      "pc": 796,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 366,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 31,
+      "lastFrame": 430,
+      "values": [
+        2,
+        156
+      ],
+      "enabled": 366
+    },
+    {
+      "type": "read",
+      "pc": 16666,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 364,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 32,
+      "lastFrame": 431,
+      "values": [
+        64,
+        94
+      ],
+      "enabled": 364
+    },
+    {
+      "type": "read",
+      "pc": 18157,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 364,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 32,
+      "lastFrame": 431,
+      "values": [
+        64,
+        97
+      ],
+      "enabled": 364
+    },
+    {
+      "type": "read",
+      "pc": 20134,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 364,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 32,
+      "lastFrame": 431,
+      "values": [
+        64,
+        100
+      ],
+      "enabled": 364
+    },
+    {
+      "type": "read",
+      "pc": 807,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 330,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 18,
+      "lastFrame": 201,
+      "values": [
+        44,
+        202,
+        222,
+        64,
+        127
+      ],
+      "enabled": 330
+    },
+    {
+      "type": "read",
+      "pc": 22096,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 303,
+      "minAddr": 42002,
+      "maxAddr": 42050,
+      "firstFrame": 221,
+      "lastFrame": 431,
+      "values": [
+        1,
+        48,
+        18,
+        12,
+        47,
+        17,
+        11,
+        46
+      ],
+      "enabled": 303
+    },
+    {
+      "type": "read",
+      "pc": 21862,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 283,
+      "minAddr": 42064,
+      "maxAddr": 42064,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        1,
+        2,
+        4
+      ],
+      "enabled": 283
+    },
+    {
+      "type": "read",
+      "pc": 21890,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 283,
+      "minAddr": 42011,
+      "maxAddr": 42059,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        1,
+        0
+      ],
+      "enabled": 283
+    },
+    {
+      "type": "read",
+      "pc": 23154,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 217,
+      "minAddr": 42064,
+      "maxAddr": 42064,
+      "firstFrame": 221,
+      "lastFrame": 431,
+      "values": [
+        1,
+        2
+      ],
+      "enabled": 217
+    },
+    {
+      "type": "read",
+      "pc": 10484,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 207,
+      "minAddr": 40960,
+      "maxAddr": 41188,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 207
+    },
+    {
+      "type": "read",
+      "pc": 21250,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 202,
+      "minAddr": 43257,
+      "maxAddr": 43260,
+      "firstFrame": 18,
+      "lastFrame": 431,
+      "values": [
+        44,
+        208,
+        43,
+        110
+      ],
+      "enabled": 202
+    },
+    {
+      "type": "read",
+      "pc": 21544,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 202,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 431,
+      "values": [
+        86,
+        65
+      ],
+      "enabled": 202
+    },
+    {
+      "type": "read",
+      "pc": 22549,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 202,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 222,
+      "lastFrame": 431,
+      "values": [
+        64,
+        103
+      ],
+      "enabled": 202
+    },
+    {
+      "type": "read",
+      "pc": 21223,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 200,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        43,
+        30
+      ],
+      "enabled": 200
+    },
+    {
+      "type": "read",
+      "pc": 11047,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 200,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        64,
+        228
+      ],
+      "enabled": 200
+    },
+    {
+      "type": "read",
+      "pc": 11127,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 200,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        65,
+        41
+      ],
+      "enabled": 200
+    },
+    {
+      "type": "read",
+      "pc": 16682,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 200,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        2,
+        124
+      ],
+      "enabled": 200
+    },
+    {
+      "type": "read",
+      "pc": 21859,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 196,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        164,
+        18
+      ],
+      "enabled": 196
+    },
+    {
+      "type": "read",
+      "pc": 346,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41648,
+      "maxAddr": 41648,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "read",
+      "pc": 351,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41649,
+      "maxAddr": 41649,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "read",
+      "pc": 356,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41598,
+      "maxAddr": 41598,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        147,
+        228
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "read",
+      "pc": 361,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41599,
+      "maxAddr": 41599,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        208
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "read",
+      "pc": 366,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41600,
+      "maxAddr": 41600,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        56
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "read",
+      "pc": 371,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41574,
+      "maxAddr": 41574,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0,
+        64,
+        63,
+        62,
+        61,
+        60,
+        59,
+        58
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "read",
+      "pc": 379,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41575,
+      "maxAddr": 41575,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0,
+        5,
+        4
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "read",
+      "pc": 396,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41673,
+      "maxAddr": 41673,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "read",
+      "pc": 410,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41544,
+      "maxAddr": 41544,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "read",
+      "pc": 424,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41614,
+      "maxAddr": 41614,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "read",
+      "pc": 431,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 43521,
+      "maxAddr": 43521,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "read",
+      "pc": 14452,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41625,
+      "maxAddr": 41625,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "read",
+      "pc": 471,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0,
+        4,
+        5,
+        12,
+        27
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "read",
+      "pc": 21899,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 185,
+      "minAddr": 42031,
+      "maxAddr": 42063,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        0,
+        26,
+        25,
+        24
+      ],
+      "enabled": 185
+    },
+    {
+      "type": "read",
+      "pc": 22557,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 185,
+      "minAddr": 42024,
+      "maxAddr": 42056,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        128,
+        56,
+        32
+      ],
+      "enabled": 185
+    },
+    {
+      "type": "read",
+      "pc": 22586,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 185,
+      "minAddr": 42064,
+      "maxAddr": 42064,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        2,
+        4
+      ],
+      "enabled": 185
+    },
+    {
+      "type": "read",
+      "pc": 22682,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 185,
+      "minAddr": 42011,
+      "maxAddr": 42011,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        1
+      ],
+      "enabled": 185
+    },
+    {
+      "type": "read",
+      "pc": 22721,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 185,
+      "minAddr": 42027,
+      "maxAddr": 42027,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 185
+    },
+    {
+      "type": "read",
+      "pc": 22726,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 185,
+      "minAddr": 42023,
+      "maxAddr": 42023,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 185
+    },
+    {
+      "type": "read",
+      "pc": 617,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41486,
+      "maxAddr": 41486,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "read",
+      "pc": 623,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41692,
+      "maxAddr": 41692,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "read",
+      "pc": 14522,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41678,
+      "maxAddr": 41678,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "read",
+      "pc": 14529,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41678,
+      "maxAddr": 41678,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "read",
+      "pc": 8330,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41678,
+      "maxAddr": 41678,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "read",
+      "pc": 16433,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 42078,
+      "maxAddr": 42078,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "read",
+      "pc": 16446,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 42077,
+      "maxAddr": 42077,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "read",
+      "pc": 16456,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 42088,
+      "maxAddr": 42088,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        255,
+        0,
+        13
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "read",
+      "pc": 22076,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 42089,
+      "maxAddr": 42089,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0,
+        13
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "read",
+      "pc": 8357,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41614,
+      "maxAddr": 41614,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "read",
+      "pc": 8361,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41615,
+      "maxAddr": 41615,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "read",
+      "pc": 8687,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41546,
+      "maxAddr": 41546,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "read",
+      "pc": 779,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 183,
+      "minAddr": 41624,
+      "maxAddr": 41624,
+      "firstFrame": 31,
+      "lastFrame": 430,
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "enabled": 183
+    },
+    {
+      "type": "read",
+      "pc": 16460,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 182,
+      "minAddr": 42303,
+      "maxAddr": 42303,
+      "firstFrame": 32,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 182
+    },
+    {
+      "type": "read",
+      "pc": 16610,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 182,
+      "minAddr": 42080,
+      "maxAddr": 42080,
+      "firstFrame": 32,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 182
+    },
+    {
+      "type": "read",
+      "pc": 16664,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 182,
+      "minAddr": 42081,
+      "maxAddr": 42081,
+      "firstFrame": 32,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 182
+    },
+    {
+      "type": "read",
+      "pc": 18135,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 182,
+      "minAddr": 42096,
+      "maxAddr": 42096,
+      "firstFrame": 32,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 182
+    },
+    {
+      "type": "read",
+      "pc": 18155,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 182,
+      "minAddr": 42097,
+      "maxAddr": 42097,
+      "firstFrame": 32,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 182
+    },
+    {
+      "type": "read",
+      "pc": 20116,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 182,
+      "minAddr": 42104,
+      "maxAddr": 42104,
+      "firstFrame": 32,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 182
+    },
+    {
+      "type": "read",
+      "pc": 20132,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 182,
+      "minAddr": 42105,
+      "maxAddr": 42105,
+      "firstFrame": 32,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 182
+    },
+    {
+      "type": "read",
+      "pc": 22078,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 166,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 29,
+      "lastFrame": 201,
+      "values": [
+        64,
+        103
+      ],
+      "enabled": 166
+    },
+    {
+      "type": "read",
+      "pc": 16673,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 164,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 32,
+      "lastFrame": 201,
+      "values": [
+        64,
+        140
+      ],
+      "enabled": 164
+    },
+    {
+      "type": "read",
+      "pc": 65443,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 160,
+      "minAddr": 41216,
+      "maxAddr": 41375,
+      "firstFrame": 16,
+      "lastFrame": 16,
+      "values": [
+        0
+      ],
+      "enabled": 160
+    },
+    {
+      "type": "read",
+      "pc": 65443,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 160,
+      "minAddr": 41216,
+      "maxAddr": 41375,
+      "firstFrame": 205,
+      "lastFrame": 205,
+      "values": [
+        0
+      ],
+      "enabled": 160
+    },
+    {
+      "type": "read",
+      "pc": 16530,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 128,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 32,
+      "lastFrame": 163,
+      "values": [
+        2,
+        124
+      ],
+      "enabled": 128
+    },
+    {
+      "type": "read",
+      "pc": 21212,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 128,
+      "minAddr": 41219,
+      "maxAddr": 41247,
+      "firstFrame": 223,
+      "lastFrame": 255,
+      "values": [
+        0,
+        32
+      ],
+      "enabled": 128
+    },
+    {
+      "type": "read",
+      "pc": 17190,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 110,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 317,
+      "lastFrame": 430,
+      "values": [
+        64,
+        128
+      ],
+      "enabled": 110
+    },
+    {
+      "type": "read",
+      "pc": 21227,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 101,
+      "minAddr": 41582,
+      "maxAddr": 41582,
+      "firstFrame": 18,
+      "lastFrame": 431,
+      "values": [
+        0,
+        56
+      ],
+      "enabled": 101
+    },
+    {
+      "type": "read",
+      "pc": 21541,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 101,
+      "minAddr": 42069,
+      "maxAddr": 42069,
+      "firstFrame": 221,
+      "lastFrame": 431,
+      "values": [
+        1
+      ],
+      "enabled": 101
+    },
+    {
+      "type": "read",
+      "pc": 22540,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 101,
+      "minAddr": 42014,
+      "maxAddr": 42014,
+      "firstFrame": 222,
+      "lastFrame": 431,
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "enabled": 101
+    },
+    {
+      "type": "read",
+      "pc": 22544,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 101,
+      "minAddr": 42030,
+      "maxAddr": 42030,
+      "firstFrame": 222,
+      "lastFrame": 431,
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "enabled": 101
+    },
+    {
+      "type": "read",
+      "pc": 22548,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 101,
+      "minAddr": 42046,
+      "maxAddr": 42046,
+      "firstFrame": 222,
+      "lastFrame": 431,
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "enabled": 101
+    },
+    {
+      "type": "read",
+      "pc": 16488,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41700,
+      "maxAddr": 41700,
+      "firstFrame": 223,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "read",
+      "pc": 16687,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41591,
+      "maxAddr": 41591,
+      "firstFrame": 223,
+      "lastFrame": 430,
+      "values": [
+        0,
+        1
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "read",
+      "pc": 16513,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41671,
+      "maxAddr": 41671,
+      "firstFrame": 223,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "read",
+      "pc": 16527,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41700,
+      "maxAddr": 41700,
+      "firstFrame": 223,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "read",
+      "pc": 16540,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41670,
+      "maxAddr": 41670,
+      "firstFrame": 223,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "read",
+      "pc": 16647,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41026,
+      "maxAddr": 41026,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "read",
+      "pc": 16659,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41106,
+      "maxAddr": 41106,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "read",
+      "pc": 16671,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41186,
+      "maxAddr": 41186,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "read",
+      "pc": 21858,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 96,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        86,
+        88,
+        85,
+        254,
+        231,
+        22,
+        29,
+        36
+      ],
+      "enabled": 96
+    },
+    {
+      "type": "read",
+      "pc": 22616,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 95,
+      "minAddr": 42268,
+      "maxAddr": 42268,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 95
+    },
+    {
+      "type": "read",
+      "pc": 22627,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 95,
+      "minAddr": 42280,
+      "maxAddr": 42280,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 95
+    },
+    {
+      "type": "read",
+      "pc": 22632,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 95,
+      "minAddr": 42064,
+      "maxAddr": 42064,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        2
+      ],
+      "enabled": 95
+    },
+    {
+      "type": "read",
+      "pc": 17408,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 88,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 223,
+      "lastFrame": 313,
+      "values": [
+        64,
+        128
+      ],
+      "enabled": 88
+    },
+    {
+      "type": "read",
+      "pc": 21841,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 84,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        69,
+        164,
+        2,
+        48,
+        80,
+        66,
+        0,
+        18
+      ],
+      "enabled": 84
+    },
+    {
+      "type": "read",
+      "pc": 21842,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 84,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        85,
+        251,
+        86,
+        228,
+        87,
+        46,
+        19,
+        26
+      ],
+      "enabled": 84
+    },
+    {
+      "type": "read",
+      "pc": 16525,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 82,
+      "minAddr": 41575,
+      "maxAddr": 41575,
+      "firstFrame": 32,
+      "lastFrame": 201,
+      "values": [
+        5,
+        4
+      ],
+      "enabled": 82
+    },
+    {
+      "type": "read",
+      "pc": 22565,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 65,
+      "minAddr": 42064,
+      "maxAddr": 42064,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        4
+      ],
+      "enabled": 65
+    },
+    {
+      "type": "read",
+      "pc": 17179,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 55,
+      "minAddr": 41515,
+      "maxAddr": 41515,
+      "firstFrame": 317,
+      "lastFrame": 430,
+      "values": [
+        1
+      ],
+      "enabled": 55
+    },
+    {
+      "type": "read",
+      "pc": 21852,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 48,
+      "minAddr": 42004,
+      "maxAddr": 42052,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        88,
+        89,
+        90,
+        91,
+        211,
+        212,
+        213,
+        214
+      ],
+      "enabled": 48
+    },
+    {
+      "type": "read",
+      "pc": 21854,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 48,
+      "minAddr": 42005,
+      "maxAddr": 42053,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        127,
+        93,
+        94
+      ],
+      "enabled": 48
+    },
+    {
+      "type": "read",
+      "pc": 21832,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 42,
+      "minAddr": 42004,
+      "maxAddr": 42052,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        88,
+        90,
+        91,
+        211,
+        212,
+        213,
+        214,
+        215
+      ],
+      "enabled": 42
+    },
+    {
+      "type": "read",
+      "pc": 21834,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 42,
+      "minAddr": 42005,
+      "maxAddr": 42053,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        127,
+        93,
+        94
+      ],
+      "enabled": 42
+    },
+    {
+      "type": "read",
+      "pc": 22496,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 40,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        164,
+        25,
+        41,
+        73
+      ],
+      "enabled": 40
+    },
+    {
+      "type": "read",
+      "pc": 22515,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 40,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        164,
+        20,
+        36,
+        68
+      ],
+      "enabled": 40
+    },
+    {
+      "type": "read",
+      "pc": 16546,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 34,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 166,
+      "lastFrame": 199,
+      "values": [
+        2,
+        124
+      ],
+      "enabled": 34
+    },
+    {
+      "type": "read",
+      "pc": 22188,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 32,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        164,
+        20,
+        36,
+        68
+      ],
+      "enabled": 32
+    },
+    {
+      "type": "read",
+      "pc": 22239,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 32,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        164,
+        20,
+        36,
+        68
+      ],
+      "enabled": 32
+    },
+    {
+      "type": "read",
+      "pc": 22248,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 20,
+      "minAddr": 42064,
+      "maxAddr": 42064,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        1,
+        2,
+        4
+      ],
+      "enabled": 20
+    },
+    {
+      "type": "read",
+      "pc": 22319,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 20,
+      "minAddr": 42064,
+      "maxAddr": 42064,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        1,
+        2,
+        4
+      ],
+      "enabled": 20
+    },
+    {
+      "type": "read",
+      "pc": 22476,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 20,
+      "minAddr": 42006,
+      "maxAddr": 42054,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        0,
+        66,
+        9,
+        19,
+        25
+      ],
+      "enabled": 20
+    },
+    {
+      "type": "read",
+      "pc": 22479,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 20,
+      "minAddr": 42008,
+      "maxAddr": 42056,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        0,
+        128,
+        56,
+        32
+      ],
+      "enabled": 20
+    },
+    {
+      "type": "read",
+      "pc": 22484,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 20,
+      "minAddr": 42011,
+      "maxAddr": 42059,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        1,
+        0
+      ],
+      "enabled": 20
+    },
+    {
+      "type": "read",
+      "pc": 22495,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 20,
+      "minAddr": 42015,
+      "maxAddr": 42063,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        32,
+        0,
+        26,
+        25,
+        31,
+        24,
+        30
+      ],
+      "enabled": 20
+    },
+    {
+      "type": "read",
+      "pc": 22508,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 20,
+      "minAddr": 42009,
+      "maxAddr": 42057,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        0,
+        89,
+        52,
+        64,
+        123,
+        51,
+        144,
+        138
+      ],
+      "enabled": 20
+    },
+    {
+      "type": "read",
+      "pc": 22511,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 20,
+      "minAddr": 42010,
+      "maxAddr": 42058,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        0,
+        7,
+        192,
+        128
+      ],
+      "enabled": 20
+    },
+    {
+      "type": "read",
+      "pc": 22517,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 20,
+      "minAddr": 42003,
+      "maxAddr": 42051,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        48,
+        18,
+        12,
+        6
+      ],
+      "enabled": 20
+    },
+    {
+      "type": "read",
+      "pc": 22312,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 18,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        2,
+        48,
+        18,
+        80,
+        164,
+        12
+      ],
+      "enabled": 18
+    },
+    {
+      "type": "read",
+      "pc": 22181,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 16,
+      "minAddr": 41985,
+      "maxAddr": 41985,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        52
+      ],
+      "enabled": 16
+    },
+    {
+      "type": "read",
+      "pc": 22184,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 16,
+      "minAddr": 41986,
+      "maxAddr": 41986,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        92
+      ],
+      "enabled": 16
+    },
+    {
+      "type": "read",
+      "pc": 22194,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 16,
+      "minAddr": 42007,
+      "maxAddr": 42055,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        0
+      ],
+      "enabled": 16
+    },
+    {
+      "type": "read",
+      "pc": 831,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 12,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 28,
+      "lastFrame": 214,
+      "values": [
+        42,
+        210,
+        43,
+        159,
+        171,
+        191,
+        211,
+        228
+      ],
+      "enabled": 12
+    },
+    {
+      "type": "read",
+      "pc": 22370,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 12,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 222,
+      "lastFrame": 410,
+      "values": [
+        164,
+        36
+      ],
+      "enabled": 12
+    },
+    {
+      "type": "read",
+      "pc": 21594,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 10,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        84,
+        155,
+        175,
+        181,
+        187,
+        193
+      ],
+      "enabled": 10
+    },
+    {
+      "type": "read",
+      "pc": 22262,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 9,
+      "minAddr": 42266,
+      "maxAddr": 42268,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        0
+      ],
+      "enabled": 9
+    },
+    {
+      "type": "read",
+      "pc": 22291,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 9,
+      "minAddr": 42064,
+      "maxAddr": 42064,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        1,
+        2
+      ],
+      "enabled": 9
+    },
+    {
+      "type": "read",
+      "pc": 22431,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 9,
+      "minAddr": 42064,
+      "maxAddr": 42064,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        1,
+        2
+      ],
+      "enabled": 9
+    },
+    {
+      "type": "read",
+      "pc": 21588,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 8,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        84,
+        202,
+        211,
+        220,
+        229
+      ],
+      "enabled": 8
+    },
+    {
+      "type": "read",
+      "pc": 22062,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 8,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 297,
+      "lastFrame": 422,
+      "values": [
+        164,
+        68,
+        20
+      ],
+      "enabled": 8
+    },
+    {
+      "type": "read",
+      "pc": 10516,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 6,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        160,
+        0,
+        80
+      ],
+      "enabled": 6
+    },
+    {
+      "type": "read",
+      "pc": 10548,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 6,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        40,
+        223,
+        229,
+        235
+      ],
+      "enabled": 6
+    },
+    {
+      "type": "read",
+      "pc": 22376,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 6,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        164,
+        20
+      ],
+      "enabled": 6
+    },
+    {
+      "type": "read",
+      "pc": 22343,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 6,
+      "minAddr": 41984,
+      "maxAddr": 41984,
+      "firstFrame": 222,
+      "lastFrame": 410,
+      "values": [
+        0
+      ],
+      "enabled": 6
+    },
+    {
+      "type": "read",
+      "pc": 865,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 18,
+      "lastFrame": 205,
+      "values": [
+        44,
+        199,
+        64,
+        3
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "read",
+      "pc": 32765,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 43253,
+      "maxAddr": 43258,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        64,
+        124,
+        84,
+        93
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "read",
+      "pc": 21578,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 42000,
+      "maxAddr": 42048,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        82,
+        193,
+        0,
+        205
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "read",
+      "pc": 21580,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 42001,
+      "maxAddr": 42049,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        127,
+        93,
+        0
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "read",
+      "pc": 22028,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 222,
+      "values": [
+        164,
+        20,
+        68
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "read",
+      "pc": 22050,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 42015,
+      "maxAddr": 42063,
+      "firstFrame": 297,
+      "lastFrame": 422,
+      "values": [
+        26,
+        32,
+        25,
+        31
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "read",
+      "pc": 22051,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 42015,
+      "maxAddr": 42063,
+      "firstFrame": 297,
+      "lastFrame": 422,
+      "values": [
+        26,
+        32,
+        25,
+        31
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "read",
+      "pc": 22052,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 42015,
+      "maxAddr": 42063,
+      "firstFrame": 297,
+      "lastFrame": 422,
+      "values": [
+        25,
+        31,
+        24,
+        30
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "read",
+      "pc": 22063,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 42012,
+      "maxAddr": 42060,
+      "firstFrame": 297,
+      "lastFrame": 422,
+      "values": [
+        113,
+        90
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "read",
+      "pc": 22066,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 42013,
+      "maxAddr": 42061,
+      "firstFrame": 297,
+      "lastFrame": 422,
+      "values": [
+        94,
+        127
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "read",
+      "pc": 10490,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 3,
+      "minAddr": 41029,
+      "maxAddr": 41189,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 3
+    },
+    {
+      "type": "read",
+      "pc": 10494,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 3,
+      "minAddr": 41030,
+      "maxAddr": 41190,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 3
+    },
+    {
+      "type": "read",
+      "pc": 822,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 16,
+      "lastFrame": 16,
+      "values": [
+        2,
+        77
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 65450,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43251,
+      "maxAddr": 43252,
+      "firstFrame": 16,
+      "lastFrame": 16,
+      "values": [
+        1,
+        200
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 16413,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 17,
+      "lastFrame": 17,
+      "values": [
+        32,
+        136
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 8329,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 17,
+      "lastFrame": 17,
+      "values": [
+        2,
+        100
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 10963,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 28,
+      "lastFrame": 28,
+      "values": [
+        64,
+        70
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 16508,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 29,
+      "lastFrame": 29,
+      "values": [
+        2,
+        124
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 16552,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 201,
+      "lastFrame": 201,
+      "values": [
+        2,
+        124
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 65450,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43247,
+      "maxAddr": 43248,
+      "firstFrame": 205,
+      "lastFrame": 205,
+      "values": [
+        1,
+        200
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 11237,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 214,
+      "lastFrame": 214,
+      "values": [
+        64,
+        6
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 44290,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 44290,
+      "maxAddr": 44291,
+      "firstFrame": 218,
+      "lastFrame": 218,
+      "values": [
+        174,
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 44293,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 44293,
+      "maxAddr": 44294,
+      "firstFrame": 218,
+      "lastFrame": 218,
+      "values": [
+        0,
+        220
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 44296,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 44296,
+      "maxAddr": 44297,
+      "firstFrame": 218,
+      "lastFrame": 218,
+      "values": [
+        224,
+        2
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 44299,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 44299,
+      "maxAddr": 44300,
+      "firstFrame": 218,
+      "lastFrame": 218,
+      "values": [
+        173,
+        71
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 44302,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 44302,
+      "maxAddr": 44303,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        220,
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 56394,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        173,
+        16
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 44305,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 44305,
+      "maxAddr": 44306,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        222,
+        98
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 56574,
+      "romBank": 32,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43245,
+      "maxAddr": 43246,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 56575,
+      "romBank": 32,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43247,
+      "maxAddr": 43248,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        96,
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 56576,
+      "romBank": 32,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43249,
+      "maxAddr": 43250,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        221,
+        105
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 56775,
+      "romBank": 32,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43251,
+      "maxAddr": 43252,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        222,
+        107
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 56979,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        173,
+        19
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 44308,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 44308,
+      "maxAddr": 44309,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        220,
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 44311,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 44311,
+      "maxAddr": 44312,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        0,
+        4
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 44314,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 44314,
+      "maxAddr": 44315,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        173,
+        81
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 44378,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        173,
+        28
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 44317,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        64,
+        22
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 16412,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        25,
+        138
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 10476,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        64,
+        55
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 16479,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        2,
+        124
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 21159,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        82,
+        241
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 21758,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        82,
+        244
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 21537,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        64,
+        124
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 22020,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42015,
+      "maxAddr": 42063,
+      "firstFrame": 221,
+      "lastFrame": 222,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 22029,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42004,
+      "maxAddr": 42052,
+      "firstFrame": 221,
+      "lastFrame": 222,
+      "values": [
+        89,
+        112
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 22031,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42005,
+      "maxAddr": 42053,
+      "firstFrame": 221,
+      "lastFrame": 222,
+      "values": [
+        127,
+        94
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 21820,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        164,
+        36
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 17421,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 315,
+      "lastFrame": 315,
+      "values": [
+        64,
+        128
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 6524,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 45280,
+      "maxAddr": 45280,
+      "firstFrame": 216,
+      "lastFrame": 216,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 44288,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 44288,
+      "maxAddr": 44288,
+      "firstFrame": 218,
+      "lastFrame": 218,
+      "values": [
+        243
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 44289,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 44289,
+      "maxAddr": 44289,
+      "firstFrame": 218,
+      "lastFrame": 218,
+      "values": [
+        33
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 44292,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 44292,
+      "maxAddr": 44292,
+      "firstFrame": 218,
+      "lastFrame": 218,
+      "values": [
+        17
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 44295,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 44295,
+      "maxAddr": 44295,
+      "firstFrame": 218,
+      "lastFrame": 218,
+      "values": [
+        1
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 44298,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 44298,
+      "maxAddr": 44298,
+      "firstFrame": 218,
+      "lastFrame": 218,
+      "values": [
+        205
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 44368,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 44368,
+      "maxAddr": 44368,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        201
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 44301,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 44301,
+      "maxAddr": 44301,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        205
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 44304,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 44304,
+      "maxAddr": 44304,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        205
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 44307,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 44307,
+      "maxAddr": 44307,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        33
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 44310,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 44310,
+      "maxAddr": 44310,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        1
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 44313,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 44313,
+      "maxAddr": 44313,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        205
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 44377,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 44377,
+      "maxAddr": 44377,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        201
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 44316,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 44316,
+      "maxAddr": 44316,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        201
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 21598,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42088,
+      "maxAddr": 42088,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        13
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 21643,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42253,
+      "maxAddr": 42253,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 21660,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42253,
+      "maxAddr": 42253,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 21492,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42089,
+      "maxAddr": 42089,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        13
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 21798,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42125,
+      "maxAddr": 42125,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 21819,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42064,
+      "maxAddr": 42064,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        2
+      ],
+      "enabled": 1
+    }
+  ],
+  "writes": [
+    {
+      "type": "write",
+      "pc": 16667,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 13120,
+      "minAddr": 41216,
+      "maxAddr": 41375,
+      "firstFrame": 31,
+      "lastFrame": 201,
+      "values": [
+        0
+      ],
+      "enabled": 13120
+    },
+    {
+      "type": "write",
+      "pc": 534,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 7936,
+      "minAddr": 41216,
+      "maxAddr": 49151,
+      "firstFrame": 7,
+      "lastFrame": 13,
+      "values": [
+        0
+      ],
+      "enabled": 7936
+    },
+    {
+      "type": "write",
+      "pc": 16397,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 992,
+      "minAddr": 44288,
+      "maxAddr": 45279,
+      "firstFrame": 216,
+      "lastFrame": 218,
+      "values": [
+        243,
+        33,
+        0,
+        174,
+        17,
+        220,
+        1,
+        224
+      ],
+      "enabled": 992
+    },
+    {
+      "type": "write",
+      "pc": 21186,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 800,
+      "minAddr": 41216,
+      "maxAddr": 41244,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        6,
+        14,
+        22,
+        30,
+        8,
+        16,
+        24,
+        32
+      ],
+      "enabled": 800
+    },
+    {
+      "type": "write",
+      "pc": 21190,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 800,
+      "minAddr": 41217,
+      "maxAddr": 41245,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        32,
+        40,
+        33,
+        41
+      ],
+      "enabled": 800
+    },
+    {
+      "type": "write",
+      "pc": 21193,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 800,
+      "minAddr": 41218,
+      "maxAddr": 41246,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        26,
+        27,
+        43,
+        59,
+        1,
+        0,
+        17,
+        16
+      ],
+      "enabled": 800
+    },
+    {
+      "type": "write",
+      "pc": 21206,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 800,
+      "minAddr": 41219,
+      "maxAddr": 41247,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        0,
+        32
+      ],
+      "enabled": 800
+    },
+    {
+      "type": "write",
+      "pc": 11078,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 600,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        43,
+        70
+      ],
+      "enabled": 600
+    },
+    {
+      "type": "write",
+      "pc": 21106,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 600,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        82,
+        114
+      ],
+      "enabled": 600
+    },
+    {
+      "type": "write",
+      "pc": 21126,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 600,
+      "minAddr": 41248,
+      "maxAddr": 41268,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        88
+      ],
+      "enabled": 600
+    },
+    {
+      "type": "write",
+      "pc": 21129,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 600,
+      "minAddr": 41249,
+      "maxAddr": 41269,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        32,
+        40,
+        64,
+        72,
+        96,
+        104
+      ],
+      "enabled": 600
+    },
+    {
+      "type": "write",
+      "pc": 21136,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 600,
+      "minAddr": 41250,
+      "maxAddr": 41270,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        128
+      ],
+      "enabled": 600
+    },
+    {
+      "type": "write",
+      "pc": 21139,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 600,
+      "minAddr": 41251,
+      "maxAddr": 41271,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 600
+    },
+    {
+      "type": "write",
+      "pc": 21115,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 600,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        82,
+        123
+      ],
+      "enabled": 600
+    },
+    {
+      "type": "write",
+      "pc": 50,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 568,
+      "minAddr": 43257,
+      "maxAddr": 43260,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        44,
+        196,
+        219,
+        43,
+        229,
+        240,
+        67,
+        214
+      ],
+      "enabled": 568
+    },
+    {
+      "type": "write",
+      "pc": 21885,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 566,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        164,
+        18,
+        34,
+        66
+      ],
+      "enabled": 566
+    },
+    {
+      "type": "write",
+      "pc": 342,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43255,
+      "maxAddr": 43260,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0,
+        128,
+        1,
+        160,
+        112,
+        8,
+        32
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "write",
+      "pc": 343,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43253,
+      "maxAddr": 43258,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0,
+        8,
+        35,
+        29,
+        24
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "write",
+      "pc": 344,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43251,
+      "maxAddr": 43256,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        0,
+        216,
+        44,
+        196,
+        156,
+        219,
+        43,
+        229
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "write",
+      "pc": 345,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43249,
+      "maxAddr": 43254,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        151,
+        255,
+        44,
+        196,
+        164,
+        105,
+        43,
+        229
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "write",
+      "pc": 450,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43247,
+      "maxAddr": 43252,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        1,
+        194
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "write",
+      "pc": 453,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43247,
+      "maxAddr": 43252,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        1,
+        197
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "write",
+      "pc": 456,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 372,
+      "minAddr": 43247,
+      "maxAddr": 43252,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        1,
+        200
+      ],
+      "enabled": 372
+    },
+    {
+      "type": "write",
+      "pc": 21905,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 370,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        85,
+        145
+      ],
+      "enabled": 370
+    },
+    {
+      "type": "write",
+      "pc": 22552,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 370,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        164,
+        34,
+        66
+      ],
+      "enabled": 370
+    },
+    {
+      "type": "write",
+      "pc": 21906,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 370,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        164,
+        34,
+        66
+      ],
+      "enabled": 370
+    },
+    {
+      "type": "write",
+      "pc": 21909,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 370,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        85,
+        149
+      ],
+      "enabled": 370
+    },
+    {
+      "type": "write",
+      "pc": 630,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        2,
+        118
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "write",
+      "pc": 633,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        2,
+        121
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "write",
+      "pc": 636,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        2,
+        124
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "write",
+      "pc": 688,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        2,
+        176
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "write",
+      "pc": 653,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        2,
+        141
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "write",
+      "pc": 8342,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        32,
+        150
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "write",
+      "pc": 16487,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        64,
+        103
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "write",
+      "pc": 656,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        2,
+        144
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "write",
+      "pc": 668,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 368,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        2,
+        156
+      ],
+      "enabled": 368
+    },
+    {
+      "type": "write",
+      "pc": 768,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 364,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 31,
+      "lastFrame": 430,
+      "values": [
+        3,
+        0
+      ],
+      "enabled": 364
+    },
+    {
+      "type": "write",
+      "pc": 16478,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 364,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 32,
+      "lastFrame": 431,
+      "values": [
+        64,
+        94
+      ],
+      "enabled": 364
+    },
+    {
+      "type": "write",
+      "pc": 16481,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 364,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 32,
+      "lastFrame": 431,
+      "values": [
+        64,
+        97
+      ],
+      "enabled": 364
+    },
+    {
+      "type": "write",
+      "pc": 16484,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 364,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 32,
+      "lastFrame": 431,
+      "values": [
+        64,
+        100
+      ],
+      "enabled": 364
+    },
+    {
+      "type": "write",
+      "pc": 22096,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 303,
+      "minAddr": 42002,
+      "maxAddr": 42050,
+      "firstFrame": 221,
+      "lastFrame": 431,
+      "values": [
+        0,
+        47,
+        17,
+        11,
+        46,
+        16,
+        10,
+        45
+      ],
+      "enabled": 303
+    },
+    {
+      "type": "write",
+      "pc": 22529,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 303,
+      "minAddr": 42064,
+      "maxAddr": 42064,
+      "firstFrame": 221,
+      "lastFrame": 431,
+      "values": [
+        2,
+        3,
+        4
+      ],
+      "enabled": 303
+    },
+    {
+      "type": "write",
+      "pc": 11070,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 300,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        1
+      ],
+      "enabled": 300
+    },
+    {
+      "type": "write",
+      "pc": 11081,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 300,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        12
+      ],
+      "enabled": 300
+    },
+    {
+      "type": "write",
+      "pc": 16388,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 256,
+      "minAddr": 41984,
+      "maxAddr": 42239,
+      "firstFrame": 16,
+      "lastFrame": 16,
+      "values": [
+        0
+      ],
+      "enabled": 256
+    },
+    {
+      "type": "write",
+      "pc": 16396,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 256,
+      "minAddr": 42240,
+      "maxAddr": 42495,
+      "firstFrame": 16,
+      "lastFrame": 17,
+      "values": [
+        0
+      ],
+      "enabled": 256
+    },
+    {
+      "type": "write",
+      "pc": 22081,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 202,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 431,
+      "values": [
+        86,
+        65
+      ],
+      "enabled": 202
+    },
+    {
+      "type": "write",
+      "pc": 16512,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 200,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 223,
+      "lastFrame": 430,
+      "values": [
+        64,
+        128
+      ],
+      "enabled": 200
+    },
+    {
+      "type": "write",
+      "pc": 16690,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 200,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 223,
+      "lastFrame": 430,
+      "values": [
+        65,
+        50
+      ],
+      "enabled": 200
+    },
+    {
+      "type": "write",
+      "pc": 16612,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 200,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 223,
+      "lastFrame": 430,
+      "values": [
+        64,
+        228
+      ],
+      "enabled": 200
+    },
+    {
+      "type": "write",
+      "pc": 11038,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 200,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 223,
+      "lastFrame": 430,
+      "values": [
+        43,
+        30
+      ],
+      "enabled": 200
+    },
+    {
+      "type": "write",
+      "pc": 16654,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 200,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        65,
+        14
+      ],
+      "enabled": 200
+    },
+    {
+      "type": "write",
+      "pc": 16666,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 200,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        65,
+        26
+      ],
+      "enabled": 200
+    },
+    {
+      "type": "write",
+      "pc": 16678,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 200,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        65,
+        38
+      ],
+      "enabled": 200
+    },
+    {
+      "type": "write",
+      "pc": 16681,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 200,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        65,
+        41
+      ],
+      "enabled": 200
+    },
+    {
+      "type": "write",
+      "pc": 11118,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 200,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        43,
+        110
+      ],
+      "enabled": 200
+    },
+    {
+      "type": "write",
+      "pc": 10520,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 192,
+      "minAddr": 40960,
+      "maxAddr": 41183,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 192
+    },
+    {
+      "type": "write",
+      "pc": 22615,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 190,
+      "minAddr": 43251,
+      "maxAddr": 43252,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        88,
+        87
+      ],
+      "enabled": 190
+    },
+    {
+      "type": "write",
+      "pc": 22626,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 190,
+      "minAddr": 43251,
+      "maxAddr": 43252,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        88,
+        98
+      ],
+      "enabled": 190
+    },
+    {
+      "type": "write",
+      "pc": 376,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41574,
+      "maxAddr": 41574,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        255,
+        63,
+        62,
+        61,
+        60,
+        59,
+        58,
+        57
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "write",
+      "pc": 384,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 186,
+      "minAddr": 41575,
+      "maxAddr": 41575,
+      "firstFrame": 16,
+      "lastFrame": 430,
+      "values": [
+        255,
+        5,
+        4
+      ],
+      "enabled": 186
+    },
+    {
+      "type": "write",
+      "pc": 614,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 43521,
+      "maxAddr": 43521,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "write",
+      "pc": 8149,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41680,
+      "maxAddr": 41680,
+      "firstFrame": 17,
+      "lastFrame": 430,
+      "values": [
+        0,
+        8
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "write",
+      "pc": 16489,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 42080,
+      "maxAddr": 42080,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "write",
+      "pc": 16492,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 42088,
+      "maxAddr": 42088,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "write",
+      "pc": 16495,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 42096,
+      "maxAddr": 42096,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "write",
+      "pc": 16498,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 42104,
+      "maxAddr": 42104,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "write",
+      "pc": 16501,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 42078,
+      "maxAddr": 42078,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "write",
+      "pc": 8690,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41545,
+      "maxAddr": 41545,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "write",
+      "pc": 8694,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41614,
+      "maxAddr": 41614,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "write",
+      "pc": 8697,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41615,
+      "maxAddr": 41615,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "write",
+      "pc": 8700,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41546,
+      "maxAddr": 41546,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "write",
+      "pc": 8703,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 184,
+      "minAddr": 41640,
+      "maxAddr": 41640,
+      "firstFrame": 29,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 184
+    },
+    {
+      "type": "write",
+      "pc": 783,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 183,
+      "minAddr": 41624,
+      "maxAddr": 41624,
+      "firstFrame": 31,
+      "lastFrame": 430,
+      "values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "enabled": 183
+    },
+    {
+      "type": "write",
+      "pc": 11486,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 164,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 31,
+      "lastFrame": 201,
+      "values": [
+        44,
+        222
+      ],
+      "enabled": 164
+    },
+    {
+      "type": "write",
+      "pc": 16511,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 164,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 31,
+      "lastFrame": 201,
+      "values": [
+        64,
+        127
+      ],
+      "enabled": 164
+    },
+    {
+      "type": "write",
+      "pc": 16524,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 164,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 31,
+      "lastFrame": 201,
+      "values": [
+        64,
+        140
+      ],
+      "enabled": 164
+    },
+    {
+      "type": "write",
+      "pc": 21215,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 128,
+      "minAddr": 41219,
+      "maxAddr": 41247,
+      "firstFrame": 223,
+      "lastFrame": 255,
+      "values": [
+        128,
+        160
+      ],
+      "enabled": 128
+    },
+    {
+      "type": "write",
+      "pc": 21247,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 101,
+      "minAddr": 41582,
+      "maxAddr": 41582,
+      "firstFrame": 18,
+      "lastFrame": 431,
+      "values": [
+        0,
+        56
+      ],
+      "enabled": 101
+    },
+    {
+      "type": "write",
+      "pc": 22084,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 101,
+      "minAddr": 42064,
+      "maxAddr": 42064,
+      "firstFrame": 221,
+      "lastFrame": 431,
+      "values": [
+        1
+      ],
+      "enabled": 101
+    },
+    {
+      "type": "write",
+      "pc": 22540,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 101,
+      "minAddr": 42014,
+      "maxAddr": 42014,
+      "firstFrame": 222,
+      "lastFrame": 431,
+      "values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "enabled": 101
+    },
+    {
+      "type": "write",
+      "pc": 22544,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 101,
+      "minAddr": 42030,
+      "maxAddr": 42030,
+      "firstFrame": 222,
+      "lastFrame": 431,
+      "values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "enabled": 101
+    },
+    {
+      "type": "write",
+      "pc": 22548,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 101,
+      "minAddr": 42046,
+      "maxAddr": 42046,
+      "firstFrame": 222,
+      "lastFrame": 431,
+      "values": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "enabled": 101
+    },
+    {
+      "type": "write",
+      "pc": 21240,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41216,
+      "maxAddr": 41272,
+      "firstFrame": 18,
+      "lastFrame": 431,
+      "values": [
+        0
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "write",
+      "pc": 11251,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 223,
+      "lastFrame": 430,
+      "values": [
+        12
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "write",
+      "pc": 16485,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41671,
+      "maxAddr": 41671,
+      "firstFrame": 223,
+      "lastFrame": 430,
+      "values": [
+        0
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "write",
+      "pc": 11030,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 223,
+      "lastFrame": 430,
+      "values": [
+        1
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "write",
+      "pc": 21146,
+      "romBank": 1,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 223,
+      "lastFrame": 430,
+      "values": [
+        1
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "write",
+      "pc": 11041,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        12
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "write",
+      "pc": 11110,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        1
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "write",
+      "pc": 11121,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 100,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        12
+      ],
+      "enabled": 100
+    },
+    {
+      "type": "write",
+      "pc": 21831,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 84,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        164,
+        69,
+        48,
+        2,
+        80,
+        66,
+        0,
+        18
+      ],
+      "enabled": 84
+    },
+    {
+      "type": "write",
+      "pc": 11489,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 82,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 31,
+      "lastFrame": 201,
+      "values": [
+        5
+      ],
+      "enabled": 82
+    },
+    {
+      "type": "write",
+      "pc": 16514,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 82,
+      "minAddr": 41598,
+      "maxAddr": 41598,
+      "firstFrame": 31,
+      "lastFrame": 201,
+      "values": [
+        228
+      ],
+      "enabled": 82
+    },
+    {
+      "type": "write",
+      "pc": 16519,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 82,
+      "minAddr": 41599,
+      "maxAddr": 41599,
+      "firstFrame": 31,
+      "lastFrame": 201,
+      "values": [
+        208
+      ],
+      "enabled": 82
+    },
+    {
+      "type": "write",
+      "pc": 22562,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 65,
+      "minAddr": 42065,
+      "maxAddr": 42065,
+      "firstFrame": 223,
+      "lastFrame": 431,
+      "values": [
+        8
+      ],
+      "enabled": 65
+    },
+    {
+      "type": "write",
+      "pc": 22393,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 55,
+      "minAddr": 42054,
+      "maxAddr": 42058,
+      "firstFrame": 222,
+      "lastFrame": 410,
+      "values": [
+        9,
+        0,
+        56,
+        52,
+        192,
+        19,
+        32,
+        64
+      ],
+      "enabled": 55
+    },
+    {
+      "type": "write",
+      "pc": 22104,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 54,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        86,
+        88
+      ],
+      "enabled": 54
+    },
+    {
+      "type": "write",
+      "pc": 21838,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 42,
+      "minAddr": 42004,
+      "maxAddr": 42052,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        89,
+        91,
+        92,
+        212,
+        213,
+        214,
+        215,
+        216
+      ],
+      "enabled": 42
+    },
+    {
+      "type": "write",
+      "pc": 21840,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 42,
+      "minAddr": 42005,
+      "maxAddr": 42053,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        127,
+        93,
+        94
+      ],
+      "enabled": 42
+    },
+    {
+      "type": "write",
+      "pc": 22318,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 40,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        87,
+        46
+      ],
+      "enabled": 40
+    },
+    {
+      "type": "write",
+      "pc": 22481,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 40,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        164,
+        25,
+        41,
+        73
+      ],
+      "enabled": 40
+    },
+    {
+      "type": "write",
+      "pc": 22177,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 32,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        164,
+        20,
+        36,
+        68
+      ],
+      "enabled": 32
+    },
+    {
+      "type": "write",
+      "pc": 22189,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 32,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        164,
+        20,
+        36,
+        68
+      ],
+      "enabled": 32
+    },
+    {
+      "type": "write",
+      "pc": 22244,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 32,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        86,
+        228
+      ],
+      "enabled": 32
+    },
+    {
+      "type": "write",
+      "pc": 22247,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 32,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        86,
+        231
+      ],
+      "enabled": 32
+    },
+    {
+      "type": "write",
+      "pc": 22379,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 22,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 222,
+      "lastFrame": 410,
+      "values": [
+        164,
+        68
+      ],
+      "enabled": 22
+    },
+    {
+      "type": "write",
+      "pc": 22492,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 20,
+      "minAddr": 42014,
+      "maxAddr": 42062,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        0
+      ],
+      "enabled": 20
+    },
+    {
+      "type": "write",
+      "pc": 22518,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 20,
+      "minAddr": 42002,
+      "maxAddr": 42050,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        48,
+        18,
+        12,
+        6
+      ],
+      "enabled": 20
+    },
+    {
+      "type": "write",
+      "pc": 22255,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 18,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        48,
+        2,
+        18,
+        164,
+        80,
+        12
+      ],
+      "enabled": 18
+    },
+    {
+      "type": "write",
+      "pc": 22261,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 18,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        86,
+        245
+      ],
+      "enabled": 18
+    },
+    {
+      "type": "write",
+      "pc": 22277,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 18,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        87,
+        5
+      ],
+      "enabled": 18
+    },
+    {
+      "type": "write",
+      "pc": 22287,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 18,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        87,
+        15
+      ],
+      "enabled": 18
+    },
+    {
+      "type": "write",
+      "pc": 22327,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 18,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        164,
+        20,
+        36
+      ],
+      "enabled": 18
+    },
+    {
+      "type": "write",
+      "pc": 22428,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 18,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        164,
+        20,
+        36
+      ],
+      "enabled": 18
+    },
+    {
+      "type": "write",
+      "pc": 22241,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 16,
+      "minAddr": 42003,
+      "maxAddr": 42051,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        48,
+        18,
+        12,
+        6
+      ],
+      "enabled": 16
+    },
+    {
+      "type": "write",
+      "pc": 22279,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 9,
+      "minAddr": 42272,
+      "maxAddr": 42274,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        0
+      ],
+      "enabled": 9
+    },
+    {
+      "type": "write",
+      "pc": 22281,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 9,
+      "minAddr": 42273,
+      "maxAddr": 42275,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        0
+      ],
+      "enabled": 9
+    },
+    {
+      "type": "write",
+      "pc": 22290,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 9,
+      "minAddr": 42279,
+      "maxAddr": 42281,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        0
+      ],
+      "enabled": 9
+    },
+    {
+      "type": "write",
+      "pc": 22045,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 8,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 297,
+      "lastFrame": 422,
+      "values": [
+        164,
+        68,
+        20
+      ],
+      "enabled": 8
+    },
+    {
+      "type": "write",
+      "pc": 10477,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 6,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        160,
+        0,
+        80
+      ],
+      "enabled": 6
+    },
+    {
+      "type": "write",
+      "pc": 22341,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 6,
+      "minAddr": 42027,
+      "maxAddr": 42027,
+      "firstFrame": 222,
+      "lastFrame": 410,
+      "values": [
+        0
+      ],
+      "enabled": 6
+    },
+    {
+      "type": "write",
+      "pc": 22366,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 6,
+      "minAddr": 42025,
+      "maxAddr": 42025,
+      "firstFrame": 222,
+      "lastFrame": 410,
+      "values": [
+        89,
+        123,
+        144,
+        138,
+        131,
+        107
+      ],
+      "enabled": 6
+    },
+    {
+      "type": "write",
+      "pc": 22369,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 6,
+      "minAddr": 42026,
+      "maxAddr": 42026,
+      "firstFrame": 222,
+      "lastFrame": 410,
+      "values": [
+        7
+      ],
+      "enabled": 6
+    },
+    {
+      "type": "write",
+      "pc": 21590,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 5,
+      "minAddr": 41985,
+      "maxAddr": 42048,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        52,
+        82,
+        193,
+        0,
+        205
+      ],
+      "enabled": 5
+    },
+    {
+      "type": "write",
+      "pc": 21593,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 5,
+      "minAddr": 41986,
+      "maxAddr": 42049,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        92,
+        127,
+        93,
+        0
+      ],
+      "enabled": 5
+    },
+    {
+      "type": "write",
+      "pc": 864,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 18,
+      "lastFrame": 205,
+      "values": [
+        3,
+        96
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "write",
+      "pc": 16508,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        64,
+        124
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "write",
+      "pc": 21583,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 42004,
+      "maxAddr": 42052,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        88,
+        211,
+        195,
+        111
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "write",
+      "pc": 21587,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 42005,
+      "maxAddr": 42053,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        127,
+        93,
+        229,
+        94
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "write",
+      "pc": 21740,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 42002,
+      "maxAddr": 42050,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        1
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "write",
+      "pc": 22011,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 222,
+      "values": [
+        85,
+        251
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "write",
+      "pc": 22014,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 222,
+      "values": [
+        85,
+        254
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "write",
+      "pc": 22015,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 222,
+      "values": [
+        164,
+        20,
+        68
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "write",
+      "pc": 22051,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 42015,
+      "maxAddr": 42063,
+      "firstFrame": 297,
+      "lastFrame": 422,
+      "values": [
+        25,
+        31,
+        24,
+        30
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "write",
+      "pc": 22064,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 42004,
+      "maxAddr": 42052,
+      "firstFrame": 297,
+      "lastFrame": 422,
+      "values": [
+        113,
+        90
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "write",
+      "pc": 22067,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 4,
+      "minAddr": 42005,
+      "maxAddr": 42053,
+      "firstFrame": 297,
+      "lastFrame": 422,
+      "values": [
+        94,
+        127
+      ],
+      "enabled": 4
+    },
+    {
+      "type": "write",
+      "pc": 10525,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 3,
+      "minAddr": 41024,
+      "maxAddr": 41184,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 3
+    },
+    {
+      "type": "write",
+      "pc": 10526,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 3,
+      "minAddr": 41025,
+      "maxAddr": 41185,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 3
+    },
+    {
+      "type": "write",
+      "pc": 10527,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 3,
+      "minAddr": 41026,
+      "maxAddr": 41186,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 3
+    },
+    {
+      "type": "write",
+      "pc": 10530,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 3,
+      "minAddr": 41027,
+      "maxAddr": 41187,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        5
+      ],
+      "enabled": 3
+    },
+    {
+      "type": "write",
+      "pc": 10532,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 3,
+      "minAddr": 41028,
+      "maxAddr": 41188,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 3
+    },
+    {
+      "type": "write",
+      "pc": 10535,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 3,
+      "minAddr": 41029,
+      "maxAddr": 41189,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        2
+      ],
+      "enabled": 3
+    },
+    {
+      "type": "write",
+      "pc": 10538,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 3,
+      "minAddr": 41030,
+      "maxAddr": 41190,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        18
+      ],
+      "enabled": 3
+    },
+    {
+      "type": "write",
+      "pc": 10541,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 3,
+      "minAddr": 41031,
+      "maxAddr": 41191,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        52
+      ],
+      "enabled": 3
+    },
+    {
+      "type": "write",
+      "pc": 10544,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 3,
+      "minAddr": 41032,
+      "maxAddr": 41192,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        86
+      ],
+      "enabled": 3
+    },
+    {
+      "type": "write",
+      "pc": 10547,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 3,
+      "minAddr": 41033,
+      "maxAddr": 41193,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        120
+      ],
+      "enabled": 3
+    },
+    {
+      "type": "write",
+      "pc": 22374,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 3,
+      "minAddr": 42011,
+      "maxAddr": 42011,
+      "firstFrame": 221,
+      "lastFrame": 422,
+      "values": [
+        1
+      ],
+      "enabled": 3
+    },
+    {
+      "type": "write",
+      "pc": 589,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 13,
+      "lastFrame": 13,
+      "values": [
+        2,
+        77
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 603,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 16,
+      "lastFrame": 16,
+      "values": [
+        2,
+        91
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 390,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 41574,
+      "maxAddr": 41574,
+      "firstFrame": 16,
+      "lastFrame": 18,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 393,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 41575,
+      "maxAddr": 41575,
+      "firstFrame": 16,
+      "lastFrame": 18,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 612,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43261,
+      "maxAddr": 43262,
+      "firstFrame": 16,
+      "lastFrame": 16,
+      "values": [
+        2,
+        100
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 8328,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 16,
+      "lastFrame": 16,
+      "values": [
+        32,
+        136
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 11463,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 17,
+      "lastFrame": 17,
+      "values": [
+        44,
+        199
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 11466,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 18,
+      "lastFrame": 18,
+      "values": [
+        44,
+        202
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 11472,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 18,
+      "lastFrame": 18,
+      "values": [
+        44,
+        208
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 16454,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 18,
+      "lastFrame": 18,
+      "values": [
+        64,
+        70
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 10962,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 18,
+      "lastFrame": 18,
+      "values": [
+        42,
+        210
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 16505,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42089,
+      "maxAddr": 42089,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        255,
+        13
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32621,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42081,
+      "maxAddr": 42081,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32624,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42097,
+      "maxAddr": 42097,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32627,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42105,
+      "maxAddr": 42105,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32630,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42015,
+      "maxAddr": 42015,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32633,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42031,
+      "maxAddr": 42031,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32636,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42047,
+      "maxAddr": 42047,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32639,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42063,
+      "maxAddr": 42063,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32642,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42078,
+      "maxAddr": 42078,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32645,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42254,
+      "maxAddr": 42254,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32648,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42271,
+      "maxAddr": 42271,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32651,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42284,
+      "maxAddr": 42284,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32654,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42266,
+      "maxAddr": 42266,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32657,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42268,
+      "maxAddr": 42268,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32660,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42270,
+      "maxAddr": 42270,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32663,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42267,
+      "maxAddr": 42267,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32666,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42269,
+      "maxAddr": 42269,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32669,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42271,
+      "maxAddr": 42271,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32672,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42278,
+      "maxAddr": 42278,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32675,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42279,
+      "maxAddr": 42279,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32678,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42280,
+      "maxAddr": 42280,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32681,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42281,
+      "maxAddr": 42281,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32684,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42282,
+      "maxAddr": 42282,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32687,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42283,
+      "maxAddr": 42283,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32690,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42244,
+      "maxAddr": 42244,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32693,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42245,
+      "maxAddr": 42245,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32696,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42246,
+      "maxAddr": 42246,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32699,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42248,
+      "maxAddr": 42248,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32702,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42240,
+      "maxAddr": 42240,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32705,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42241,
+      "maxAddr": 42241,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32708,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42242,
+      "maxAddr": 42242,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32711,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42243,
+      "maxAddr": 42243,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32714,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42293,
+      "maxAddr": 42293,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32717,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42294,
+      "maxAddr": 42294,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32720,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42295,
+      "maxAddr": 42295,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32723,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42296,
+      "maxAddr": 42296,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32726,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42297,
+      "maxAddr": 42297,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32729,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42272,
+      "maxAddr": 42272,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32732,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42273,
+      "maxAddr": 42273,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32735,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42274,
+      "maxAddr": 42274,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32738,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42275,
+      "maxAddr": 42275,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 32741,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42303,
+      "maxAddr": 42303,
+      "firstFrame": 29,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 770,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 201,
+      "lastFrame": 201,
+      "values": [
+        3,
+        2
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 16387,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 203,
+      "lastFrame": 203,
+      "values": [
+        64,
+        3
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 16390,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 205,
+      "lastFrame": 205,
+      "values": [
+        64,
+        6
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 11167,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 205,
+      "lastFrame": 205,
+      "values": [
+        43,
+        159
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 11179,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 207,
+      "lastFrame": 207,
+      "values": [
+        43,
+        171
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 11199,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 209,
+      "lastFrame": 209,
+      "values": [
+        43,
+        191
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 11219,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 212,
+      "lastFrame": 212,
+      "values": [
+        43,
+        211
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 11236,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 213,
+      "lastFrame": 213,
+      "values": [
+        43,
+        228
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 16439,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43259,
+      "maxAddr": 43260,
+      "firstFrame": 216,
+      "lastFrame": 216,
+      "values": [
+        64,
+        55
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 6538,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 216,
+      "lastFrame": 216,
+      "values": [
+        25,
+        138
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 16406,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 218,
+      "lastFrame": 218,
+      "values": [
+        64,
+        22
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 44301,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 218,
+      "lastFrame": 218,
+      "values": [
+        173,
+        13
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 44304,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        173,
+        16
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 44307,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        173,
+        19
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 56939,
+      "romBank": 32,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43251,
+      "maxAddr": 43252,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        222,
+        107
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 56681,
+      "romBank": 32,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43249,
+      "maxAddr": 43250,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        221,
+        105
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 56556,
+      "romBank": 32,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43247,
+      "maxAddr": 43248,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        96,
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 56557,
+      "romBank": 32,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43245,
+      "maxAddr": 43246,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 44316,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        173,
+        28
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 10463,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        40,
+        223
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 10469,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        40,
+        229
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 10475,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43257,
+      "maxAddr": 43258,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        40,
+        235
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21233,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        82,
+        241
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21236,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        82,
+        244
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21597,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        84,
+        93
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21659,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        84,
+        155
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21679,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        84,
+        175
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21685,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        84,
+        181
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21691,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        84,
+        187
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21697,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        84,
+        193
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21706,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        84,
+        202
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21715,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        84,
+        211
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21724,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        84,
+        220
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21733,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43253,
+      "maxAddr": 43254,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        84,
+        229
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 22023,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42015,
+      "maxAddr": 42063,
+      "firstFrame": 221,
+      "lastFrame": 222,
+      "values": [
+        32,
+        26
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 22035,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42004,
+      "maxAddr": 42052,
+      "firstFrame": 221,
+      "lastFrame": 222,
+      "values": [
+        90,
+        113
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 22037,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42005,
+      "maxAddr": 42053,
+      "firstFrame": 221,
+      "lastFrame": 222,
+      "values": [
+        127,
+        94
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 22039,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42013,
+      "maxAddr": 42061,
+      "firstFrame": 221,
+      "lastFrame": 222,
+      "values": [
+        127,
+        94
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 22042,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 42012,
+      "maxAddr": 42060,
+      "firstFrame": 221,
+      "lastFrame": 222,
+      "values": [
+        90,
+        113
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21779,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        85,
+        19
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21782,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        85,
+        22
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21786,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        85,
+        26
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21789,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        85,
+        29
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21793,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        85,
+        33
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21796,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        85,
+        36
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21815,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        164,
+        36
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 21827,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 43255,
+      "maxAddr": 43256,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        85,
+        67
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "write",
+      "pc": 561,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41598,
+      "maxAddr": 41598,
+      "firstFrame": 13,
+      "lastFrame": 13,
+      "values": [
+        147
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 566,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41599,
+      "maxAddr": 41599,
+      "firstFrame": 13,
+      "lastFrame": 13,
+      "values": [
+        208
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 571,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41600,
+      "maxAddr": 41600,
+      "firstFrame": 13,
+      "lastFrame": 13,
+      "values": [
+        56
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 8320,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 16,
+      "lastFrame": 16,
+      "values": [
+        4
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 11522,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 18,
+      "lastFrame": 18,
+      "values": [
+        1
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 11475,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 18,
+      "lastFrame": 18,
+      "values": [
+        5
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 10945,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 18,
+      "lastFrame": 18,
+      "values": [
+        5
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16480,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41648,
+      "maxAddr": 41648,
+      "firstFrame": 29,
+      "lastFrame": 29,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16490,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41575,
+      "maxAddr": 41575,
+      "firstFrame": 29,
+      "lastFrame": 29,
+      "values": [
+        5
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16495,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41574,
+      "maxAddr": 41574,
+      "firstFrame": 29,
+      "lastFrame": 29,
+      "values": [
+        64
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16500,
+      "romBank": 5,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42088,
+      "maxAddr": 42088,
+      "firstFrame": 29,
+      "lastFrame": 29,
+      "values": [
+        255
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 32613,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42069,
+      "maxAddr": 42069,
+      "firstFrame": 29,
+      "lastFrame": 29,
+      "values": [
+        3
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 32617,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42089,
+      "maxAddr": 42089,
+      "firstFrame": 29,
+      "lastFrame": 29,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 11240,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 203,
+      "lastFrame": 203,
+      "values": [
+        12
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 11150,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 205,
+      "lastFrame": 205,
+      "values": [
+        7
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 11182,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 209,
+      "lastFrame": 209,
+      "values": [
+        6
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 11202,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41550,
+      "maxAddr": 41550,
+      "firstFrame": 212,
+      "lastFrame": 212,
+      "values": [
+        27
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16407,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41598,
+      "maxAddr": 41598,
+      "firstFrame": 216,
+      "lastFrame": 216,
+      "values": [
+        228
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16415,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41599,
+      "maxAddr": 41599,
+      "firstFrame": 216,
+      "lastFrame": 216,
+      "values": [
+        208
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16423,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41600,
+      "maxAddr": 41600,
+      "firstFrame": 216,
+      "lastFrame": 216,
+      "values": [
+        56
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 56391,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 45281,
+      "maxAddr": 45281,
+      "firstFrame": 219,
+      "lastFrame": 219,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16409,
+      "romBank": 36,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 45280,
+      "maxAddr": 45280,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        1
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16441,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41591,
+      "maxAddr": 41591,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16444,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41648,
+      "maxAddr": 41648,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16447,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41649,
+      "maxAddr": 41649,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16450,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41670,
+      "maxAddr": 41670,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16460,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42080,
+      "maxAddr": 42080,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        5
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16465,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42088,
+      "maxAddr": 42088,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        13
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 16469,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41700,
+      "maxAddr": 41700,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21224,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42089,
+      "maxAddr": 42089,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        13
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21642,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41984,
+      "maxAddr": 41984,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21749,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42014,
+      "maxAddr": 42014,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21752,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42030,
+      "maxAddr": 42030,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21755,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42046,
+      "maxAddr": 42046,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21513,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42069,
+      "maxAddr": 42069,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        1
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21516,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42070,
+      "maxAddr": 42070,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21519,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42071,
+      "maxAddr": 42071,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21522,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42072,
+      "maxAddr": 42072,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21525,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42073,
+      "maxAddr": 42073,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        255
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21530,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42074,
+      "maxAddr": 42074,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        255
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21533,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42075,
+      "maxAddr": 42075,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21536,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42076,
+      "maxAddr": 42076,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21806,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42022,
+      "maxAddr": 42022,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        66
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21808,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42023,
+      "maxAddr": 42023,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 21810,
+      "romBank": 4,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 42024,
+      "maxAddr": 42024,
+      "firstFrame": 221,
+      "lastFrame": 221,
+      "values": [
+        128
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 17411,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41591,
+      "maxAddr": 41591,
+      "firstFrame": 315,
+      "lastFrame": 315,
+      "values": [
+        1
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "write",
+      "pc": 17414,
+      "romBank": 12,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 41515,
+      "maxAddr": 41515,
+      "firstFrame": 315,
+      "lastFrame": 315,
+      "values": [
+        1
+      ],
+      "enabled": 1
+    }
+  ],
+  "mapper": [
+    {
+      "type": "rom-bank",
+      "pc": 11073,
+      "value": 1,
+      "count": 300,
+      "firstFrame": 223,
+      "lastFrame": 431
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11084,
+      "value": 12,
+      "count": 300,
+      "firstFrame": 223,
+      "lastFrame": 431
+    },
+    {
+      "type": "rom-bank",
+      "pc": 8337,
+      "value": 4,
+      "count": 184,
+      "firstFrame": 29,
+      "lastFrame": 431
+    },
+    {
+      "type": "rom-bank",
+      "pc": 474,
+      "value": 12,
+      "count": 100,
+      "firstFrame": 205,
+      "lastFrame": 430
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11254,
+      "value": 12,
+      "count": 100,
+      "firstFrame": 223,
+      "lastFrame": 430
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11033,
+      "value": 1,
+      "count": 100,
+      "firstFrame": 223,
+      "lastFrame": 430
+    },
+    {
+      "type": "rom-bank",
+      "pc": 21149,
+      "value": 1,
+      "count": 100,
+      "firstFrame": 223,
+      "lastFrame": 430
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11044,
+      "value": 12,
+      "count": 100,
+      "firstFrame": 223,
+      "lastFrame": 431
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11113,
+      "value": 1,
+      "count": 100,
+      "firstFrame": 223,
+      "lastFrame": 431
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11124,
+      "value": 12,
+      "count": 100,
+      "firstFrame": 223,
+      "lastFrame": 431
+    },
+    {
+      "type": "rom-bank",
+      "pc": 474,
+      "value": 5,
+      "count": 83,
+      "firstFrame": 31,
+      "lastFrame": 203
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11492,
+      "value": 5,
+      "count": 82,
+      "firstFrame": 31,
+      "lastFrame": 201
+    },
+    {
+      "type": "ram-enable",
+      "pc": 523,
+      "value": 10,
+      "count": 1,
+      "firstFrame": 2,
+      "lastFrame": 2
+    },
+    {
+      "type": "rom-bank",
+      "pc": 474,
+      "value": 0,
+      "count": 1,
+      "firstFrame": 16,
+      "lastFrame": 16
+    },
+    {
+      "type": "rom-bank",
+      "pc": 8323,
+      "value": 4,
+      "count": 1,
+      "firstFrame": 16,
+      "lastFrame": 16
+    },
+    {
+      "type": "rom-bank",
+      "pc": 474,
+      "value": 4,
+      "count": 1,
+      "firstFrame": 18,
+      "lastFrame": 18
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11525,
+      "value": 1,
+      "count": 1,
+      "firstFrame": 18,
+      "lastFrame": 18
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11478,
+      "value": 5,
+      "count": 1,
+      "firstFrame": 18,
+      "lastFrame": 18
+    },
+    {
+      "type": "rom-bank",
+      "pc": 10948,
+      "value": 5,
+      "count": 1,
+      "firstFrame": 18,
+      "lastFrame": 18
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11243,
+      "value": 12,
+      "count": 1,
+      "firstFrame": 203,
+      "lastFrame": 203
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11153,
+      "value": 7,
+      "count": 1,
+      "firstFrame": 205,
+      "lastFrame": 205
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11185,
+      "value": 6,
+      "count": 1,
+      "firstFrame": 209,
+      "lastFrame": 209
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11205,
+      "value": 27,
+      "count": 1,
+      "firstFrame": 212,
+      "lastFrame": 212
+    },
+    {
+      "type": "rom-bank",
+      "pc": 11222,
+      "value": 12,
+      "count": 1,
+      "firstFrame": 213,
+      "lastFrame": 213
+    },
+    {
+      "type": "rom-bank",
+      "pc": 6533,
+      "value": 36,
+      "count": 1,
+      "firstFrame": 216,
+      "lastFrame": 216
+    },
+    {
+      "type": "ram-bank",
+      "pc": 56324,
+      "value": 240,
+      "count": 1,
+      "firstFrame": 219,
+      "lastFrame": 219
+    },
+    {
+      "type": "ram-enable",
+      "pc": 56330,
+      "value": 169,
+      "count": 1,
+      "firstFrame": 219,
+      "lastFrame": 219
+    },
+    {
+      "type": "ram-enable",
+      "pc": 56336,
+      "value": 86,
+      "count": 1,
+      "firstFrame": 219,
+      "lastFrame": 219
+    },
+    {
+      "type": "ram-enable",
+      "pc": 56342,
+      "value": 144,
+      "count": 1,
+      "firstFrame": 219,
+      "lastFrame": 219
+    },
+    {
+      "type": "ram-bank",
+      "pc": 56354,
+      "value": 240,
+      "count": 1,
+      "firstFrame": 219,
+      "lastFrame": 219
+    },
+    {
+      "type": "ram-bank",
+      "pc": 56359,
+      "value": 0,
+      "count": 1,
+      "firstFrame": 219,
+      "lastFrame": 219
+    },
+    {
+      "type": "ram-enable",
+      "pc": 56364,
+      "value": 10,
+      "count": 1,
+      "firstFrame": 219,
+      "lastFrame": 219
+    },
+    {
+      "type": "rom-bank",
+      "pc": 56934,
+      "value": 32,
+      "count": 1,
+      "firstFrame": 219,
+      "lastFrame": 219
+    },
+    {
+      "type": "rom-bank",
+      "pc": 56976,
+      "value": 36,
+      "count": 1,
+      "firstFrame": 219,
+      "lastFrame": 219
+    },
+    {
+      "type": "rom-bank",
+      "pc": 6541,
+      "value": 12,
+      "count": 1,
+      "firstFrame": 221,
+      "lastFrame": 221
+    },
+    {
+      "type": "rom-bank",
+      "pc": 474,
+      "value": 27,
+      "count": 1,
+      "firstFrame": 223,
+      "lastFrame": 223
+    }
+  ]
+}

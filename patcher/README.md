@@ -25,6 +25,28 @@ It:
 
 Recipe format: `../docs/PATCH_RECIPE.md`.
 
+## Distribution: `rom_ips.py`
+
+Creates and applies standard IPS patches, so a user can patch their own
+original ROM instead of shipping a patched image.
+
+```powershell
+# From a recipe: read source.path and output from the recipe.
+python patcher/rom_ips.py make --recipe games\sml2\recipe.json --patch games\sml2\ips\sml2-hc007.ips
+
+# Explicit source/target.
+python patcher/rom_ips.py make original.gb patched.gb out.ips
+
+# Inspect and verify.
+python patcher/rom_ips.py check games\sml2\ips\sml2-hc007.ips
+python patcher/rom_ips.py apply games\sml2\ips\sml2-hc007.ips original.gb rebuilt.gb `
+  --expect-sha1 5a9378036073fb3f3b7dbff1c6dff6f56c166009
+```
+
+The default patch includes the 0xFF extension so the result is exactly the
+1 MiB image.  `--no-pad` makes a small patch; apply it with
+`--pad-to 0x100000 --pad-byte 0xFF` (or let the flasher pad with erased flash).
+
 ## Legacy: `hc007_patcher.py`
 
 The original universal-prototype CLI.  It parses headers, plans a log sector,

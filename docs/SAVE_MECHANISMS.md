@@ -44,34 +44,31 @@ checksum.  The game may store the slot index in RAM and compute the base as
 **Patch strategy:** S1.  Journal the whole slot area, or the single slot if the
 index is stable.  Restore before the validator runs.
 
-**Worked example: Super Mario Land 2**
+**Worked example:** the SML2 case (`games/sml2/notes.md`) is a multi-slot file
+with a separate CLEAR path and SRAM used as work RAM.  It is the reference for
+the S1 + boot restore + clear hook pattern.
 
-- slots at `0xA000`, `0xA050`, `0xA0A0`, stride `0x50`;
-- meaningful size `0x4A` bytes: `0x40` data, five state bytes, checksum at
-  offset `0x45`, signature `12 34 56 78` at `0x46-0x49`;
-- status/occupied byte at offset `0x42`;
-- validator `0x28D9` calls `0x28EC` for each slot;
-- writer `0x2934` copies `0xA840` + five state bytes into the selected slot and
-  writes the checksum;
-- the game uses SRAM as work RAM (stack at `0xA8FF`, hot pages 1, 2, 4, 8), so
-  S2 is unsuitable.
-
-### C. SRAM used as work RAM
+### C. SRAM or WRAM used as work RAM
 
 Some games keep a stack, decompression buffer, tile buffer or level cache in
-cartridge SRAM.  This is legal on a battery-backed cart.
+cartridge SRAM or in WRAM.  This is legal on a battery-backed cart.
 
 **Signals**
 
 - `SP` sampled inside `0xA000-0xBFFF`;
-- one or more pages changing every frame;
-- writes to SRAM during scrolling/animation, not just at a save;
+- one or more SRAM or WRAM pages changing every frame;
+- writes during scrolling/animation, not just at a save;
+- a level load that writes a large contiguous block;
 - a huge number of unique write PCs.
 
 **Consequence:** a whole-SRAM VBlank journal would write constantly and wear
-the flash.  Use S1 (hook the save routine) or S3.
+the flash.  Use S1 (hook the save routine) or S3.  Do not store patch code in
+SRAM or WRAM unless you have traced every mode that uses it.  Prefer an appended
+ROM bank and a small on-demand WRAM helper with a backup/restore of the game
+block.
 
-**Do not** assume a hot page is the save file.  Trace a real save event.
+**Do not** assume a hot page is the save file, or that a page is free because
+the menu is quiet.  Trace a real level load and a real save event.
 
 ### D. Save data computed on the fly
 
@@ -152,7 +149,10 @@ Record the answers in `notes.md`.
 - load routine: address, bank;
 - delete/init routine: address, bank;
 - boot restore point: entry `0x100` or a validator;
-- SRAM usage: hot pages, stack, buffers;
+- SRAM and WRAM usage: hot pages, stack, level-load writes, buffers;
 - flash log sector and record size;
-- code cave / bank plan;
+- code cave / appended-bank plan and WRAM helper/backup;
+- bank restore point (must be bank 0);
+- emulator tests (synthetic, after-level, natural event);
+- IPS patch and verification SHA-1;
 - evidence file names.

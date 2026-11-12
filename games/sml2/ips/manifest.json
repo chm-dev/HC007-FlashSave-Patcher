@@ -1,0 +1,54 @@
+{
+  "game": "Super Mario Land 2: 6 Golden Coins (USA, Europe)",
+  "source": {
+    "path": "roms/patch-test-roms/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb",
+    "size": 524288,
+    "sha1": "bba408539ecbf8d322324956d859bc86e2a9977b",
+    "crc32": "d5ec24e4"
+  },
+  "targets": {
+    "normal": {
+      "size": 1048576,
+      "sha1": "5a9378036073fb3f3b7dbff1c6dff6f56c166009",
+      "crc32": "b071ba53"
+    },
+    "noflash": {
+      "size": 1048576,
+      "sha1": "fa8557672acf8e5ae6408ddf05bfd797b1c071ae",
+      "crc32": "e0e5c0aa"
+    }
+  },
+  "patches": {
+    "sml2-hc007.ips": {
+      "size": 524654,
+      "sha1": "4d2e11baff8b4508602fb9f9d3592c71a21902b7",
+      "target": "normal",
+      "padded": true,
+      "recommended": true
+    },
+    "sml2-hc007-min.ips": {
+      "size": 1347,
+      "sha1": "f3dc1b5ac2c38c2dca3ed4502a847ad37a09c882",
+      "target": "normal",
+      "padded": false,
+      "apply_pad_to": "0x100000",
+      "apply_pad_byte": "0xFF"
+    },
+    "sml2-hc007-noflash.ips": {
+      "size": 524654,
+      "sha1": "f270cd53b46ff14180a2574a74b9b41c19bec4ef",
+      "target": "noflash",
+      "padded": true
+    },
+    "sml2-hc007-noflash-min.ips": {
+      "size": 1347,
+      "sha1": "2e35b0c429967dbad48ebe4919226f960621f0e9",
+      "target": "noflash",
+      "padded": false,
+      "apply_pad_to": "0x100000",
+      "apply_pad_byte": "0xFF"
+    }
+  },
+  "hardware": "pass on HC007 cart: boot, life-loss save without reset, power-cycle/load, delete",
+  "generated_by": "patcher/rom_ips.py"
+}

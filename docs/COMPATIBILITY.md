@@ -18,7 +18,7 @@ Source of truth for HC007 per-game status.  Update it after every hardware test.
 | Power | Save survives power-off |
 | Delete | Delete survives power-off |
 | Notes | Quirks, evidence links |
-| Status | `works`, `quirk`, `fails`, `unsupported`, `investigating` |
+| Status | `works`, `quirk`, `hardware-smoke`, `emulator-ready`, `fails`, `unsupported`, `investigating` |
 
 ## Rows
 
@@ -31,14 +31,18 @@ Source of truth for HC007 per-game status.  Update it after every hardware test.
 | plain-mbc5-patched | - | MBC5 | 512K | 8K | S2 | yes | yes | yes | yes | - | legacy prototype; VBlank journal | works |
 | plain-mbc1-patched | - | MBC1 | 512K | 8K | S2 | - | - | - | - | - | legacy prototype; retest | unknown |
 | plain-mbc3-patched | - | MBC3 | 512K | 8K | S2 | - | - | - | - | - | legacy prototype; retest | unknown |
-| Super Mario Land 2 | bba40853 | MBC1 -> MBC5 | 512K -> 1M | 8K | S1 | emu yes | - | - | - | - | SRAM is work RAM; slots at A000; writer 0x2934; validator 0x28D9; log at 0x80000 bank 0x20 | investigating |
+| Super Mario Land 2 | bba40853 | MBC1 -> MBC5 | 512K -> 1M | 8K | S1 | yes | yes | yes | yes | yes | SRAM/WRAM are work RAM; ROM-bank journal + on-demand WRAM helper; IPS in games/sml2/ips/; see games/sml2/README.md; hardware-pass | works |
 | mapperprobe-mbc1/3/5 | - | MBC1/3/5 | 512K | 32K | - | - | - | - | - | - | probe only | test |
 
 ## Case folders
 
 | Game | Folder | Current status |
 |---|---|---|
-| Super Mario Land 2 | `games/sml2/` | investigation complete; patch plan ready |
+| Super Mario Land 2 | `games/sml2/` | hardware-pass |
+
+To add a game, copy `games/_template/` to `games/<slug>/`, fill `case.json`,
+and add a row above.  Link the case `README.md` and its IPS manifest.  Update
+the row after every hardware test.
 
 ## Per-game overrides
 

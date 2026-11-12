@@ -14,12 +14,18 @@
 Paste the key `rom_inspect.py` observations: free runs, blank sectors, entry,
 vectors, warnings.
 
-## SRAM usage
+## SRAM and WRAM usage
 
-- Hot pages:
-- Stack in SRAM:
+- Hot SRAM pages:
+- SRAM stack (`SP` at boot):
+- Hot WRAM pages:
+- Level-load writes (SRAM/WRAM):
 - Work-RAM verdict:
-- Trace files:
+- Trace files: `analysis/trace-menu.json`, `analysis/trace-play.json`,
+  `analysis/trace-wram.json`
+
+Do not assume a page is free because the menu is quiet.  Trace a real level
+load and the save event.
 
 ## Save format
 
@@ -52,10 +58,13 @@ Link the screenshot.
 - Strategy:
 - Boot restore point:
 - Save hook:
-- Code placement:
+- Delete hook:
+- Code placement (appended bank / WRAM helper):
+- Game RAM borrowed and backup location:
+- Bank restore point (must be bank 0):
 - Log sector:
 - Record format:
-- Bank safety notes:
+- No-flash debug variant:
 
 ## Test log
 
@@ -64,12 +73,21 @@ Link the screenshot.
 | Boot (emulator) | | |
 | Fresh save | | |
 | Save, reset, load | | |
+| Save after a real level load | | |
+| Natural save event with NOR-flash model | | |
 | Delete | | |
 | Boot (hardware) | | |
 | Power-cycle load | | |
 | Power-cycle delete | | |
 | Reflash reset | | |
 
-## Open questions
+## Distribution
+
+- IPS: `ips/<slug>-hc007.ips`
+- Minimal IPS: `ips/<slug>-hc007-min.ips`
+- Applied IPS SHA-1 matches the built image: yes/no
+- Manifest: `ips/manifest.json`
+
+## Open questions / risks
 
 1.

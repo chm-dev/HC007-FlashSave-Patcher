@@ -1,5 +1,5 @@
 {
-  "_comment": "Copy this file to games/<slug>/recipe.json and fill in the hooks and blobs.",
+  "_comment": "Copy this file to games/<slug>/recipe.json and fill in the hooks and blobs. After a successful apply, generate games/<slug>/ips/<slug>-hc007.ips with patcher/rom_ips.py.",
   "name": "<slug>-hc007",
   "source": {
     "path": "../../roms/<game>.gb",

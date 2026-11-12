@@ -1,5 +1,5 @@
 {
-  "comment": "Replayable sram_trace script. Replace the steps with a route that reaches a save, then a save action.",
+  "comment": "Replayable sram_trace/wram_trace script. Replace the steps with a route that reaches a level, overwrites work RAM, and then triggers a real save action.",
   "steps": [
     { "op": "wait", "frames": 200 },
     { "op": "tap", "key": "START", "frames": 30 },

@@ -91,6 +91,37 @@ The report contains:
 access.  If `PC < 0x4000`, the code is in bank 0 regardless of the current
 mapper register.  The tool computes this correctly.
 
+## `tools/wram_trace.mjs`
+
+Trace WRAM (`0xC000-0xDFFF`) writes while a ROM runs.  Use it to find a safe
+scratch area for an injected routine and to see which block a level load
+overwrites.  A robust pattern is an appended-ROM journal plus a small helper
+copied to WRAM on demand, with the game's block backed up/restored (see the
+SML2 case).  Serverboy reads WRAM directly, so only writes are traced reliably.
+
+```powershell
+node tools/wram_trace.mjs game.gb --frames 600
+node tools/wram_trace.mjs game.gb --script-file games\<slug>\trace.json `
+  --json games\<slug>\analysis\trace-wram.json
+```
+
+It prints per-256-byte-page write counts and the hottest `(PC, address)`
+pairs.  Pages with only the boot clear and no later writes are candidates.
+
+## `tools/joypad_trace.mjs`
+
+Trace reads and writes of `0xFF00` and record the PCs that access it.  This
+finds a game's input/menu handler when `sram_trace` is too noisy.
+
+```powershell
+node tools/joypad_trace.mjs game.gb `
+  --script "wait:200;tap:START:30;tap:RIGHT:30" `
+  --json games\<slug>\analysis\trace-joypad-menu.json
+```
+
+The hot PCs point at the input/menu handler; confirm with a disassembly.  The
+SML2 case has a worked example in `games/sml2/notes.md`.
+
 ## `tools/trace_report.py`
 
 Turn a trace into code context.  It reads the top access PCs from
@@ -142,6 +173,110 @@ python patcher/rom_patch.py diff games\mygame\recipe.json --other patched.gb
 
 It verifies the source SHA-1, appends banks, injects blobs, applies byte edits,
 fixes both checksums and writes a `.report.json` with before/after bytes.
+
+## `patcher/rom_ips.py`
+
+Create or apply a standard IPS patch for distribution.  The patcher can use
+`--recipe` to read `source.path` and `output` from a case recipe.
+
+```powershell
+python patcher/rom_ips.py make --recipe games\<slug>\recipe.json --patch games\<slug>\ips\<slug>-hc007.ips
+python patcher/rom_ips.py check games\<slug>\ips\<slug>-hc007.ips
+python patcher/rom_ips.py apply games\<slug>\ips\<slug>-hc007.ips original.gb rebuilt.gb `
+  --expect-sha1 <output-sha1>
+```
+
+The default patch writes the full 0xFF extension, so an IPS tool produces the
+exact 1 MiB image.  `--no-pad` makes a small patch; apply it with
+`--pad-to 0x100000 --pad-byte 0xFF` (or let the flasher fill unused banks with
+erased flash).  Standard IPS supports offsets up to 16 MiB; the HC007 maximum
+is 8 MiB, so IPS32 is not needed.
+
+## SML2 case tools (reference example)
+
+These are in `games/sml2/tools/` and are the reference for a complete case.
+Copy the pattern into `games/<slug>/tools/` for a new game; the scripts are
+case-specific, not generic.
+
+### `build_save.py`
+
+Assembles `games/sml2/src/sml2_save.asm` with the GBDK tools, parses the Intel
+HEX output and writes the injectable blobs to `games/sml2/build/`:
+
+- `hooks.bin` - bank 0 save/clear hooks at `0x1967`;
+- `boothook.bin` - bank 0 boot hook at `0x1AFF`;
+- `boot.bin` - bank `0x24` boot code at `0x4000`;
+- `clear.bin` - the relocated file-select CLEAR body at bank `0x24` `0x4500`;
+- `journal.bin` - save/boot-restore/scan code at bank `0x24` `0x4800`;
+- `wram.bin` - WRAM helper source at bank `0x24` `0x4C00`, copied to WRAM
+  `0xC100` on demand.
+
+It also asserts that the hook blobs fit their bank-0 caves and that the
+journal and WRAM helper do not overlap.
+
+```powershell
+python games/sml2/tools/build_save.py
+```
+
+### `seed-log.py`
+
+Write a valid 0xF6-byte log record into a patched ROM at the log file offset
+`0x82000`, for reader-path emulator tests.
+
+```powershell
+python games/sml2/tools/seed-log.py roms/sml2-hc007.gb crafted.sav --index 0
+python games/sml2/tools/seed-log.py roms/sml2-hc007.gb empty.sav --index 1
+```
+
+The later record wins at boot, so record 0 = save and record 1 = empty is a
+delete-persistence test.
+
+### `test_save_emulator.mjs`
+
+End-to-end test of the SML2 save path.  It installs a small NOR-flash model for
+the log window (serverboy drops real ROM writes), calls the patched save hook
+with a synthetic save, and checks:
+
+- record magic, length, checksum and commit byte;
+- duplicate saves do not append;
+- changed saves append at `0xF6`;
+- a full log erases and restarts at 0;
+- the boot restore reproduces the record payload;
+- the CLEAR routine appends a delete record and the delete survives a boot.
+
+```powershell
+node games/sml2/tools/test_save_emulator.mjs [roms/sml2-hc007.gb]
+```
+
+### `test_save_after_level.mjs`
+
+Regression for the old SML2 failure: it enters a real level, lets the game
+overwrite SRAM `0xAD00-0xB0DF`, then calls the save hook.  It checks a valid
+record, the game WRAM restore, and the boot restore.
+
+```powershell
+node games/sml2/tools/test_save_after_level.mjs [roms/sml2-hc007.gb]
+```
+
+### `test_death_flash.mjs`
+
+Follows the natural title -> file select -> level -> death/transition route
+with a NOR-flash model and verifies that the game's own save call writes a
+valid record.
+
+```powershell
+node games/sml2/tools/test_death_flash.mjs [roms/sml2-hc007.gb]
+```
+
+### `check_wram_restore.mjs`
+
+Boots the patched ROM to file select and checks that the boot restore leaves
+the WRAM helper block (`0xC100-0xC3FF`) in its original state.
+
+### `death_probe.mjs`
+
+Drives the route to a level/death and prints state/PC transitions.  Useful for
+finding the natural save event and choosing a trace route.
 
 ## `patcher/hc007_patcher.py` (legacy)
 

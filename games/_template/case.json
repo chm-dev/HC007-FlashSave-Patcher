@@ -5,12 +5,15 @@
   "source_path": "roms/<game>.gb",
   "mapper": "",
   "rom_size": 0,
+  "patched_rom_size": 0,
   "sram_declared": 0,
   "sram_used_verified": 0,
+  "wram_used_verified": 0,
   "cgb": false,
   "rtc": false,
   "strategy": "undecided",
   "status": "screening",
+  "output_sha1": "",
   "save": {
     "region_base": null,
     "region_size": null,
@@ -27,8 +30,21 @@
   "hooks": {
     "boot_restore": null,
     "save_hook": null,
+    "clear_hook": null,
     "code_bank": null,
+    "wram_helper": null,
+    "backup_sram": null,
     "log_sector": null
   },
+  "tests": {
+    "synthetic": null,
+    "after_level": null,
+    "natural_event": null,
+    "hardware": null
+  },
+  "ips_dir": "games/<slug>/ips",
+  "ips_manifest": "games/<slug>/ips/manifest.json",
+  "ips_patch": null,
+  "ips_patch_min": null,
   "open_questions": []
 }

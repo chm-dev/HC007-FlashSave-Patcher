@@ -25,7 +25,9 @@ Use the proven primitives from `docs/FLASH_SAVE_METHOD.md`:
 - program one byte with `0xA0`, poll DQ7;
 - erase a 64 KiB sector with `0x80` + unlock + `0x30`, poll `0xFF`;
 - unlock bytes `0xA9/0x56` (D0/D1 swapped on the HC007);
-- every routine runs from WRAM with interrupts disabled;
+- the flash primitive runs from WRAM with interrupts disabled; journal control
+  code can run from an appended ROM bank, but every instruction that executes
+  while the log bank is selected must be in WRAM or fixed bank 0;
 - the data address is CPU `0x6000-0x7FFF`;
 - save/restore the mapper bank and the RAM-bank/mode register around each
   operation.
@@ -113,14 +115,70 @@ CALL original_save   ->   CALL save_hook
 The hook:
 
 1. calls the original save routine;
-2. preserves registers;
-3. selects the log bank;
-4. appends a record;
-5. restores the bank;
-6. returns.
+2. preserves registers and records the caller's bank;
+3. disables interrupts;
+4. selects the patch code bank, installs the WRAM helper, and backs up any game
+   RAM the helper will overwrite;
+5. scans, programs and erases through the helper;
+6. restores the game RAM and the caller's bank **from bank 0**, then enables
+   interrupts;
+7. returns.
+
+Do not put the bank restore inside switchable-bank code: writing `0x2000`
+unmaps the code that follows, so a trailing `EI`/`RET` would execute from the
+wrong bank.  The same rule applies to boot code that runs from an appended
+bank.
 
 If only a 1-byte `RET` is available, do not overwrite the next function.  Hook
 the caller, relocate the routine, or use a safe `RST` vector.
+
+### General rules from the first complete case
+
+The SML2 case (`games/sml2/`) is the worked example.  The reusable rules:
+
+- **Hook the validator's caller when possible.**  A dedicated validation call
+  runs after mapper initialisation and exactly before the save is read.  A
+  known caller bank avoids depending on a game bank shadow that may be stale.
+- **Restore a known caller bank after a code-bank switch.**  If the boot code
+  runs from an appended bank, the bank-0 hook restores the original bank after
+  the boot code returns.  Do not restore a game shadow from a context where it
+  may be stale.
+- **Hook the delete path separately.**  A file-select CLEAR/delete routine often
+  writes the empty slot directly and never calls the save writer.  Relocate the
+  original body to an appended bank, replace the entry with a `JP` to a bank-0
+  trampoline, and journal the cleared region.
+- **Do not keep hidden state in game SRAM/WRAM.**  A "flash present" flag or
+  bank shadow can be overwritten by the game.  Probe the flash ID per save, or
+  keep flags in a region you have proven unused; restore any game state you
+  borrow.
+- **Do not assume SRAM or WRAM is free.**  Trace both.  A level load can
+  overwrite large SRAM/WRAM regions; patch code stored there may be dead by the
+  next save.  Keep code in an appended ROM bank, copy only a small helper to
+  WRAM on demand, and back up/restore the game's block.  See
+  `tools/sram_trace.mjs` and `tools/wram_trace.mjs`.
+- **Test after a real level load, not just after boot.**  A synthetic save
+  immediately after the title screen can pass while the real save fails.  Add a
+  regression that reaches the level, lets the game overwrite work RAM, then
+  triggers the save.
+- **Test the natural save event too.**  A synthetic jump to the hook proves
+  record construction, not the real bank shadow/stack state.  Drive the real
+  death, level-complete or menu action and check the record with a NOR-flash
+  model.
+- **SRAM as stack.**  If `SP` is in `0xA000-0xBFFF`, flash unlock writes that
+  disable SRAM cannot execute from SRAM.  The temporary WRAM helper is the safe
+  place; it must use no stack while SRAM is disabled and re-enable SRAM before
+  returning to the caller.
+- **Keep a no-flash debug build.**  If the full build fails on hardware, a build
+  that skips program/erase isolates the new manager/stack/bank path from the
+  real flash path.
+- **MBC1 -> MBC5 conversions must retarget `0x3000` bank writes.**  MBC1's low
+  bank register spans `0x2000-0x3FFF`; MBC5 uses `0x3000` for bank bit 8.  A
+  game that writes the bank at `0x3000` may boot but render from the wrong
+  banks.  Retarget every such write to `0x2000`.
+- **Generate a distributable IPS and verify it.**  Apply the patch to the
+  original ROM and compare the SHA-1 with the built image.  The full patch can
+  include erased padding so any IPS tool produces the exact size; a minimal
+  patch needs explicit 0xFF padding.
 
 ### Bank safety
 
@@ -140,8 +198,8 @@ the caller, relocate the routine, or use a safe `RST` vector.
 | Free run in bank 0 | Tiny trampoline/hook (tens of bytes) |
 | Blank 16 KiB bank | Main journal blob |
 | Appended bank | Main blob when the image has room |
-| WRAM | Flash program/erase stubs and any code that runs with the log bank mapped |
-| SRAM | Only if proven safe; slower and unusual |
+| WRAM | Small helper (flash primitive and bank switch) copied in on demand; back up/restore the game's block |
+| SRAM | Temporary backup of the game's WRAM block, chosen from traced-quiet pages |
 
 Find candidates with `tools/rom_inspect.py`.
 
@@ -165,11 +223,17 @@ for each slot (or the last record overall if the slot index is not needed).
 
 ## Validation strategy
 
-1. **Reader path (emulator):** seed a record into the log's file offset, boot the
-   patched ROM, and confirm the game shows the restored save.  Emulators drop
-   ROM writes, so this is the only emulator path.
-2. **Writer path (hardware):** create a save, power-cycle, load; delete,
-   power-cycle, confirm deleted; reflash, confirm reset.
+1. **Reader path (emulator):** seed a record into the log's file offset, boot
+   the patched ROM, and confirm the game shows the restored save.
+2. **Writer path (emulator):** install a small NOR-flash model for the log
+   window and answer the flash ID probe.  This exercises record construction,
+   duplicate suppression, append, erase and the real save call site.  It does
+   **not** model real flash timing or the SRAM disable/re-enable.
+3. **Hardware writer path:** create a save, power-cycle, load; delete,
+   power-cycle, confirm deleted; reflash, confirm reset.  If the full build
+   fails, test the no-flash debug build to isolate the flash path.
+4. **Distribution:** generate an IPS against the original ROM, apply it back,
+   and compare the SHA-1 with the built image.
 
 ## Legacy universal patcher
 

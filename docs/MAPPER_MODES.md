@@ -10,7 +10,8 @@ a mapper register in MBC1 and MBC3 mode:
 | CPU range | MBC1 | MBC3 | MBC5 |
 |---|---|---|---|
 | `0x0000-0x1FFF` | RAM enable | RAM/timer enable | RAM enable |
-| `0x2000-0x3FFF` | ROM bank low 5 | ROM bank 7-bit | ROM bank low 8 |
+| `0x2000-0x2FFF` | ROM bank low 5 | ROM bank 7-bit | ROM bank low 8 |
+| `0x3000-0x3FFF` | ROM bank low 5 (same register) | ROM bank 7-bit (same register) | ROM bank bit 8 |
 | `0x4000-0x5FFF` | RAM bank / high ROM | RAM bank / RTC select | RAM bank |
 | `0x6000-0x7FFF` | mode select | RTC latch | ROM (flash) |
 
@@ -134,6 +135,18 @@ MBC1's mode register is the problem. Options:
 The mapper strictly consumes register writes. Same options as B, with more
 pressure on finding a mode switch or normalising headers. If neither works, v1
 is MBC5-only.
+
+## The MBC1 `0x3000` trap
+
+MBC1's low ROM-bank register spans **`0x2000-0x3FFF`**, so an MBC1 game may
+write the bank number at `0x3000` as well as `0x2000`.  On MBC5,
+`0x3000-0x3FFF` is the **ROM bank bit 8** register: writing `0x0D` there sets
+bit 8 and selects bank `0x10D`, not bank `0x0D`.
+
+Before converting an MBC1 game to MBC5, find every `LD (0x3000),A`
+(`EA 00 30`) and retarget it to `LD (0x2000),A` (`EA 00 20`).  SML2 has 22
+such sites in the bank-switch helpers at `0x3E03-0x3F2C`; missing them booted
+fine but produced garbled world-map tiles.
 
 ## Why MBC1 games "just work" on an MBC5-style cart
 

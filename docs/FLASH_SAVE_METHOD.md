@@ -3,7 +3,10 @@
 > **Role in this project:** low-level transport reference.  It documents the
 > proven WRAM flash driver and append-only log.  It is **not** the per-game
 > strategy; see `docs/WORKFLOW.md` for choosing between a save-routine hook and
-> a page journal.
+> a page journal, and `docs/PATCHER_DESIGN.md` for the current pattern (journal
+> code in an appended ROM bank, only the flash primitive in WRAM, with the
+> game block backed up/restored).  `patcher/rom_ips.py` turns a built image
+> into a distributable IPS.
 
 > **Imported from the Robbo DMG port.** This is the method that was proven on
 > the HC007 cart in `C:\dev\AI\robbo-port2` (`BATTERYLESS_SAVE.md`). Paths such

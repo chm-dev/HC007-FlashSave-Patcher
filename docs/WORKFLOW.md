@@ -61,12 +61,13 @@ Look for:
 
 Save the useful listings as `analysis/<name>.asm`.
 
-## 3. Dynamic SRAM trace
+## 3. Dynamic SRAM and WRAM trace
 
 `tools/sram_trace.mjs` wraps the emulator's SRAM readers/writers and reports the
 hottest `(PC, ROM bank, SRAM bank, address)` tuples.  It also traces writes to
 the mapper registers, which explains RAM-enable/disable and banking around a
-save.
+save.  `tools/wram_trace.mjs` does the same for the `0xC000-0xDFFF` pages; use
+it to find scratch space and to see which WRAM a level load overwrites.
 
 Start with the boot/title/menu path:
 
@@ -98,6 +99,18 @@ Interpretation:
 - **Reads during the file-select/menu**: that is the load/validate path.
 - **Writes to mapper registers** at the same PC as the save burst: note the
   bank state and RAM-enable sequence.
+
+Run the WRAM trace over a route that reaches an actual level, not just the
+title/menu:
+
+```powershell
+node tools/wram_trace.mjs roms\<game>.gb `
+  --script-file games\<slug>\trace.json `
+  --json games\<slug>\analysis\trace-wram.json
+```
+
+A page that is only boot-cleared is a candidate for a temporary backup block; a
+page with gameplay writes must be backed up/restored if the helper uses it.
 
 Once you have a trace, turn the hot PCs into code context:
 
@@ -138,7 +151,8 @@ For every save slot, identify:
 **Craft a valid save to prove the format.**  This is the strongest evidence.
 Build an SRAM image with one slot filled, compute the checksum, boot the ROM
 with `--sram`, and check that the file-select screen treats the slot as used.
-For SML2 the recipe is in `games/sml2/tools/make-save.py`.
+Keep the crafted-save generator in `games/<slug>/tools/`; the SML2 case has a
+worked example in `games/sml2/tools/make-save.py`.
 
 If the game accepts the crafted slot, you know the format is correct.  If not,
 vary one field at a time and record what the menu displays.
@@ -157,7 +171,11 @@ Needs:
 
 - exact save-write routine and a safe point to hook (entry, return, or caller);
 - a boot restore point before the first save read;
-- code space and a bank-safe calling convention.
+- code space in an appended ROM bank (preferred) or a blank bank;
+- a small WRAM helper for the flash primitive, with a backup/restore of the
+  game's block it borrows;
+- a bank-safe calling convention: restore the caller's bank from fixed bank 0
+  after the switchable-bank code returns.
 
 ### S2. SRAM page journal (fallback)
 
@@ -199,9 +217,11 @@ The trampoline must:
 4. restore the mapper registers the game expects;
 5. restore registers and jump to the original entry target.
 
-If the game has a dedicated save-validation routine (SML2 `0x28D9`), hooking
-that instead of `0x100` is often safer: it runs after the game has initialised
-its mapper state, and it is exactly where save data is first read.
+If the game has a dedicated save-validation routine (SML2 `0x28D9`), hooking the
+caller of that routine instead of `0x100` is often safer: it runs after the game
+has initialised its mapper state, and it is exactly where save data is first
+read.  Restore the known caller's bank from bank 0 after the boot code returns;
+do not leave the bank switch to the appended-bank code.
 
 ### Save hook
 
@@ -212,7 +232,10 @@ CALL save_routine      ->   CALL save_hook
 ```
 
 The hook calls the original save routine, then journals the save region, then
-returns.  This avoids relocating the original function.
+restores the caller's bank and returns.  This avoids relocating the original
+function.  If the journal code runs from an appended bank, the bank restore must
+be in the bank-0 hook, not in the appended-bank code: the `RET` would otherwise
+execute after its own code was unmapped.
 
 If there is only a 1-byte `RET` available and no spare byte after it, do **not**
 overwrite the next function.  Options:
@@ -226,18 +249,25 @@ overwrite the next function.  Options:
 
 Find candidates with `rom_inspect.py`:
 
-- free runs in bank 0 (`0xFF` or `0x00` runs) for a small trampoline;
-- a blank / mostly-blank 16 KiB bank for the main blob;
-- an appended bank if the image has room and the mapper can select it.
+- free runs in bank 0 (`0xFF` or `0x00` runs) for the tiny trampolines;
+- an appended bank or a blank / mostly-blank 16 KiB bank for the main journal;
+- a small WRAM block for the flash primitive and bank-switch helper, copied in
+  on demand and backed up/restored;
+- traced-quiet SRAM pages for the helper's backup block (temporary only);
+- no persistent patch flags in game work RAM: probe the flash ID per save or
+  use a proven-free byte.
 
 Bank switching rules:
 
 - Code that runs while the log bank is selected must live in **WRAM** or fixed
   bank 0.  Selecting a bank at `0x4000` unmaps the caller if the caller is
-  banked.
-- Save the current bank before switching and restore it before returning.  If
-  the game has no readable bank shadow, either hook only from bank 0 and restore
-  bank 0, or add a tiny bank-shadow write to the game's bank-switch helper.
+  banked.  Keep the journal control code in an appended bank and let only the
+  small WRAM helper run with the log bank mapped.
+- Save the current bank before switching and restore it **from bank 0** before
+  returning.  If the game has no readable bank shadow, either hook only from
+  bank 0 and restore bank 0, or add a tiny bank-shadow write to the game's
+  bank-switch helper.
+- Do not put `EI`/`RET` after a bank switch inside appended-bank code.
 - MBC1: `0x4000` selects RAM bank in mode 1 and high ROM bits in mode 0; clear
   the high bits before selecting the log bank.
 - MBC3: `0x6000` is the RTC latch; do not disturb a pending latch.
@@ -276,14 +306,40 @@ Before hardware, verify in serverboy and Gearboy:
       seed the flash log or use the patched save routine);
 - [ ] delete works and does not resurrect an old save;
 - [ ] the game still plays through the area that triggers the save;
+- [ ] **a save after a real level load** still works (the game may overwrite
+      the SRAM/WRAM the patch borrows);
+- [ ] **a natural save event** (death, level complete, menu action) produces a
+      valid record with a NOR-flash model, not only a synthetic jump to the
+      hook;
 - [ ] no new crashes or visual glitches.
 
-Remember: emulators drop ROM writes.  To test the reader path, seed records into
-a copy of the patched image at the flash log's file offset, then boot.
+Remember: emulators drop ROM writes by default.  Reader-path tests seed records
+into a copy of the patched image at the flash log's file offset.  Writer-path
+tests can install a small NOR-flash model and answer the flash ID probe; real
+timing still needs hardware.
 
-## 9. Hardware validation
+## 9. Distribution patch
 
-On the HC007 cart:
+Once the target image is stable, generate a standard IPS against the original
+ROM:
+
+```powershell
+python patcher/rom_ips.py make --recipe games\<slug>\recipe.json `
+  --patch games\<slug>\ips\<slug>-hc007.ips
+python patcher/rom_ips.py apply games\<slug>\ips\<slug>-hc007.ips `
+  "roms\<game>.gb" rebuilt.gb --expect-sha1 <output-sha1>
+```
+
+Keep the patch and a manifest in `games/<slug>/ips/`.  The full patch writes the
+erased extension explicitly, so any IPS tool produces the exact image.  A
+minimal patch (`--no-pad`) is small but needs `--pad-to <size> --pad-byte 0xFF`
+or a flasher that fills new banks with erased flash.  Verify the applied image
+against the built image by SHA-1 before publishing.
+
+## 10. Hardware validation
+
+Keep the original ROM and a known-good recovery image available.  On the HC007
+cart:
 
 1. flash the patched image;
 2. create a save, power off, wait, power on, load it;
@@ -293,13 +349,30 @@ On the HC007 cart:
 
 Record the result in `docs/COMPATIBILITY.md` and in the case's `notes.md`.
 
-## 10. Handoff checklist
+## 11. Handoff checklist
 
 A case is ready for the next session when:
 
+- [ ] `README.md` gives the current status, outputs and the first test to run;
 - [ ] `case.json` has title, SHA-1, mapper, sizes, strategy and status;
-- [ ] `analysis/` has inventory, disassembly listings and traces;
+- [ ] `analysis/` has inventory, disassembly listings and SRAM/WRAM traces;
 - [ ] `notes.md` explains the save format with addresses and evidence;
 - [ ] `recipe.json` contains the exact edits and blob paths;
+- [ ] `src/` and `tools/` can rebuild every blob and test;
 - [ ] `tests/` contains any case-specific reader/emulator checks;
+- [ ] `ips/` contains the distributable patch, manifest and verification result;
+- [ ] a no-flash debug recipe/build exists if the flash path is unproven;
 - [ ] open questions and risks are listed at the bottom of `notes.md`.
+
+## General lessons
+
+- Trace SRAM **and** WRAM over a real level load.  Do not assume either is free
+  because the menu looks quiet.
+- Test the save after the game has overwritten its work RAM, and test the real
+  save event; a boot-time synthetic hook is not enough.
+- Keep patch code in ROM, not in game RAM.  Copy only a small helper to WRAM on
+  demand and restore the game's block.
+- Restore the caller's bank from fixed bank 0.  Never put `EI`/`RET` after a
+  bank switch inside switchable-bank code.
+- Keep a no-flash build for hardware isolation.
+- Generate and verify an IPS against the original ROM before publishing.

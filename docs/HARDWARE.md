@@ -72,7 +72,8 @@ all three.
 | CPU range | MBC1 | MBC3 | MBC5 |
 |---|---|---|---|
 | `0x0000-0x1FFF` | RAM enable | RAM/timer enable | RAM enable |
-| `0x2000-0x3FFF` | ROM bank low 5 bits | ROM bank (7 bits) | ROM bank low 8 bits |
+| `0x2000-0x2FFF` | ROM bank low 5 bits | ROM bank (7 bits) | ROM bank low 8 bits |
+| `0x3000-0x3FFF` | ROM bank low 5 bits (same register) | ROM bank (7 bits, same register) | ROM bank bit 8 |
 | `0x4000-0x5FFF` | RAM bank / high ROM bits | RAM bank / RTC select | RAM bank |
 | `0x6000-0x7FFF` | **mode select** | **RTC latch** | ROM (flash) |
 
@@ -116,9 +117,14 @@ the shipped image. A reflash therefore resets the save.
 3. Does the board provide a real **RTC** for MBC3 games, or does the game read
    `0xFF`/defaults? Does the clock survive power-off?
 4. Does the mapper mask the ROM bank register to the header ROM size? (The
-   probe uses a 512 KiB image so bank `0x1C` is always declared.)
-5. Are there protected/locked sectors? The probe can write/erase the log sector,
-   so at least that one is unprotected.
+   probe uses a 512 KiB image so bank `0x1C` is always declared.)  The SML2
+   patch depends on banks `0x20` (log) and `0x24` (code) in a 1 MiB image;
+   verify both map on hardware.  **Confirmed by the SML2 hardware pass**: the
+   code bank boots and the log-bank save survives a power-cycle.
+5. Are there protected/locked sectors? The probe can write/erase the `0x72000`
+   sector, so at least that one is unprotected.  The SML2 log uses `0x80000`;
+   the SML2 hardware pass confirmed that sector with a save that survives a
+   power-cycle.
 6. Does the mapper's SRAM bank register work at all (bank 0 only, or 4 banks)?
    The probe says only bank 0; a game that uses 32 KiB would confirm.
 

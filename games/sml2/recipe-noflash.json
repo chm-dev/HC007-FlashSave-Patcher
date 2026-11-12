@@ -1,0 +1,271 @@
+{
+  "_comment": "Debug variant: same as recipe.json but the journal never programs or erases flash. Use it to isolate the new manager/stack/bank path on hardware. The 0x482C edit is tied to the current journal build; regenerate if the journal layout moves.",
+  "_mbc5_note": "SML2 writes the MBC1 low bank register at 0x3000 in 22 bank-switch helpers.  MBC5 uses 0x3000 for bank bit 8, so each LD (0x3000),A is retargeted to LD (0x2000),A.",
+  "name": "sml2-hc007-noflash",
+  "source": {
+    "path": "../../roms/patch-test-roms/Super Mario Land 2 - 6 Golden Coins (USA, Europe).gb",
+    "sha1": "bba408539ecbf8d322324956d859bc86e2a9977b"
+  },
+  "output": "../../roms/sml2-hc007-noflash.gb",
+  "base_rom_size": 524288,
+  "append_banks": 32,
+  "rom_size_code": 5,
+  "cart_type": 27,
+  "edits": [
+    {
+      "name": "file-select validator -> boot hook",
+      "bank": 12,
+      "addr": "0x4034",
+      "hex": "CD FF 1A"
+    },
+    {
+      "name": "save hook 0x2862",
+      "bank": 0,
+      "addr": "0x2862",
+      "hex": "CD 67 19"
+    },
+    {
+      "name": "save hook 0x3147",
+      "bank": 0,
+      "addr": "0x3147",
+      "hex": "CD 67 19"
+    },
+    {
+      "name": "save hook bank 0F 0x41F4",
+      "bank": 15,
+      "addr": "0x41F4",
+      "hex": "CD 67 19"
+    },
+    {
+      "name": "save hook bank 0F 0x6F15",
+      "bank": 15,
+      "addr": "0x6F15",
+      "hex": "CD 67 19"
+    },
+    {
+      "name": "save hook bank 0F 0x6F21",
+      "bank": 15,
+      "addr": "0x6F21",
+      "hex": "CD 67 19"
+    },
+    {
+      "name": "save hook bank 0F 0x6F27",
+      "bank": 15,
+      "addr": "0x6F27",
+      "hex": "CD 67 19"
+    },
+    {
+      "name": "save hook bank 0F 0x7040",
+      "bank": 15,
+      "addr": "0x7040",
+      "hex": "CD 67 19"
+    },
+    {
+      "name": "save hook bank 0F 0x714D",
+      "bank": 15,
+      "addr": "0x714D",
+      "hex": "CD 67 19"
+    },
+    {
+      "name": "save hook bank 0F 0x73AB",
+      "bank": 15,
+      "addr": "0x73AB",
+      "hex": "CD 67 19"
+    },
+    {
+      "name": "save hook bank 18 0x470D",
+      "bank": 24,
+      "addr": "0x470D",
+      "hex": "CD 67 19"
+    },
+    {
+      "name": "save hook bank 18 0x4EAB",
+      "bank": 24,
+      "addr": "0x4EAB",
+      "hex": "CD 67 19"
+    },
+    {
+      "name": "file-select CLEAR -> hook",
+      "bank": 12,
+      "addr": "0x4227",
+      "hex": "C3 7B 19"
+    },
+    {
+      "name": "MBC5 bank low 0x3E03",
+      "bank": 0,
+      "addr": "0x3E03",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3E0C",
+      "bank": 0,
+      "addr": "0x3E0C",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3E14",
+      "bank": 0,
+      "addr": "0x3E14",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3E1E",
+      "bank": 0,
+      "addr": "0x3E1E",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3E26",
+      "bank": 0,
+      "addr": "0x3E26",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3E30",
+      "bank": 0,
+      "addr": "0x3E30",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3E38",
+      "bank": 0,
+      "addr": "0x3E38",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3E42",
+      "bank": 0,
+      "addr": "0x3E42",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3E56",
+      "bank": 0,
+      "addr": "0x3E56",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3E6F",
+      "bank": 0,
+      "addr": "0x3E6F",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3E80",
+      "bank": 0,
+      "addr": "0x3E80",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3E89",
+      "bank": 0,
+      "addr": "0x3E89",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3E94",
+      "bank": 0,
+      "addr": "0x3E94",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3E9E",
+      "bank": 0,
+      "addr": "0x3E9E",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3EA9",
+      "bank": 0,
+      "addr": "0x3EA9",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3EC7",
+      "bank": 0,
+      "addr": "0x3EC7",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3ED0",
+      "bank": 0,
+      "addr": "0x3ED0",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3EEE",
+      "bank": 0,
+      "addr": "0x3EEE",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3EF7",
+      "bank": 0,
+      "addr": "0x3EF7",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3F0A",
+      "bank": 0,
+      "addr": "0x3F0A",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3F13",
+      "bank": 0,
+      "addr": "0x3F13",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "MBC5 bank low 0x3F2C",
+      "bank": 0,
+      "addr": "0x3F2C",
+      "hex": "EA 00 20"
+    },
+    {
+      "name": "debug: skip journal flash writes",
+      "bank": 36,
+      "addr": "0x482C",
+      "hex": "C3 4D 48"
+    }
+  ],
+  "blobs": [
+    {
+      "name": "bank 0 hooks",
+      "path": "build/hooks.bin",
+      "bank": 0,
+      "offset": "0x1967"
+    },
+    {
+      "name": "bank 0 boot hook",
+      "path": "build/boothook.bin",
+      "bank": 0,
+      "offset": "0x1AFF"
+    },
+    {
+      "name": "bank 24 boot code",
+      "path": "build/boot.bin",
+      "bank": 36,
+      "offset": "0x0"
+    },
+    {
+      "name": "bank 24 CLEAR routine",
+      "path": "build/clear.bin",
+      "bank": 36,
+      "offset": "0x500"
+    },
+    {
+      "name": "bank 24 journal code",
+      "path": "build/journal.bin",
+      "bank": 36,
+      "offset": "0x800"
+    },
+    {
+      "name": "bank 24 WRAM helper source",
+      "path": "build/wram.bin",
+      "bank": 36,
+      "offset": "0xC00"
+    }
+  ],
+  "fix_checksums": true
+}

@@ -49,11 +49,29 @@ Crafted-save proof
 games/sml2/tools/make-save.py creates a valid slot.  Booting it shows Mario and
 an occupied A slot on the file-select screen.  See crafted-menu.png.
 
-Patch direction
----------------
-- Convert header to MBC5 (0x147 = 0x1B); the game only uses MBC1 mode-0 writes.
-- Pad to 1 MiB; log sector 0x80000-0x8FFFF, bank 0x20, CPU 0x6000.
-- Save hook: CALL 0x2934 sites -> save_hook.
-- Boot restore: hook validator 0x28D9 (preferred) or entry 0x100.
-- Journal code: bank 0x1A free run or appended bank; flash stubs in WRAM.
-- Open: delete path, bank value at save time, bank restore policy.
+Patch implementation (redesign; hardware-pass)
+-------------------------------------------------
+- Header converted to MBC5 (0x147 = 0x1B); image padded to 1 MiB.
+- 22 MBC1 low-bank writes at 0x3000 retargeted to 0x2000; MBC5 uses
+  0x3000 for bank bit 8.  Without this the world map loads garbled tiles.
+- Log sector 0x80000-0x8FFFF, bank 0x20, CPU 0x6000.
+- Save hook: all 11 CALL 0x2934 sites -> CALL 0x1967 (20 bytes).
+- Boot restore: bank 0x0C 0x4034 -> CALL 0x1AFF (24-byte cave).
+- Delete hook: bank 0x0C 0x4227 -> JP 0x197B; clear body relocated to
+  bank 0x24 0x4500.
+- Root cause of the old reset: SRAM 0xAD00-0xB0DF is game work RAM and
+  is overwritten by a level load.  The old manager/journal source lived
+  there, so the next save executed game data.
+- All patch code now lives in ROM bank 0x24: boot 0x4000, clear 0x4500,
+  journal 0x4800, WRAM helper source 0x4C00.  The helper is copied to
+  WRAM 0xC100 on demand and the game's 0xC100-0xC3FF block is restored.
+- Bank restore happens in bank 0 (save/clear hooks restore 0xA24E, boot
+  hook restores 0x0C), because switching the bank inside bank 0x24 code
+  unmaps the following EI/RET.
+- Record 0xF6 bytes: 'M','L',0xF0,payload,checksum,0x5A commit,0x00 pad.
+- Emulator tests pass for a save after a real level load and a natural
+  death/transition with a NOR-flash model.  The normal build passed on the
+  HC007 cart: boot, life-loss save without reset, power-cycle/load, delete.
+- IPS patches and a manifest are in ../ips/ (full and minimal, normal and
+  no-flash).
+- Full details and the hardware validation are in ../notes.md.

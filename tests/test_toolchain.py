@@ -26,6 +26,7 @@ def load_module(name: str, path: Path):
 gbdis = load_module("hc007_gbdis", ROOT / "tools" / "gbdis.py")
 rom_inspect = load_module("hc007_rom_inspect", ROOT / "tools" / "rom_inspect.py")
 rom_patch = load_module("hc007_rom_patch", ROOT / "patcher" / "rom_patch.py")
+rom_ips = load_module("hc007_rom_ips", ROOT / "patcher" / "rom_ips.py")
 
 
 def synthetic_rom(size: int = 0x8000) -> bytearray:
@@ -161,5 +162,37 @@ class RecipeTests(unittest.TestCase):
             self.assertFalse((tmp_path / "patched.gb").exists())
 
 
-if __name__ == "__main__":
-    unittest.main(verbosity=2)
+class IpsTests(unittest.TestCase):
+    def test_full_pad_roundtrip(self):
+        source = bytes(range(256)) * 16
+        target = bytearray(source)
+        target[0x100] = 0xAA
+        target[0x200:0x210] = b"hello world!!"
+        target.extend(b"\xFF" * 0x1000)
+        target[-1] = 0xFE
+        records = rom_ips.changed_runs(source, bytes(target), no_pad=False)
+        patch = rom_ips.build_ips(records)
+        kind, parsed = rom_ips.parse_ips(patch)
+        self.assertEqual(kind, "IPS")
+        rebuilt = rom_ips.apply_ips(source, parsed, None, 0)
+        self.assertEqual(rebuilt, bytes(target))
+
+    def test_no_pad_with_fill(self):
+        source = bytes(range(256)) * 16
+        target = bytearray(source)
+        target[0x100] = 0xAA
+        target.extend(b"\xFF" * 0xC00)
+        target[0x1800] = 0x42
+        records = rom_ips.changed_runs(source, bytes(target), no_pad=True)
+        patch = rom_ips.build_ips(records)
+        _, parsed = rom_ips.parse_ips(patch)
+        rebuilt = rom_ips.apply_ips(source, parsed, len(target), 0xFF)
+        self.assertEqual(rebuilt, bytes(target))
+
+    def test_truncated_patch_rejected(self):
+        with self.assertRaises(SystemExit):
+            rom_ips.parse_ips(b"PATCH\x00\x01")
+
+
+if __name__ == '__main__':
+    unittest.main()
