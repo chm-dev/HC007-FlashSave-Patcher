@@ -274,7 +274,7 @@ ro_bad:
 ; A = slot -> D = ROM bank, H = high byte of the slot base, L = 0.
 slot_calc:
     ; Records live only in the 0x6000-0x7FFF window of each bank: 0x4000-0x5FFF is
-    ; the RAM-bank register, so flash data writes there never reach the chip.
+    ; the RAM-bank register on stock MBC5, so keep flash data writes out of it (conservative).
     ; slot s -> bank 0x20 + (s >> 3), CPU 0x6000 + (s & 7) * 0x400
     ld d, a
     srl a

@@ -22,3 +22,5 @@ tools/gearboy/*.state
 tests/fixtures/*.gb
 tests/fixtures/*.noi
 gbdk/
+# Third-party reference clones (not committed)
+tools/reference/

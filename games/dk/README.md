@@ -2,11 +2,11 @@
 
 ## Status
 
-- Stage: **hardware-pass** - build 6 (`roms/dk-hc007.gb`) retains savegames on a known-good cart. The earlier freezes were a faulty test cart, though the 0x4000-0x5FFF record layout bug was real and is fixed.
+- Stage: **hardware-pass** - build 6 (`roms/dk-hc007.gb`) retains savegames on a known-good cart. The earlier freezes were a faulty test cart, and the 0x4000-0x5FFF record layout was a suspected, unproven cause; build 6 keeps records in 0x6000-0x7FFF as a safe default.
 - Normal build: `roms/dk-hc007.gb`
 - Debug build (hooks + full journal, **never writes flash**): `roms/dk-hc007-noflash.gb`
 - IPS: `games/dk/ips/dk-hc007.ips`, `dk-hc007-noflash.ips` (apply -> same SHA-1, see `ips/manifest.json`)
-- Hardware: boot, hooks, stub on the game stack, scan, compare, WRAM backup passed as build `t4`.  The normal build (flash path) froze at the title in build 5 because the records straddled `0x4000-0x5FFF` (RAM-bank register); build 6 fixes the layout and is **not yet tested**.
+- Hardware: boot, hooks, stub on the game stack, scan, compare, WRAM backup passed as build `t4`.  The normal build (flash path) froze at the title in build 5 (records straddled `0x4000-0x5FFF`); that freeze was later traced to a faulty test cart. Build 6 uses `0x6000-0x7FFF` only and passes on a known-good cart.
 
 ## Rebuild and test
 
@@ -47,7 +47,7 @@ powers up with garbage).
 | 1-2 | full builds freeze at title after START; mapper-only, boot-only and pass-through-hook builds fine | fault is in the stub body |
 | 3 | `s1` (DI, 0x4000 write, EI) works, `s2` (+ SP/vars in SRAM) freezes, even with SRAM re-enable | not the bank register |
 | 4 | `t1` bank restore ok, `t2` SRAM vars ok, **`t3` SP switched into SRAM freezes**, `t4` full stub on the game stack ok | **never put SP in cart SRAM** |
-| 5 | no-flash build ok, **flash build freezes at title** | records were spread over 0x4000-0x7FFF: data writes below 0x6000 hit the RAM-bank register and never reach the chip, so every DQ7 poll ran to its timeout.  Model now rejects them; 32 records in the 0x6000-0x7FFF windows |
+| 5 | no-flash build ok, **flash build freezes at title** | records were spread over 0x4000-0x7FFF.  Suspected (unproven) cause: data writes below 0x6000 hit the RAM-bank register.  The freeze turned out to be a faulty test cart.  Model now rejects such writes as a conservative rule; 32 records in the 0x6000-0x7FFF windows |
 
 Both emulators (serverboy, Gearboy) ran every failing build fine.
 

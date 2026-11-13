@@ -134,3 +134,7 @@ NOT YET VERIFIED
   RAM-bank register"); the 64-slot build fails it at the first byte.
 - Fix: slot s -> bank 0x20 + (s>>3), CPU 0x6000 + (s&7)*0x400; SLOTS = 32.  Suite passes (erase now every 32 commits).
 - Note: the no-flash build is no longer byte-identical to hardware build t4 (only slot_calc/SLOTS differ; scan now reads 0x6000+).
+
+
+## Correction (later)
+The build-5 freeze was a faulty test cart: build 6 works on a second cart.  The 0x4000-0x5FFF diagnosis above is unproven - Marc Robledo's batteryless patcher writes flash data at 0x4000-0x5FFF on this cart type.  The 0x6000-0x7FFF layout stays as a safe default.

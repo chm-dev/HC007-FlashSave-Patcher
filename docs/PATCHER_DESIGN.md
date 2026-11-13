@@ -189,7 +189,7 @@ The SML2 case (`games/sml2/`) is the worked example.  The reusable rules:
 - MBC1: clear the high ROM bits (`0x4000 = 0` in mode 0) before selecting the
   log bank.
 - MBC3: do not disturb the RTC latch at `0x6000`.
-- MBC5: use `0x3000` for bit 8; never write flash data at `0x4000-0x5FFF`.
+- MBC5: use `0x3000` for bit 8; prefer `0x6000-0x7FFF` for flash data writes (`0x4000-0x5FFF` is the RAM-bank register on stock MBC5; unproven whether this cart forwards those writes).
 
 ## Code placement
 

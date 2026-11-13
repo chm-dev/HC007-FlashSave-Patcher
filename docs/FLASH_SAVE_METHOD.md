@@ -122,7 +122,7 @@ Example: bank `0x1C`, CPU `0x6000` → chip `0x70000 + 0x2000 = 0x72000`.
 
 ### Writable CPU range
 
-On MBC5, **`0x4000..0x5FFF` is the RAM-bank register**, not cartridge space.
+On a stock MBC5, **`0x4000..0x5FFF` is the RAM-bank register**, not cartridge space.  Treat `0x6000..0x7FFF` as the safe window.  (It is not proven that this cart ignores data writes below `0x6000`: Marc Robledo's batteryless patcher (MIT, github.com/marcrobledo/game-boy-batteryless-patcher) writes flash data at 0x4000-0x5FFF on this cart type, so the window may well work; unproven either way here.)
 Writes there change the mapper instead of programming flash.  Therefore:
 
 - Program and erase only at CPU **`0x6000..0x7FFF`** (or below `0x4000` for the

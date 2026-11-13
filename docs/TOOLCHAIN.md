@@ -317,3 +317,21 @@ node tools\gearboy_mcp_example.mjs roms\game.gb
 Use Gearboy when serverboy's timing or rendering is suspect.  The MCP example
 shows `get_media_info`, `debug_step_frame`, `controller_button`, `read_memory`,
 `write_memory`, `get_screenshot`, `get_cpu_status` and save states.
+
+## Reference: marcrobledo/game-boy-batteryless-patcher
+
+Third-party (MIT), cloned git-ignored at
+`tools/reference/game-boy-batteryless-patcher/`, pinned to commit `42591932`
+(2024-10-08).  Re-create with
+`git clone https://github.com/marcrobledo/game-boy-batteryless-patcher tools/reference/game-boy-batteryless-patcher`.
+Not part of our build (it needs RGBDS).  Use it as a reference only:
+
+- `src/main.asm`: an independent flash driver for the same cart type (unlock
+  `0xA9/0x56`, sector erase, byte program, WRAM-resident).  It writes flash data
+  at `0x4000-0x5FFF`, which is why our `0x6000-0x7FFF` rule is conservative.
+- Method: erase the 64 KB sector and rewrite all of SRAM on every save.  Simpler
+  than our journal, but it freezes for the erase and a power cut loses the save.
+  A candidate first try for games with one save routine and a small SRAM.
+- `roms/*/*/settings.asm`: hook offsets already found for several Pokemon hacks,
+  Samurai Kid and Super Robot Pinball.
+- No flash model, no tests, no timeout on its flash polls.
