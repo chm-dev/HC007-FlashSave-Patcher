@@ -1,0 +1,30 @@
+{
+  "_comment": "Isolation build for hardware bisect - see games/dk/README.md",
+  "name": "iso1-bootonly",
+  "source": {
+    "path": "../../../roms/roms-to-patch/Donkey Kong (Japan, USA) (SGB Enhanced).gb",
+    "sha1": "6ed661bd1d6d8cdd48e1c10f8ca4e8dcba49128e"
+  },
+  "output": "../../../roms/dk-iso1-bootonly.gb",
+  "base_rom_size": 524288,
+  "append_banks": 32,
+  "rom_size_code": 5,
+  "cart_type": 27,
+  "edits": [
+    {
+      "hex": "C3 00 3A",
+      "bank": 0,
+      "addr": "0x0100",
+      "name": "boot entry -> restore trampoline"
+    }
+  ],
+  "blobs": [
+    {
+      "name": "cave",
+      "path": "../build/cave.bin",
+      "bank": 0,
+      "offset": "0x3910"
+    }
+  ],
+  "fix_checksums": true
+}

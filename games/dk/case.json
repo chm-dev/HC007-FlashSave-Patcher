@@ -1,0 +1,56 @@
+{
+  "slug": "dk",
+  "title": "Donkey Kong (Japan, USA) (SGB Enhanced)",
+  "sha1": "6ed661bd1d6d8cdd48e1c10f8ca4e8dcba49128e",
+  "source_path": "roms/roms-to-patch/Donkey Kong (Japan, USA) (SGB Enhanced).gb",
+  "mapper": "MBC1+RAM+BATTERY",
+  "rom_size": 524288,
+  "patched_rom_size": 1048576,
+  "sram_declared": 8192,
+  "sram_used_verified": 0,
+  "wram_used_verified": 0,
+  "cgb": false,
+  "rtc": false,
+  "strategy": "S1 writer-tail hooks + SRAM payload journal (A000-A18F, BE2A-BFFF), boot restore at 0x100",
+  "status": "hardware-pass: build 6 retains saves on a known-good cart",
+  "output_sha1": "4318a52833ff97f898102165609a568755a35e61",
+  "save": {
+    "region_base": "0xBFBE",
+    "region_size": 66,
+    "slot_stride": null,
+    "slot_count": null,
+    "status_byte": null,
+    "checksum": null,
+    "magic": "BFFA: 09 04 00 02 00 08 (ROM 0x2000)",
+    "write_routine": "bank1:0x4CB3 (progress); callers bank0:0x0F55, bank1:0x4C91, bank1:0x4DB1",
+    "validate_routine": "bank0:0x1EBB (checks sig @0xBFFA, 02/07 @0xBFD8, checksum; mirror @0xBFDE/0xBFF6)",
+    "load_routine": "bank1:0x4D16 (caller bank1:0x539D)",
+    "delete_routine": null
+  },
+  "hooks": {
+    "boot_restore": "0x0100 -> bank0:0x3A00",
+    "save_hook": "bank0:0x3910 (writer tails: 1FDC, b1:4D13/54FD/558D/564B/51BB/5730, b17:750B)",
+    "clear_hook": null,
+    "code_bank": "bank 0 free run 0x3910-0x3FDF",
+    "wram_helper": "0xC900 (0xE0), backup SRAM 0xA500",
+    "backup_sram": null,
+    "log_sector": "banks 0x20-0x23 (0x80000-0x8FFFF); 32 records of 0x400 at CPU 0x6000-0x7FFF of each bank"
+  },
+  "tests": {
+    "synthetic": "pass (23 checks); poweron/hostile matrix pass",
+    "after_level": "natural flow pass (level 1)",
+    "natural_event": "file select via UI pass; 4CB3 synthetic; score table not natural",
+    "hardware": "build 6 retains saves on a known-good cart; first test cart was faulty"
+  },
+  "ips_dir": "games/dk/ips",
+  "ips_manifest": "games/dk/ips/manifest.json",
+  "ips_patch": "games/dk/ips/dk-hc007.ips",
+  "ips_patch_min": null,
+  "open_questions": [
+    "Hardware playtest",
+    "Is B4C0-BBFF persistent? (not journaled, zeroed at boot)",
+    "Score-table writer natural flow",
+    "SRAM scratch A500-A67F unused in every mode?",
+    "Which 4CB3 call site is the post-level-set prompt (all hooked via tail)"
+  ]
+}

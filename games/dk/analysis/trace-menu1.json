@@ -1,0 +1,291 @@
+{
+  "rom": "roms/roms-to-patch/Donkey Kong (Japan, USA) (SGB Enhanced).gb",
+  "frames": 512,
+  "totalReads": 11,
+  "totalWrites": 2580,
+  "totalMapperWrites": 1732,
+  "pageWrites": [
+    512,
+    512,
+    512,
+    512,
+    352,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    180
+  ],
+  "pageReads": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    11
+  ],
+  "markers": [],
+  "reads": [
+    {
+      "type": "read",
+      "pc": 7883,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 7,
+      "minAddr": 49146,
+      "maxAddr": 49151,
+      "firstFrame": 491,
+      "lastFrame": 493,
+      "values": [
+        0,
+        9,
+        4,
+        2,
+        8
+      ],
+      "enabled": 7
+    },
+    {
+      "type": "read",
+      "pc": 7947,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2,
+      "minAddr": 49142,
+      "maxAddr": 49142,
+      "firstFrame": 491,
+      "lastFrame": 493,
+      "values": [
+        0
+      ],
+      "enabled": 2
+    },
+    {
+      "type": "read",
+      "pc": 7897,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 49112,
+      "maxAddr": 49112,
+      "firstFrame": 493,
+      "lastFrame": 493,
+      "values": [
+        0
+      ],
+      "enabled": 1
+    },
+    {
+      "type": "read",
+      "pc": 8180,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 1,
+      "minAddr": 49146,
+      "maxAddr": 49146,
+      "firstFrame": 495,
+      "lastFrame": 495,
+      "values": [
+        9
+      ],
+      "enabled": 1
+    }
+  ],
+  "writes": [
+    {
+      "type": "write",
+      "pc": 4161,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 2400,
+      "minAddr": 40960,
+      "maxAddr": 42159,
+      "firstFrame": 491,
+      "lastFrame": 495,
+      "values": [
+        0
+      ],
+      "enabled": 2400
+    },
+    {
+      "type": "write",
+      "pc": 4170,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 168,
+      "minAddr": 49086,
+      "maxAddr": 49151,
+      "firstFrame": 491,
+      "lastFrame": 495,
+      "values": [
+        0
+      ],
+      "enabled": 168
+    },
+    {
+      "type": "write",
+      "pc": 4185,
+      "romBank": 0,
+      "sramBank": 0,
+      "count": 12,
+      "minAddr": 49146,
+      "maxAddr": 49151,
+      "firstFrame": 493,
+      "lastFrame": 495,
+      "values": [
+        9,
+        4,
+        0,
+        2,
+        8
+      ],
+      "enabled": 12
+    }
+  ],
+  "mapper": [
+    {
+      "type": "rom-bank",
+      "pc": 19,
+      "value": 1,
+      "count": 602,
+      "firstFrame": 0,
+      "lastFrame": 494
+    },
+    {
+      "type": "rom-bank",
+      "pc": 19,
+      "value": 2,
+      "count": 243,
+      "firstFrame": 1,
+      "lastFrame": 511
+    },
+    {
+      "type": "rom-bank",
+      "pc": 19,
+      "value": 3,
+      "count": 243,
+      "firstFrame": 1,
+      "lastFrame": 511
+    },
+    {
+      "type": "rom-bank",
+      "pc": 5915,
+      "value": 4,
+      "count": 235,
+      "firstFrame": 2,
+      "lastFrame": 491
+    },
+    {
+      "type": "rom-bank",
+      "pc": 650,
+      "value": 1,
+      "count": 217,
+      "firstFrame": 2,
+      "lastFrame": 491
+    },
+    {
+      "type": "rom-bank",
+      "pc": 19,
+      "value": 11,
+      "count": 157,
+      "firstFrame": 2,
+      "lastFrame": 301
+    },
+    {
+      "type": "rom-bank",
+      "pc": 650,
+      "value": 2,
+      "count": 11,
+      "firstFrame": 60,
+      "lastFrame": 426
+    },
+    {
+      "type": "rom-bank",
+      "pc": 19,
+      "value": 26,
+      "count": 9,
+      "firstFrame": 495,
+      "lastFrame": 511
+    },
+    {
+      "type": "rom-bank",
+      "pc": 650,
+      "value": 3,
+      "count": 7,
+      "firstFrame": 58,
+      "lastFrame": 418
+    },
+    {
+      "type": "ram-enable",
+      "pc": 7855,
+      "value": 10,
+      "count": 3,
+      "firstFrame": 491,
+      "lastFrame": 495
+    },
+    {
+      "type": "ram-enable",
+      "pc": 7864,
+      "value": 0,
+      "count": 3,
+      "firstFrame": 493,
+      "lastFrame": 495
+    },
+    {
+      "type": "rom-bank",
+      "pc": 19,
+      "value": 30,
+      "count": 2,
+      "firstFrame": 495,
+      "lastFrame": 495
+    }
+  ]
+}

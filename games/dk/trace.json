@@ -1,0 +1,1 @@
+wait:300;tap:START:10;wait:400;tap:A:120;tap:A:200;tap:A:300;hold:RIGHT:90;tap:A:30;hold:LEFT:120;tap:A:30;hold:RIGHT:200;tap:A:30;hold:UP:100;hold:RIGHT:200;tap:A:30;wait:300

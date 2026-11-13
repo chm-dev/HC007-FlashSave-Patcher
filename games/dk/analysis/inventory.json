@@ -1,0 +1,394 @@
+{
+  "path": "roms\\roms-to-patch\\Donkey Kong (Japan, USA) (SGB Enhanced).gb",
+  "file_size": 524288,
+  "sha1": "6ed661bd1d6d8cdd48e1c10f8ca4e8dcba49128e",
+  "sha256": "2781f6b1014336e3318073f162cadd970329c8148fc62b5e795441cd6fd57051",
+  "crc32": "edab3378",
+  "title": "DONKEY KONG",
+  "cart_type": 3,
+  "cart_type_name": "MBC1+RAM+BATTERY",
+  "mapper": "MBC1",
+  "rom_size_code": 4,
+  "declared_rom_size": 524288,
+  "ram_size_code": 2,
+  "declared_ram_size": 8192,
+  "cgb_flag": 0,
+  "battery": true,
+  "rtc": false,
+  "rumble": false,
+  "header_checksum_stored": 46,
+  "header_checksum_computed": 46,
+  "global_checksum_stored": 4839,
+  "global_checksum_computed": 4839,
+  "nintendo_logo_ok": true,
+  "entry_target": 336,
+  "vectors": {
+    "vblank": {
+      "address": 64,
+      "bytes": "c3 70 02 ff ff ff ff ff",
+      "opcode": 195,
+      "target": 624
+    },
+    "stat": {
+      "address": 72,
+      "bytes": "c3 ad 02 ff ff ff ff ff",
+      "opcode": 195,
+      "target": 685
+    },
+    "timer": {
+      "address": 80,
+      "bytes": "c3 c4 02 ff ff ff ff ff",
+      "opcode": 195,
+      "target": 708
+    },
+    "serial": {
+      "address": 88,
+      "bytes": "d9 ff ff ff ff ff ff ff",
+      "opcode": 217,
+      "target": null
+    },
+    "joypad": {
+      "address": 96,
+      "bytes": "d9 ff ff ff ff ff ff ff",
+      "opcode": 217,
+      "target": null
+    }
+  },
+  "banks": [
+    {
+      "bank": 0,
+      "file_offset": 0,
+      "size": 16384,
+      "ff_bytes": 2118,
+      "ff_percent": 12.9,
+      "zero_bytes": 341,
+      "zero_percent": 2.1,
+      "unique_bytes": 256
+    },
+    {
+      "bank": 1,
+      "file_offset": 16384,
+      "size": 16384,
+      "ff_bytes": 1663,
+      "ff_percent": 10.2,
+      "zero_bytes": 2695,
+      "zero_percent": 16.4,
+      "unique_bytes": 256
+    },
+    {
+      "bank": 2,
+      "file_offset": 32768,
+      "size": 16384,
+      "ff_bytes": 2925,
+      "ff_percent": 17.9,
+      "zero_bytes": 1195,
+      "zero_percent": 7.3,
+      "unique_bytes": 252
+    },
+    {
+      "bank": 3,
+      "file_offset": 49152,
+      "size": 16384,
+      "ff_bytes": 1942,
+      "ff_percent": 11.9,
+      "zero_bytes": 355,
+      "zero_percent": 2.2,
+      "unique_bytes": 254
+    },
+    {
+      "bank": 4,
+      "file_offset": 65536,
+      "size": 16384,
+      "ff_bytes": 2484,
+      "ff_percent": 15.2,
+      "zero_bytes": 5660,
+      "zero_percent": 34.5,
+      "unique_bytes": 233
+    },
+    {
+      "bank": 5,
+      "file_offset": 81920,
+      "size": 16384,
+      "ff_bytes": 1813,
+      "ff_percent": 11.1,
+      "zero_bytes": 1077,
+      "zero_percent": 6.6,
+      "unique_bytes": 256
+    },
+    {
+      "bank": 6,
+      "file_offset": 98304,
+      "size": 16384,
+      "ff_bytes": 3902,
+      "ff_percent": 23.8,
+      "zero_bytes": 986,
+      "zero_percent": 6.0,
+      "unique_bytes": 256
+    },
+    {
+      "bank": 7,
+      "file_offset": 114688,
+      "size": 16384,
+      "ff_bytes": 382,
+      "ff_percent": 2.3,
+      "zero_bytes": 698,
+      "zero_percent": 4.3,
+      "unique_bytes": 250
+    },
+    {
+      "bank": 8,
+      "file_offset": 131072,
+      "size": 16384,
+      "ff_bytes": 494,
+      "ff_percent": 3.0,
+      "zero_bytes": 784,
+      "zero_percent": 4.8,
+      "unique_bytes": 256
+    },
+    {
+      "bank": 9,
+      "file_offset": 147456,
+      "size": 16384,
+      "ff_bytes": 4301,
+      "ff_percent": 26.3,
+      "zero_bytes": 316,
+      "zero_percent": 1.9,
+      "unique_bytes": 249
+    },
+    {
+      "bank": 10,
+      "file_offset": 163840,
+      "size": 16384,
+      "ff_bytes": 153,
+      "ff_percent": 0.9,
+      "zero_bytes": 798,
+      "zero_percent": 4.9,
+      "unique_bytes": 249
+    },
+    {
+      "bank": 11,
+      "file_offset": 180224,
+      "size": 16384,
+      "ff_bytes": 567,
+      "ff_percent": 3.5,
+      "zero_bytes": 3776,
+      "zero_percent": 23.0,
+      "unique_bytes": 254
+    },
+    {
+      "bank": 12,
+      "file_offset": 196608,
+      "size": 16384,
+      "ff_bytes": 4198,
+      "ff_percent": 25.6,
+      "zero_bytes": 730,
+      "zero_percent": 4.5,
+      "unique_bytes": 256
+    },
+    {
+      "bank": 13,
+      "file_offset": 212992,
+      "size": 16384,
+      "ff_bytes": 7942,
+      "ff_percent": 48.5,
+      "zero_bytes": 798,
+      "zero_percent": 4.9,
+      "unique_bytes": 253
+    },
+    {
+      "bank": 14,
+      "file_offset": 229376,
+      "size": 16384,
+      "ff_bytes": 7065,
+      "ff_percent": 43.1,
+      "zero_bytes": 1172,
+      "zero_percent": 7.2,
+      "unique_bytes": 253
+    },
+    {
+      "bank": 15,
+      "file_offset": 245760,
+      "size": 16384,
+      "ff_bytes": 4172,
+      "ff_percent": 25.5,
+      "zero_bytes": 784,
+      "zero_percent": 4.8,
+      "unique_bytes": 255
+    },
+    {
+      "bank": 16,
+      "file_offset": 262144,
+      "size": 16384,
+      "ff_bytes": 708,
+      "ff_percent": 4.3,
+      "zero_bytes": 1181,
+      "zero_percent": 7.2,
+      "unique_bytes": 256
+    },
+    {
+      "bank": 17,
+      "file_offset": 278528,
+      "size": 16384,
+      "ff_bytes": 6204,
+      "ff_percent": 37.9,
+      "zero_bytes": 3735,
+      "zero_percent": 22.8,
+      "unique_bytes": 245
+    },
+    {
+      "bank": 18,
+      "file_offset": 294912,
+      "size": 16384,
+      "ff_bytes": 8061,
+      "ff_percent": 49.2,
+      "zero_bytes": 586,
+      "zero_percent": 3.6,
+      "unique_bytes": 254
+    },
+    {
+      "bank": 19,
+      "file_offset": 311296,
+      "size": 16384,
+      "ff_bytes": 2420,
+      "ff_percent": 14.8,
+      "zero_bytes": 2002,
+      "zero_percent": 12.2,
+      "unique_bytes": 255
+    },
+    {
+      "bank": 20,
+      "file_offset": 327680,
+      "size": 16384,
+      "ff_bytes": 2117,
+      "ff_percent": 12.9,
+      "zero_bytes": 2724,
+      "zero_percent": 16.6,
+      "unique_bytes": 252
+    },
+    {
+      "bank": 21,
+      "file_offset": 344064,
+      "size": 16384,
+      "ff_bytes": 3606,
+      "ff_percent": 22.0,
+      "zero_bytes": 5387,
+      "zero_percent": 32.9,
+      "unique_bytes": 251
+    },
+    {
+      "bank": 22,
+      "file_offset": 360448,
+      "size": 16384,
+      "ff_bytes": 1729,
+      "ff_percent": 10.6,
+      "zero_bytes": 3999,
+      "zero_percent": 24.4,
+      "unique_bytes": 256
+    },
+    {
+      "bank": 23,
+      "file_offset": 376832,
+      "size": 16384,
+      "ff_bytes": 811,
+      "ff_percent": 4.9,
+      "zero_bytes": 1276,
+      "zero_percent": 7.8,
+      "unique_bytes": 251
+    },
+    {
+      "bank": 24,
+      "file_offset": 393216,
+      "size": 16384,
+      "ff_bytes": 5073,
+      "ff_percent": 31.0,
+      "zero_bytes": 1522,
+      "zero_percent": 9.3,
+      "unique_bytes": 256
+    },
+    {
+      "bank": 25,
+      "file_offset": 409600,
+      "size": 16384,
+      "ff_bytes": 6866,
+      "ff_percent": 41.9,
+      "zero_bytes": 633,
+      "zero_percent": 3.9,
+      "unique_bytes": 256
+    },
+    {
+      "bank": 26,
+      "file_offset": 425984,
+      "size": 16384,
+      "ff_bytes": 4760,
+      "ff_percent": 29.1,
+      "zero_bytes": 714,
+      "zero_percent": 4.4,
+      "unique_bytes": 256
+    },
+    {
+      "bank": 27,
+      "file_offset": 442368,
+      "size": 16384,
+      "ff_bytes": 1457,
+      "ff_percent": 8.9,
+      "zero_bytes": 1449,
+      "zero_percent": 8.8,
+      "unique_bytes": 256
+    },
+    {
+      "bank": 28,
+      "file_offset": 458752,
+      "size": 16384,
+      "ff_bytes": 5427,
+      "ff_percent": 33.1,
+      "zero_bytes": 2280,
+      "zero_percent": 13.9,
+      "unique_bytes": 254
+    },
+    {
+      "bank": 29,
+      "file_offset": 475136,
+      "size": 16384,
+      "ff_bytes": 437,
+      "ff_percent": 2.7,
+      "zero_bytes": 3828,
+      "zero_percent": 23.4,
+      "unique_bytes": 253
+    },
+    {
+      "bank": 30,
+      "file_offset": 491520,
+      "size": 16384,
+      "ff_bytes": 2334,
+      "ff_percent": 14.2,
+      "zero_bytes": 2439,
+      "zero_percent": 14.9,
+      "unique_bytes": 256
+    },
+    {
+      "bank": 31,
+      "file_offset": 507904,
+      "size": 16384,
+      "ff_bytes": 271,
+      "ff_percent": 1.7,
+      "zero_bytes": 535,
+      "zero_percent": 3.3,
+      "unique_bytes": 254
+    }
+  ],
+  "blank_64k_sectors": [],
+  "free_16k_banks": [],
+  "bank0_free_runs": [
+    {
+      "offset": 14604,
+      "length": 1780
+    },
+    {
+      "offset": 97,
+      "length": 159
+    }
+  ],
+  "warnings": [
+    "no blank 64 KiB sector inside the image"
+  ]
+}

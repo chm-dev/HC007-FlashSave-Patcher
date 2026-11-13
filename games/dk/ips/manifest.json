@@ -1,0 +1,39 @@
+{
+  "game": "Donkey Kong (Japan, USA) (SGB Enhanced)",
+  "source": {
+    "path": "roms/roms-to-patch/Donkey Kong (Japan, USA) (SGB Enhanced).gb",
+    "size": 524288,
+    "sha1": "6ed661bd1d6d8cdd48e1c10f8ca4e8dcba49128e",
+    "crc32": "edab3378"
+  },
+  "targets": {
+    "normal": {
+      "size": 1048576,
+      "sha1": "4318a52833ff97f898102165609a568755a35e61",
+      "crc32": "a271505a"
+    },
+    "noflash": {
+      "size": 1048576,
+      "sha1": "26ffb9045ec3157196d62a4670f302fe6544009d",
+      "crc32": "d777e30c"
+    }
+  },
+  "patches": {
+    "dk-hc007.ips": {
+      "size": 525314,
+      "sha1": "c7b0126b78e4a24e8707da6224c588d37b87f84e",
+      "target": "normal",
+      "padded": true,
+      "recommended": true
+    },
+    "dk-hc007-noflash.ips": {
+      "size": 525289,
+      "sha1": "234c6be39b0636e03ee31b5671f4b4bf1ae5954b",
+      "target": "noflash",
+      "padded": true,
+      "recommended": false
+    }
+  },
+  "hardware": "build 5 froze at title: flash records were laid out across 0x4000-0x5FFF (RAM-bank register). build 6 uses the 0x6000-0x7FFF window only; hardware-pass on a known-good cart (the earlier test cart was faulty)",
+  "generated_by": "patcher/rom_ips.py"
+}

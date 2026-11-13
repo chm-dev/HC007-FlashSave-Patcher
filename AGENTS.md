@@ -19,7 +19,7 @@ for the HC007-BGA-V2 bootleg cart.  It is not a universal patcher.
 - SML2 is **hardware-pass**.  Case folder: `games/sml2/`; entry point:
   `games/sml2/README.md`; evidence: `games/sml2/notes.md`.
 - IPS patches live in `games/sml2/ips/` with `README.md` and `manifest.json`.
-- No next game has been chosen.
+- **Donkey Kong** (games/dk/) is **hardware-pass** (build 6 retains saves on a known-good cart; an earlier cart was faulty): oms/dk-hc007.gb +oms/dk-hc007-noflash.gb, IPS in games/dk/ips/, test plan in games/dk/README.md.
 
 ## Starting the next game
 

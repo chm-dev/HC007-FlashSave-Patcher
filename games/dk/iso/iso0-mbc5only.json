@@ -1,0 +1,16 @@
+{
+  "_comment": "Isolation build for hardware bisect - see games/dk/README.md",
+  "name": "iso0-mbc5only",
+  "source": {
+    "path": "../../../roms/roms-to-patch/Donkey Kong (Japan, USA) (SGB Enhanced).gb",
+    "sha1": "6ed661bd1d6d8cdd48e1c10f8ca4e8dcba49128e"
+  },
+  "output": "../../../roms/dk-iso0-mbc5only.gb",
+  "base_rom_size": 524288,
+  "append_banks": 32,
+  "rom_size_code": 5,
+  "cart_type": 27,
+  "edits": [],
+  "blobs": [],
+  "fix_checksums": true
+}

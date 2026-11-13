@@ -1,0 +1,78 @@
+{
+  "_comment": "Donkey Kong HC007 batteryless-save patch. Build blobs with games/dk/tools/build_save.py, then rom_patch.py apply. All patch code is in the bank-0 free run 0x3910-0x3FDF; log sector = banks 0x20-0x23 (appended). MBC1->MBC5 (cart type 0x1B): DK only writes bank numbers to 0x2000 (values 1..0x1F, never 0).",
+  "name": "dk-hc007",
+  "source": {
+    "path": "../../../roms/roms-to-patch/Donkey Kong (Japan, USA) (SGB Enhanced).gb",
+    "sha1": "6ed661bd1d6d8cdd48e1c10f8ca4e8dcba49128e"
+  },
+  "output": "../../../roms/dk-fl2.gb",
+  "base_rom_size": 524288,
+  "append_banks": 32,
+  "rom_size_code": 5,
+  "cart_type": 27,
+  "edits": [
+    {
+      "hex": "C3 00 3A",
+      "bank": 0,
+      "addr": "0x0100",
+      "name": "boot entry -> restore trampoline"
+    },
+    {
+      "hex": "C3 10 39",
+      "bank": 0,
+      "addr": "0x1FDC",
+      "name": "init/wipe/recover tail -> commit"
+    },
+    {
+      "hex": "C3 10 39",
+      "bank": 1,
+      "addr": "0x4D13",
+      "name": "progress writer 4CB3 tail -> commit"
+    },
+    {
+      "hex": "C3 10 39",
+      "bank": 1,
+      "addr": "0x54FD",
+      "name": "CLEAR (54A9) tail -> commit"
+    },
+    {
+      "hex": "C3 10 39",
+      "bank": 1,
+      "addr": "0x558D",
+      "name": "slot counter 5538 tail -> commit"
+    },
+    {
+      "hex": "C3 10 39",
+      "bank": 1,
+      "addr": "0x564B",
+      "name": "slot counter 55F9 tail -> commit"
+    },
+    {
+      "hex": "CD 10 39",
+      "bank": 1,
+      "addr": "0x51BB",
+      "name": "file select BFBE write 51B0 -> commit"
+    },
+    {
+      "hex": "CD 10 39",
+      "bank": 1,
+      "addr": "0x5730",
+      "name": "file select BFBE write 5723 -> commit"
+    },
+    {
+      "hex": "C3 10 39",
+      "bank": 23,
+      "addr": "0x750B",
+      "name": "score table writer tail -> commit"
+    }
+  ],
+  "blobs": [
+    {
+      "bank": 0,
+      "path": "../build/cave-fl2.bin",
+      "offset": "0x3910",
+      "name": "bank-0 cave: commit stub, boot restore, journal, WRAM helper source"
+    }
+  ],
+  "fix_checksums": true
+}
